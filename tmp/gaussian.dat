@@ -1,15 +1,12 @@
 %mem=30gb
 %nproc=8
 
-# RHF/STO-3G
+# RHF/STO-3G SCF=(CONVER=10)
 
 Water Single Point
 
 0 1
-O
-H 1 r1
-H 1 r1 2 a1
-  Variables:
-r1  0.957
-a1  104.5
+O          1.02678       -0.07839        0.03182
+H          0.74793       -0.99954       -0.08083
+H          1.99466       -0.12448        0.02618
 
