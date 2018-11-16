@@ -1,0 +1,16 @@
+memory,500,m
+
+angstrom
+Geometry = {
+O
+H 1 r1
+H 1 r1 2 a1
+}
+
+r1 = 0.957
+a1 = 104.5
+
+basis=sto-3g
+
+{rhf}
+

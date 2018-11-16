@@ -1,0 +1,15 @@
+%mem=30gb
+%nproc=8
+
+# RHF/STO-3G
+
+Water Single Point
+
+0 1
+O
+H 1 r1
+H 1 r1 2 a1
+  Variables:
+r1  0.957
+a1  104.5
+
