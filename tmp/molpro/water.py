@@ -14,23 +14,15 @@ COORDS = ((0.000000000000,  0.000000000000, -0.143225816552),
           (0.000000000000,  1.638036840407,  1.136548822547),
           (0.000000000000, -1.638036840407,  1.136548822547))
 
-NNODES = 1
-NCORES_TOTAL = 4
-NCORES_PER_NODE = 4
-HOSTNODES = 'b440'
-MACHINEFILE = "Null"
-INPUT = 'input.dat'
-OUTPUT = 'output.dat'
-
-fill_vals = {
-    'nnodes': NNODES,
-    'ncores_total': NCORES_TOTAL,
-    'ncores_per_node': NCORES_PER_NODE,
-    'hostnodes': HOSTNODES,
-    'machinefile': MACHINEFILE,
-    'input': INPUT,
-    'output': OUTPUT}
-TEMP_STR = Template(filename='molpro2015.mako').render(**fill_vals)
+FILL_VALS = {
+    'nnodes': 1,
+    'ncores_total': 4,
+    'ncores_per_node': 4,
+    'hostnodes': 'b440',
+    'machinefile': "Null",
+    'input': 'input.dat',
+    'output': 'output.dat'}
+TEMP_STR = Template(filename='molpro2015.mako').render(**FILL_VALS)
 
 # make the caller
 def runner():

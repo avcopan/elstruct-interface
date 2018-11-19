@@ -3,7 +3,7 @@ import elstruct.interfaces as interfaces
 from mako.template import Template
 
 PROG = 'psi4'
-THEORY = 'rhf'
+THEORY = 'ccsd'
 
 # create input
 BASIS = 'STO-3G'

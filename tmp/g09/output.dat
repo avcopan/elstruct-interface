@@ -1,7 +1,7 @@
  Entering Gaussian System, Link 0=g09
  Initial command:
- /soft/gaussian/09-e.01/g09/l1.exe "/blues/gpfs/home/copan/Gau-88343.inp" -scrdir="/blues/gpfs/home/copan/"
- Entering Link 1 = /soft/gaussian/09-e.01/g09/l1.exe PID=     88344.
+ /soft/gaussian/09-e.01/g09/l1.exe "/blues/gpfs/home/copan/Gau-90395.inp" -scrdir="/blues/gpfs/home/copan/"
+ Entering Link 1 = /soft/gaussian/09-e.01/g09/l1.exe PID=     90396.
   
  Copyright (c) 1988,1990,1992,1993,1995,1998,2003,2009,2015,
             Gaussian, Inc.  All Rights Reserved.
@@ -228,7 +228,8 @@
  2V [C2(O1),SGV(H2)]\\@
 
 
- ABALONE: AN EXPRESSION OF DISBELIEF.
- Job cpu time:       0 days  0 hours  0 minutes 19.3 seconds.
+ IMAGINATION WILL OFTEN CARRY US TO WORLDS THAT NEVER WERE.
+ BUT WITHOUT IT, WE GO NOWHERE. -- CARL SAGAN (COSMOS)
+ Job cpu time:       0 days  0 hours  0 minutes 19.7 seconds.
  File lengths (MBytes):  RWF=     67 Int=      0 D2E=      0 Chk=      2 Scr=      2
- Normal termination of Gaussian 09 at Mon Nov 19 15:21:31 2018.
+ Normal termination of Gaussian 09 at Mon Nov 19 15:51:04 2018.

@@ -13,4 +13,4 @@ set scf_type pk
 
 set reference rohf
 
-energy('scf')
+energy('ccsd')
