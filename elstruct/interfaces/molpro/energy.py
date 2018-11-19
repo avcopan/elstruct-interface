@@ -2,7 +2,6 @@
 """
 import os
 from mako.template import Template
-from ...chem import electron_count
 from ...util import xyz_string
 from ...rere.find import single_capture
 from ...rere.pattern import escape
@@ -11,27 +10,45 @@ from ...rere.pattern import one_or_more
 from ...rere.pattern_lib import WHITESPACE
 from ...rere.pattern_lib import FLOAT
 
+INP_NAME = 'input.dat'
+OUT_NAME = 'output.dat'
+
 TEMP_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')
 
 TEMP_DCT = {
-    'rhf': 'rhf-energy.mako'
+    'rhf': 'rhf-energy.mako',
+    'ccsd': 'ccsd-energy.mako'
 }
 
 
-def input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
+def energy(runner, theory, basis, labels, coords, charge=0, mult=1, niter=100,
+           thresh_log=12):
+
+    inp_str = _input_string(theory, basis, labels, coords, charge, mult,
+                            niter, thresh_log)
+    with open(INP_NAME, 'w') as inp_fle:
+        inp_fle.write(inp_str)
+
+    runner()
+
+    with open(OUT_NAME) as out_fle:
+        out_str = out_fle.read()
+
+    en = _read_energy(out_str, theory, basis)
+    return en
+
+
+def _input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
                  thresh_log=12):
     assert theory in TEMP_DCT
 
     geom = xyz_string(labels, coords)
-    nelec = electron_count(labels, charge)
     spin = mult - 1
     fill_vals = {
         'thresh_log': thresh_log,
         'geom': geom,
         'basis': basis,
         'niter': niter,
-        'nelec': nelec,
-        'irrep': 1,
         'spin': spin,
         'charge': charge}
 
@@ -42,7 +59,7 @@ def input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
     return inp_str
 
 
-def read_energy(output, theory, basis):
+def _read_energy(output, theory, basis):
     theory = theory.upper()
     basis = basis.upper()
     pattern = (theory + escape('/') + basis + one_or_more(WHITESPACE) +

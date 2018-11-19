@@ -11,3 +11,9 @@ set,spin=${spin}
 set,charge=${charge}
 
 {rhf,maxit=${niter}}
+
+%if spin == 0:
+{ccsd,maxit=${niter}}
+%else:
+{uccsd,maxit=${niter}}
+%endif
