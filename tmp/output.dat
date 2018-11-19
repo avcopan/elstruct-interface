@@ -34,9 +34,9 @@
   wf,10,1,0,0}
  
 
- Variables initialized (889), CPU time= 0.01 sec
- Commands  initialized (702), CPU time= 0.00 sec, 572 directives.
- Default parameters read. Elapsed time= 0.05 sec
+ Variables initialized (889), CPU time= 0.02 sec
+ Commands  initialized (702), CPU time= 0.01 sec, 572 directives.
+ Default parameters read. Elapsed time= 0.25 sec
 
  Checking input...
  Passed
@@ -50,7 +50,7 @@
 
  **********************************************************************************************************************************
  LABEL *                                                                                 
-  64 bit mpp version                                                                     DATE: 16-Nov-18          TIME: 16:56:14  
+  64 bit mpp version                                                                     DATE: 19-Nov-18          TIME: 13:43:04  
  **********************************************************************************************************************************
 
  SHA1:             b6b3a4772808bb2d43777f23454e145ddfe12dc3
@@ -137,8 +137,8 @@ Geometry recognized as XYZ
 
  Memory used in sort:       0.56 MW
 
- SORT1 READ         219. AND WROTE          52. INTEGRALS IN      1 RECORDS. CPU TIME:     0.01 SEC, REAL TIME:     0.01 SEC
- SORT2 READ         171. AND WROTE         191. INTEGRALS IN      3 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.00 SEC
+ SORT1 READ         219. AND WROTE          52. INTEGRALS IN      1 RECORDS. CPU TIME:     0.03 SEC, REAL TIME:     0.03 SEC
+ SORT2 READ         171. AND WROTE         191. INTEGRALS IN      3 RECORDS. CPU TIME:     0.01 SEC, REAL TIME:     0.01 SEC
 
  Node minimum:          50.  Node maximum:          87. integrals
 
@@ -153,8 +153,8 @@ Geometry recognized as XYZ
                                            T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER   
 
  PROGRAMS   *        TOTAL       INT
- CPU TIMES  *         0.27      0.16
- REAL TIME  *         0.52 SEC
+ CPU TIMES  *         0.67      0.46
+ REAL TIME  *         1.36 SEC
  DISK USED  *        12.59 MB      
  GA USED    *         0.00 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
@@ -236,8 +236,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF  
 
  PROGRAMS   *        TOTAL       RHF       INT
- CPU TIMES  *         0.31      0.05      0.16
- REAL TIME  *         0.56 SEC
+ CPU TIMES  *         0.77      0.10      0.46
+ REAL TIME  *         1.49 SEC
  DISK USED  *        71.15 MB      
  SF USED    *         0.00 MB      
  GA USED    *         0.00 MB       (max)       0.00 MB       (current)

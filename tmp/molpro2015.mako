@@ -24,18 +24,26 @@ TMPDIR=/scratch/$USER
 echo "Settting MPI options" >> $PWD/job_status.log
 
 # Set runtime options for MPI
-MPI_OPTIONS="-n 4 -ppn 4 -hosts b440"
+%if machinefile == "Null":
+MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts ${hostnodes}"
+%else:
+MPI_OPTIONS="-f ${machinefile}"
+%endif
 
 echo "Settting Molpro options" >> $PWD/job_status.log
 
 # Set runtime options for Molpro
-MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o output.dat"
+%if nnodes == 1:
+MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o ${output}"
+%else:
+MOLPRO_OPTIONS="--mppx --nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o ${output}"
+%endif
 
 echo "Creating scratch directory" >> $PWD/job_status.log
 echo "Running Molpro2015" >> $PWD/job_status.log
 
 # Run the molpro executable
-mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $PWD/input.dat
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $PWD/${input}
 
 echo "Deleting scratch directory" >> $PWD/job_status.log
 

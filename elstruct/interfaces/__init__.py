@@ -1,5 +1,3 @@
-from . import g09
-from . import psi4
-from . import molpro
+from .routines import energy
 
-__all__ = ['g09', 'psi4', 'molpro']
+__all__ = ['energy']

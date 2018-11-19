@@ -1,4 +1,4 @@
 # run with: . /path/to/fake-install.sh
-export ELSTRUCT_ROOT="`pwd`/`dirname "$BASH_SOURCE"`/.."
-export PATH=$ELSTRUCT_ROOT:$PATH
-export PYTHONPATH=$ELSTRUCT_ROOT:$PYTHONPATH
+export PROJECT_ROOT="`pwd`/`dirname "$BASH_SOURCE"`/.."
+export PATH=$PROJECT_ROOT:$PATH
+export PYTHONPATH=$PROJECT_ROOT:$PYTHONPATH
