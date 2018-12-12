@@ -23,6 +23,7 @@ cmd_line_parser.add_argument("-t","--walltime",default="2:00:00",help="Maximum w
 cmd_line_parser.add_argument("-j","--jobname",default="run",help="Name your job will have on the Bebop queue (default: %(default)s)")
 cmd_line_parser.add_argument("-i","--input",default="input.dat",help="Name of input file (default: %(default)s)")
 cmd_line_parser.add_argument("-o","--output",default="output.dat",help="Name of output file (default: %(default)s)")
+cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",help="Set the scratch directory (default: %(default)s)")
 cmd_line_parser.add_argument("-s","--submit",default=True,help="Automatically use the shell script to submit job (default: %(default)s)")
 
 # Place all of the arguments needed to create the submission script in an arg object
