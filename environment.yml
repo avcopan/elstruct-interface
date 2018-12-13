@@ -1,0 +1,11 @@
+name: esenv
+
+channels:
+    - psi4
+
+dependencies:
+    - python
+    - numpy
+    - pytest
+    - mako
+    - psi4
