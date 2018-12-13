@@ -1,0 +1,455 @@
+ **********************************************************************
+                          MRCC program system
+ **********************************************************************
+ 
+                              Written by
+  Mihaly Kallay, Zoltan Rolik, Jozsef Csontos, Peter Nagy, Gyula Samu,
+      David Mester, Jozsef Csoka, Bernat Szabo, Istvan Ladjanszki,
+       Lorant Szegedy, Bence Ladoczki, Klara Petrov, Mate Farkas,
+                    Pal D. Mezei, and Bence Hegely
+ 
+        Department of Physical Chemistry and Materials Science
+            Budapest University of Technology and Economics
+                  Budapest P.O.Box 91, H-1521 Hungary
+ 
+                              www.mrcc.hu
+ 
+                       Release date: May 23, 2018
+
+ ************************ 2018-12-13 10:02:37 *************************
+ Executing minp...
+
+ Reading input from MINP...
+ 
+ Input file:
+ 
+basis=cc-pVQZ
+scftype=RHF
+calc=CCSD(T)
+mem=30GB
+scfiguess=sad
+charge=0
+mult=1
+scfmaxit=300
+scftol=7
+cctol=7
+
+geom=xyz
+8
+ 
+C       -0.0547158644      0.3147046187      0.0000003150                 
+C        1.4644570237      0.3147044816      0.0000000576                 
+H       -0.4312909325     -0.2382673772      0.8862086093                 
+H       -0.4312912337     -0.1762881733     -0.9219915617                 
+H       -0.4312909334      1.3586695080      0.0357840890                 
+H        1.8410320919     -0.7292604082     -0.0357837106                 
+H        1.8410323930      0.8056972782      0.9219919318                 
+H        1.8410320928      0.8676764725     -0.8862082396   
+ 
+ 
+ Checking keyword combinations...
+ 
+ Keywords:
+ 
+ active=none
+ agrid=ld0006-ld0590
+ basis=cc-pvqz
+ basis_sm=none
+ basopt=off
+ bfbasis=none
+ bpcompo=0.985
+ bpcompv=0.98
+ bpdfo=0.985
+ bpocc=0.985
+ bppdo=0.985
+ bppdv=0.98
+ bpedo=0.985
+ bpedv=0.98
+ calc=ccsd(t)
+ ccmaxit=50
+ ccprog=ccsd
+ cctol=7
+ charge=0
+ cialg=auto
+ ciguess=off
+ cmpgrp=auto
+ core=frozen
+ corembed=off
+ dboc=off
+ dendec=cholesky
+ dens=0
+ dfalg=lineq
+ dfbasis_cor=none
+ dfbasis_scf=none
+ dfintran=ovirt
+ dft=off
+ diag=david
+ domrad=10.d0
+ drpaalg=fit
+ dual=off
+ ecp=auto
+ edisp=off
+ embed=off
+ epert=none
+ eps=0.975
+ excrad=0.d0
+ excrad_fin=0.000000000D+00
+ freq=off
+ gauss=spher
+ geom=xyz
+ gopt=off
+ ghost=none
+ gtol=7
+ grdens=off
+ grtol=10
+ hamilton=dc
+ iface=none
+ intalg=auto
+ itol=11
+ laptol=1.d-2
+ lcorthr=loose
+ lccrest=off
+ lmp2dens=on
+ lnoepso=0.d0
+ lnoepsv=1e-6
+ localcc=off
+ localcorrsymm=off
+ locintrf=disk
+ maxact=off
+ maxdim=100
+ maxex=0
+ mem=30gb
+ molden=on
+ mulmet=0
+ mult=1
+ nacto=0
+ nactv=0
+ naf_cor=off
+ naf_scf=off
+ nafalg=albe
+ naftyp=
+ nchol=auto
+ ndeps=1e-3
+ nstate=1
+ nsing=0
+ ntrip=0
+ occ=
+ optalg=
+ optmaxit=50
+ optetol=1e-6
+ optgtol=1e-4
+ optstol=1e-3
+ orblocc=off
+ orbloco=off
+ orblocv=off
+ orblocguess=cholesky
+ osveps=1e-3
+ ovirt=off
+ ovltol=1e-7
+ ovosnorb=80.0
+ ptfreq=0.0
+ popul=off
+ pressure=100000
+ qscf=off
+ qmmm=off
+ redcost_exc=off
+ refdet=none
+ rest=0
+ rgrid=log3
+ rohftype=semicanonical
+ scfalg=auto
+ scfdamp=off
+ scfdiis=on
+ scfdiis_end=300
+ scfdiis_start=1
+ scfdiis_step=1
+ scfdtol=8
+ scfext=10
+ scfiguess=sad
+ scflshift=off
+ scfmaxit=300
+ scftype=rhf
+ scftol=7
+ scspe=1.d0
+ scsps=1.2d0
+ scspt=0.33333333333333
+ scspv=1.d0
+ spairtol=1e-4
+ symm=
+ talg=occ
+ temp=298.15
+ test=off
+ tprint=off
+ uncontract=off
+ unit=angs
+ verbosity=2
+ wpairtol=0.100000000E-05
+
+ ************************ 2018-12-13 10:02:37 *************************
+ Executing integ...
+
+ Allocation of 30.0 Gbytes of memory...
+ 
+ 
+ Number of atoms:              8
+ Charge:                       0
+ Number of electrons:         18
+ Number of core electrons:     4
+ Spin multiplicity:            1
+ 
+                 Cartesian coordinates [bohr]      Atomic mass [AMU]  Z
+   1  C    -0.10339800    0.59470554    0.00000060    12.000000       6
+   2  C     2.76742270    0.59470528    0.00000011    12.000000       6
+   3  H    -0.81502174   -0.45026009    1.67469156     1.007825       1
+   4  H    -0.81502231   -0.33313637   -1.74231154     1.007825       1
+   5  H    -0.81502174    2.56751327    0.06762213     1.007825       1
+   6  H     3.47904644   -1.37810245   -0.06762141     1.007825       1
+   7  H     3.47904701    1.52254720    1.74231224     1.007825       1
+   8  H     3.47904644    1.63967090   -1.67469086     1.007825       1
+ 
+ This molecule is a prolate symmetric top.
+ 
+ Rotational constants [cm-1]: 
+      2.554926416456      0.675598341796      0.675598341793
+ 
+ Point group: D3d 
+ Computational point group: C2h 
+ 
+ Cartesian coordinates in standard orientation [bohr]
+   1  C    -0.00000000   -1.43541035   -0.00000000
+   2  C    -0.00000000    1.43541035   -0.00000000
+   3  H     1.97396624   -2.14703428   -0.00000000
+   4  H    -0.98698312   -2.14703428    1.70950491
+   5  H    -0.98698312   -2.14703428   -1.70950491
+   6  H     0.98698313    2.14703428    1.70950491
+   7  H     0.98698311    2.14703428   -1.70950492
+   8  H    -1.97396624    2.14703428    0.00000001
+ 
+ Nuclear repulsion energy [au]:         42.036636796818
+ 
+ 
+ Basis set information:
+ 
+ Maximum angular momentum: g
+ Maximum number of contracted Gaussians:    5
+ Maximum number of primitive Gaussians:    12
+ Spherical harmonic GTOs are used.
+ 
+    1  C  cc-pvqz [ 12s 6p 3d 2f 1g | 5s 4p 3d 2f 1g ]
+    2  C  cc-pvqz [ 12s 6p 3d 2f 1g | 5s 4p 3d 2f 1g ]
+    3  H  cc-pvqz [ 6s 3p 2d 1f | 4s 3p 2d 1f ]
+    4  H  cc-pvqz [ 6s 3p 2d 1f | 4s 3p 2d 1f ]
+    5  H  cc-pvqz [ 6s 3p 2d 1f | 4s 3p 2d 1f ]
+    6  H  cc-pvqz [ 6s 3p 2d 1f | 4s 3p 2d 1f ]
+    7  H  cc-pvqz [ 6s 3p 2d 1f | 4s 3p 2d 1f ]
+    8  H  cc-pvqz [ 6s 3p 2d 1f | 4s 3p 2d 1f ]
+ 
+ Total number of basis functions:    290
+ 
+ 
+ Generating initial guess for the SCF calculation...
+ CPU time [min]:     0.003                   Wall time [min]:     0.024
+ 
+ Character table for point group C2h:
+ 
+          E  C2z  i  Qh  
+    Ag    1   1   1   1
+    Bg    1  -1   1  -1
+    Au    1   1  -1  -1
+    Bu    1  -1  -1   1
+ 
+ Number of basis functions per irrep:
+    Ag     85
+    Bg     60
+    Au     60
+    Bu     85
+ 
+ 
+ Calculation of overlap integrals...
+ CPU time [min]:     0.003                   Wall time [min]:     0.024
+ 
+ Calculation of the square root of the overlap matrix...
+ Minimum eigenvalue of the overlap matrix: 0.120117E-03
+ CPU time [min]:     0.004                   Wall time [min]:     0.025
+ 
+ Calculation of kinetic energy integrals...
+ CPU time [min]:     0.004                   Wall time [min]:     0.025
+ Calculation of nuclear attraction integrals...
+ CPU time [min]:     0.004                   Wall time [min]:     0.025
+ 
+ Calculation of prescreening integrals...
+ CPU time [min]:     0.023                   Wall time [min]:     0.029
+ 
+ Calculation of two-electron integrals...
+   1% done.
+  12% done.
+  23% done.
+  35% done.
+  49% done.
+  65% done.
+  79% done.
+  91% done.
+ 100% done.
+ CPU time [min]:     4.843                   Wall time [min]:     2.063
+
+ ************************ 2018-12-13 10:04:41 *************************
+ Executing scf...
+
+ Allocation of 30.0 Gbytes of memory...
+ ======================================================================
+ ITERATION STEP   1
+ CPU time [min]:     0.004                   Wall time [min]:     0.003
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   1 IS     -78.8718844977259437 [AU]
+ ======================================================================
+ ITERATION STEP   2
+ CPU time [min]:     0.208                   Wall time [min]:     0.188
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   2 IS     -79.2177071125252894 [AU]
+ ======================================================================
+ ITERATION STEP   3
+ CPU time [min]:     0.404                   Wall time [min]:     0.371
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   3 IS     -79.2527823529759416 [AU]
+ ======================================================================
+ ITERATION STEP   4
+ CPU time [min]:     0.600                   Wall time [min]:     0.555
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   4 IS     -79.2615931198123036 [AU]
+ ======================================================================
+ ITERATION STEP   5
+ CPU time [min]:     0.796                   Wall time [min]:     0.738
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   5 IS     -79.2618185662184516 [AU]
+ ======================================================================
+ ITERATION STEP   6
+ CPU time [min]:     0.993                   Wall time [min]:     0.921
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   6 IS     -79.2618270136229341 [AU]
+ ======================================================================
+ ITERATION STEP   7
+ CPU time [min]:     1.191                   Wall time [min]:     1.104
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   7 IS     -79.2618272445303234 [AU]
+ ======================================================================
+ ITERATION STEP   8
+ CPU time [min]:     1.389                   Wall time [min]:     1.287
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   8 IS     -79.2618272489685722 [AU]
+ ======================================================================
+ ITERATION STEP   9
+ CPU time [min]:     1.588                   Wall time [min]:     1.471
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP   9 IS     -79.2618272490161644 [AU]
+ ======================================================================
+ ITERATION STEP  10
+ CPU time [min]:     1.787                   Wall time [min]:     1.654
+ 
+ ALPHA OCC:   4   1   1   3
+ BETA  OCC:   4   1   1   3
+ ***HARTREE-FOCK ENERGY IN STEP  10 IS     -79.2618272490174434 [AU]
+ ======================================================================
+ 
+ SUCCESS...
+ THE SCF ITERATION HAS CONVERGED!
+ 
+                   Ag  Bg  Au  Bu  
+ FINAL ALPHA OCC:   4   1   1   3
+ FINAL BETA  OCC:   4   1   1   3
+ 
+ ***FINAL HARTREE-FOCK ENERGY:    -79.2618272490174434 [AU]
+ 
+ RETURNING FROM SCF ALGORITHM
+ ======================================================================
+
+ ************************ 2018-12-13 10:06:31 *************************
+ Executing ovirt...
+
+ ovirt, the routine of orbital optimization and integral transformation 
+Thu Dec 13 10:06:31 CST 2018
+ Allocated memory:                   30720  Mb
+ RHF calculation! 
+ integral transforamtion: AOs ------ MOs
+ # of basis functions, # of int. blocks   290     2
+ 50 % 
+100 % 
+ second part
+ 50 %
+100 %
+ integral transformation is completed! 
+CPU and WC time        1310.05         805.65     AOs -> MOs 
+ printing integral list for the ccsd calculations
+Thu Dec 13 10:21:46 CST 2018
+  ovirt terminated normally 
+
+ ************************ 2018-12-13 10:21:46 *************************
+ Executing ccsd...
+
+ CCSD(T) calculation
+ 
+ Convergence criterion:  1.0E-07
+ 
+ Allocation of 30.0 Gbytes of memory...
+ 
+ Reference energy [au]:       -79.261827249017
+ MP2 energy [au]:             -79.654865601131
+ 
+ 
+ Starting CCSD iterations...
+ 
+                     Residual norm          Energy
+ Iteration  1        0.193040211763      -79.670536237676
+ Iteration  2        0.045430369430      -79.680549330405
+ Iteration  3        0.013670468126      -79.681698191571
+ Iteration  4        0.002808479169      -79.681702112538
+ Iteration  5        0.000612540111      -79.681710423585
+ Iteration  6        0.000179730723      -79.681711951933
+ Iteration  7        0.000044153481      -79.681711651072
+ Iteration  8        0.000012339168      -79.681712028442
+ Iteration  9        0.000002771799      -79.681711993822
+ Iteration 10        0.000000830343      -79.681711951709
+ 
+ CCSD iteration has converged in 10 steps.
+ 
+ T1 diagnostic:      8.341E-03            D1 diagnostic:      1.421E-02
+ 
+ CCSD correlation energy [au]:          -0.419884702691
+ Total CCSD energy [au]:               -79.681711951709
+ 
+ CPU time [min]:     6.117                   Wall time [min]:     3.383
+ 
+ Calculation of (T) correction...
+   1% done.
+  35% done.
+  61% done.
+  79% done.
+  91% done.
+ 100% done.
+ 
+ (T) correction [au]:                   -0.014964638775
+ CCSD(T) correlation energy [au]:       -0.434849341466
+ CCSD(T) total energy [au]:            -79.696676590483
+ 
+ CPU time [min]:     9.886                   Wall time [min]:     4.356
+ 
+ ************************ 2018-12-13 10:26:08 *************************
+                      Normal termination of mrcc.
+ **********************************************************************
