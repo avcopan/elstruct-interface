@@ -3,6 +3,7 @@
 import os
 import subprocess
 from mako.template import Template
+from ... import params as par
 from ...util import xyz_string
 from ...rere.find import captures
 from ...rere.pattern import capturing

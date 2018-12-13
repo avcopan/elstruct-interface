@@ -9,3 +9,5 @@ dependencies:
     - pytest
     - mako
     - psi4
+    - flake8
+    - pylint
