@@ -11,21 +11,18 @@ from ...rere.pattern import one_or_more
 from ...rere.pattern_lib import WHITESPACE
 from ...rere.pattern_lib import FLOAT
 
-INP_NAME = 'input.dat'
-OUT_NAME = 'output.dat'
+TEMPLATE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')
 
-TEMP_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')
-
-TEMP_DCT = {
-    'rhf': 'rhf-energy.mako',
-    'ccsd': 'ccsd-energy.mako'
+TEMPLATE_DCT = {
+    par.METHOD.RHF: 'rhf-energy.mako',
+    par.METHOD.CCSD: 'ccsd-energy.mako'
 }
 
 PATTERN_DCT = {
-    'rhf': (
+    par.METHOD.RHF: (
         'Final Energy:' + one_or_more(WHITESPACE) + capturing(FLOAT)
     ),
-    'ccsd': (
+    par.METHOD.CCSD: (
         'CCSD total energy' + one_or_more(WHITESPACE) + '=' +
         one_or_more(WHITESPACE) + capturing(FLOAT)
     )
@@ -34,24 +31,16 @@ PATTERN_DCT = {
 
 def energy(runner, theory, basis, labels, coords, charge=0, mult=1, niter=100,
            thresh_log=12):
-
     inp_str = _input_string(theory, basis, labels, coords, charge, mult,
                             niter, thresh_log)
-    with open(INP_NAME, 'w') as inp_fle:
-        inp_fle.write(inp_str)
-
-    runner()
-
-    with open(OUT_NAME) as out_fle:
-        out_str = out_fle.read()
-
+    out_str = runner(inp_str)
     en = _read_energy(out_str, theory)
     return en
 
 
 def _input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
                  thresh_log=12):
-    assert theory in TEMP_DCT
+    assert theory in TEMPLATE_DCT
 
     geom = xyz_string(labels, coords)
     fill_vals = {
@@ -62,8 +51,8 @@ def _input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
         'thresh_log': thresh_log,
         'niter': niter}
 
-    fname = TEMP_DCT[theory]
-    fpath = os.path.join(TEMP_PATH, fname)
+    fname = TEMPLATE_DCT[theory]
+    fpath = os.path.join(TEMPLATE_PATH, fname)
 
     inp_str = Template(filename=fpath).render(**fill_vals)
     return inp_str

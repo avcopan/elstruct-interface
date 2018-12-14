@@ -1,5 +1,5 @@
 import subprocess
-import elstruct.interfaces as interfaces
+import elstruct_old.interfaces as interfaces
 from mako.template import Template
 
 PROG = 'molpro'

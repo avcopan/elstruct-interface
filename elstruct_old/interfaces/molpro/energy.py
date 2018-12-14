@@ -2,6 +2,7 @@
 """
 import os
 from mako.template import Template
+from ... import params as par
 from ...util import xyz_string
 from ...rere.find import captures
 from ...rere.pattern import capturing
@@ -12,18 +13,18 @@ from ...rere.pattern_lib import FLOAT
 INP_NAME = 'input.dat'
 OUT_NAME = 'output.dat'
 
-TEMP_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')
+TEMPLATE_PATH = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'templates')
 
-TEMP_DCT = {
-    'rhf': 'rhf-energy.mako',
-    'ccsd': 'ccsd-energy.mako'
+TEMPLATE_DCT = {
+    par.METHOD.RHF: 'rhf-energy.mako',
+    par.METHOD.CCSD: 'ccsd-energy.mako'
 }
 
 PATTERN_DCT = {
-    'rhf': (
+    par.METHOD.RHF: (
         'energy=' + one_or_more(WHITESPACE) + capturing(FLOAT)
     ),
-    'ccsd': (
+    par.METHOD.CCSD: (
         'energy=' + one_or_more(WHITESPACE) + capturing(FLOAT)
     )
 }
@@ -48,7 +49,7 @@ def energy(runner, theory, basis, labels, coords, charge=0, mult=1, niter=100,
 
 def _input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
                  thresh_log=12):
-    assert theory in TEMP_DCT
+    assert theory in TEMPLATE_DCT
 
     geom = xyz_string(labels, coords)
     spin = mult - 1
@@ -60,8 +61,8 @@ def _input_string(theory, basis, labels, coords, charge=0, mult=1, niter=100,
         'spin': spin,
         'charge': charge}
 
-    fname = TEMP_DCT[theory]
-    fpath = os.path.join(TEMP_PATH, fname)
+    fname = TEMPLATE_DCT[theory]
+    fpath = os.path.join(TEMPLATE_PATH, fname)
 
     inp_str = Template(filename=fpath).render(**fill_vals)
     return inp_str

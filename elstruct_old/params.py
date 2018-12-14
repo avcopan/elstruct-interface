@@ -1,7 +1,3 @@
-""" common parameters
-"""
-
-
 class METHOD():
     RHF = 'rhf'
     CCSD = 'ccsd'
