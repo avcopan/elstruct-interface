@@ -10,13 +10,13 @@ cmd_line_parser = argparse.ArgumentParser()
 
 # Use positional arguments to specify the program to be ran as well as the compute nodes 
 cmd_line_parser.add_argument("program",
-  help="Specify program to run (Supported: cfour2, g09e, molpro2015, molpro2015-mppx, mrcc2018, orca4, psi4)")
+  help="Program to run (Supported: cfour2, g09e, molpro2015, molpro2015-mppx, mrcc2018, orca4, psi4)")
 cmd_line_parser.add_argument("hostnodes",
-  help="Two Options: (1) Enter nodes as list: node1,node2,node3...; (2) List nodes in a 'machines' file")
+  help="Options: (1) Enter as list: node1,node2,node3...; (2) List nodes in a 'machines' file")
 
 # Set additional parameters for user may want to control job submission 
 cmd_line_parser.add_argument("-J","--njobs",default=1,type=int,
-  help="Run 'njobs' molpro2015 calcs on SINGLE node. Place each job calcn directory where 1<=n<=njobs. (default: %(default)d)")
+  help="Run 'njobs' molpro2015 calcs on SINGLE node. Put jobs in calcn directory where 1<=n<=njobs. (default: %(default)d)")
 cmd_line_parser.add_argument("-n","--ncores_per_node",default=1,type=int,
   help="Number of cores for EACH node (default: %(default)d)")
 cmd_line_parser.add_argument("-i","--input",default="input.dat",
@@ -26,9 +26,9 @@ cmd_line_parser.add_argument("-o","--output",default="output.dat",
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")
 cmd_line_parser.add_argument("-s","--submit",default=True,type=bool,
-  help="Automatically use the shell script to submit job? True/False (default: %(default)s)")
+  help="Automatically submit job? True/False (default: %(default)s)")
 cmd_line_parser.add_argument("-b","--background",default=True,type=bool,
-  help="Run the job in the background? True/False (default: %(default)s)")
+  help="Run job in the background? True/False (default: %(default)s)")
 
 # Place all of the parameters needed to create the submission script into a dictionary
 SUBMIT_OPTIONS = vars(cmd_line_parser.parse_args())
