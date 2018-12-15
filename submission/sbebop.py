@@ -35,7 +35,7 @@ cmd_line_parser.add_argument("-o","--output",default="output.dat",
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")
 cmd_line_parser.add_argument("-s","--submit",default=True,type=bool,
-  help="Automatically use the shell script to submit job? True/False (default: %(default)b)")
+  help="Automatically use the shell script to submit job? True/False (default: %(default)s)")
 
 #################################################
 

@@ -26,9 +26,9 @@ cmd_line_parser.add_argument("-o","--output",default="output.dat",
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")
 cmd_line_parser.add_argument("-s","--submit",default=True,type=bool,
-  help="Automatically use the shell script to submit job? True/False (default: %(default)b)")
+  help="Automatically use the shell script to submit job? True/False (default: %(default)s)")
 cmd_line_parser.add_argument("-b","--background",default=True,type=bool,
-  help="Run the job in the background? True/False (default: %(default)b)")
+  help="Run the job in the background? True/False (default: %(default)s)")
 
 # Place all of the parameters needed to create the submission script into a dictionary
 SUBMIT_OPTIONS = vars(cmd_line_parser.parse_args())
