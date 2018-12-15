@@ -29,9 +29,21 @@ TMPDIR=${scratch}
 MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts $HOST"
 
 # Set runtime options for Molpro
-MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o ${output}"
+% if njobs == 1:
+MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/${output}"
+% else:
+% for i in range(njobs):
+MOLPRO_OPTIONS${i+1}="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/calc${i+1}/${output}"
+% endfor
+% endif
 
 # Run the molpro executable
-mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $PWD/${input} &
+% if njobs == 1:
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} &
+% else:
+% for i in range(njobs):
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} &
+% endfor
+% endif
 
 

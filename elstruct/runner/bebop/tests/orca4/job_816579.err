@@ -1,0 +1,7 @@
+
+Lmod is automatically replacing "intel-mpi/2017.3-dfphq6k" with
+"openmpi/2.1.1-v23idfv".
+
+cp: cannot stat ‘/scratch/kmoore/*.xyz’: No such file or directory
+cp: cannot stat ‘/scratch/kmoore/*.hess’: No such file or directory
+cp: cannot stat ‘/scratch/kmoore/*.pot’: No such file or directory
