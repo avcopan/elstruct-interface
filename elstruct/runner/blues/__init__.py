@@ -13,7 +13,7 @@ def submit(program, hostnodes, ncores_per_node=1, njobs=1,
   Calls the sblues python script and feeds in the runtime options the user requests
   """
 
-  subprocess.call(
+  subprocess.check_call(
                   [
                    'python', 
                    SCRIPT_FILE,

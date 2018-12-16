@@ -12,7 +12,7 @@ def submit(program, account, partition='bdwall', nnodes=1, njobs=1, ncores_per_n
   """ Calls the Python bebop submission script using the user-desired runtime options 
   """
 
-  subprocess.call(
+  subprocess.check_call(
                   [
                    'python', 
                    SCRIPT_FILE,

@@ -31,7 +31,7 @@ elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
 with open('output.dat') as out_fle:
     OUTPUT_STR = out_fle.read()
 
-#print(OUTPUT_STR)
+print(OUTPUT_STR)
 
 
 # User energy reader function to get the single point energy
