@@ -13,6 +13,10 @@ def submit(program, hostnodes, ncores_per_node=1, njobs=1,
   Calls the sblues python script and feeds in the runtime options the user requests
   """
 
+  print(SCRIPT_FILE)
+  print(background)
+  print(type(background))
+
   subprocess.call(
                   [
                    'python', 
@@ -25,7 +29,7 @@ def submit(program, hostnodes, ncores_per_node=1, njobs=1,
                    '-o', '{0}'.format(output), 
                    '-d', '{0}'.format(scratch), 
                    '-s', '{0}'.format(submit), 
-                   '-b', '{0}'.format(background)
+                   '-b', '{0}'.format(str(background))
                   ]
                  )
 
