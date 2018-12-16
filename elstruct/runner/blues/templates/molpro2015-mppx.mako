@@ -32,7 +32,7 @@ MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts $HOST"
 MOLPRO_OPTIONS="--mppx --nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/${output}"
 
 # Run the molpro executable
-% if background == True:
+% if background == 'yes':
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} &
 % else:
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} 

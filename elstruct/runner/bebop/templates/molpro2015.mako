@@ -35,14 +35,14 @@ MOLPRO_OPTIONS${i+1}="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR 
 
 # Run Molpro with mpirun for MPI parallelization
 % if njobs == 1:
-  % if background == True:
+  % if background == 'yes':
 srun molpro.exe $MOLPRO_OPTIONS $SLURM_SUBMIT_DIR/${input} &
   % else:
 srun molpro.exe $MOLPRO_OPTIONS $SLURM_SUBMIT_DIR/${input}
   % endif
 % else:
   % for i in range(njobs):
-    % if background == True:
+    % if background == 'yes':
 srun -c 1 -n ${ncores_per_node} --exclusive molpro.exe $MOLPRO_OPTIONS${i+1} $SLURM_SUBMIT_DIR/calc${i+1}/${input} &
     % else:
 srun -c 1 -n ${ncores_per_node} --exclusive molpro.exe $MOLPRO_OPTIONS${i+1} $SLURM_SUBMIT_DIR/calc${i+1}/${input} 

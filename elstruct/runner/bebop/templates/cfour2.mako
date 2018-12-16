@@ -51,7 +51,7 @@ if [ -e $SLURM_SUBMIT_DIR/FCMINT       ]; then cp $SLURM_SUBMIT_DIR/FCMINT      
 cd $TMPDIR
 
 # Run CFOUR 
-% if background == True:
+% if background == 'yes':
 $CFOUREXE >& $SLURM_SUBMIT_DIR/${output} &
 $CFOURXJA &
 % else:

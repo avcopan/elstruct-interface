@@ -43,7 +43,7 @@ ssh -n $HOST " soft add +intel-parallel-studio-17.0.4     ;
                if [ -e "$TMPDIR/zmat001" ]; then mkdir $CWD/Disps ; cp $TMPDIR/zmat* $CWD/Disps ; fi ;
                if [ -e "$TMPDIR/FJOBARC"  ]; then cp $TMPDIR/FJOBARC $CWD/Job_Data/FJOBARC      ; fi ;
                cd $CWD                                                                                 " \
-% if background == True:
+% if background == 'yes':
                &
 % endif
 

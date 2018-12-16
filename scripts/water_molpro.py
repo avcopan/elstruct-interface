@@ -2,8 +2,8 @@ import elstruct
 import subprocess
 
 # Assign variables to build input string
-THEORY = 'rhf'
-BASIS = 'STO-3G'
+THEORY = 'ccsd'
+BASIS = '6-31G*'
 CHARGE = 0
 MULT = 1
 LABELS = ('O', 'H', 'H')
@@ -22,7 +22,7 @@ with open('input.dat', 'w') as inp_fle:
 
 # Assign variables that are passed to the runner function
 PROGRAM = 'molpro2015'
-HOSTNODES = 'b450'
+HOSTNODES = 'b444'
 
 # User the runner function to submit to Blues/Bebop
 elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
@@ -30,6 +30,9 @@ elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
 # Obtain output string that would be passed to reader function
 with open('output.dat') as out_fle:
     OUTPUT_STR = out_fle.read()
+
+#print(OUTPUT_STR)
+
 
 # User energy reader function to get the single point energy
 #ENERGY = elstruct.reader.molpro.energy(

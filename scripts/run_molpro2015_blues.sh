@@ -4,7 +4,7 @@
 CWD=$(pwd)
 
 # Set host
-HOST=b450
+HOST=b444
 
 # Load Molpro 
 soft add +molpro-2015.1-mvapich2
@@ -35,5 +35,4 @@ MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TM
 
 # Run the molpro executable
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/input.dat 
-
 

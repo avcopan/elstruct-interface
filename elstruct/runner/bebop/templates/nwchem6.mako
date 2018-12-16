@@ -22,7 +22,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/soft/nwchem/bebop/bdw-casper/lib/libcas
 export TMPDIR=${scratch}
 
 # Run NWCHEM with MPI
-% if background == True:
+% if background == 'yes':
 srun $NWCHEMEXE $SLURM_SUBMIT_DIR/${input} > $SLURM_SUBMIT_DIR/${output} &
 % else:
 srun $NWCHEMEXE $SLURM_SUBMIT_DIR/${input} > $SLURM_SUBMIT_DIR/${output} 

@@ -13,7 +13,7 @@ export GAUSS_SCRDIR=${scratch}
 ssh -n $HOST " soft add +g09-e.01                                         ; 
                mkdir -p $GAUSS_SCRDIR                                     ; 
                g09 -scrdir=$GAUSS_SCRDIR < $CWD/${input} > $CWD/${output}  " \
-% if background == True:
+% if background == 'yes':
                &
 % endif
 

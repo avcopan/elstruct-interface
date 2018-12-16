@@ -41,14 +41,14 @@ MOLPRO_OPTIONS${i+1}="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR 
 
 # Run the molpro executable
 % if njobs == 1:
- % if background == True:
+ % if background == 'yes':
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} &
  % else:
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} 
  % endif
 % else:
  % for i in range(njobs):
-  % if background == True:
+  % if background == 'yes':
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} % 
   % else:
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} 

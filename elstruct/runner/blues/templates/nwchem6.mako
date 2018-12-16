@@ -29,7 +29,7 @@ export TMPDIR=${scratch}
 MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts $HOST"
 
 # Run NWCHEM with MPIs
-% if background == True:
+% if background == 'yes':
 mpirun $MPI_OPTION $NWCHEMEXE $CWD/${input} > $CWD/${output} &
 % else:
 mpirun $MPI_OPTION $NWCHEMEXE $CWD/${input} > $CWD/${output} 

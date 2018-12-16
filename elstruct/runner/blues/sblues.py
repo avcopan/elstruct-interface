@@ -25,10 +25,10 @@ cmd_line_parser.add_argument("-o","--output",default="output.dat",
   help="Name of output file (default: %(default)s)")
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")
-cmd_line_parser.add_argument("-s","--submit",default=True,
-  help="Automatically submit job? True/False (default: %(default)s)")
-cmd_line_parser.add_argument("-b","--background",default=True,
-  help="Run job in the background? True/False (default: %(default)s)")
+cmd_line_parser.add_argument("-s","--submit",default='yes',
+  help="Automatically submit job? yes/no (default: %(default)s)")
+cmd_line_parser.add_argument("-b","--background",default='yes',
+  help="Run job in the background? yes/no (default: %(default)s)")
 
 # Place all of the parameters needed to create the submission script into a dictionary
 SUBMIT_OPTIONS = vars(cmd_line_parser.parse_args())
@@ -94,7 +94,7 @@ print('\nCreated Blues Submission Script\n')
 
 
 ##### SUBMIT JOB IF -s FLAG SET TO TRUE ##### 
-if SUBMIT_OPTIONS["submit"] == True:
+if SUBMIT_OPTIONS["submit"] == 'yes':
   subprocess.call(["./"+SUB_FILE])
   print('Job submitted to Blues node(s): '+SUBMIT_OPTIONS["hostnodes"]+'\n')
 

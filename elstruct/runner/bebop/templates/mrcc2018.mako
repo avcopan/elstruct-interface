@@ -22,13 +22,6 @@ export OMP_NUM_THREADS=$SLURM_NTASKS
 export TMPDIR=${scratch}
 mkdir -p $TMPDIR
 
-# Set variable that includes ampersand if run in the background
-% if background == True:
-BACKGROUND="&"
-% else:
-BACKGROUND=""
-% endif
-
 # Copy file from scratch
 cp $SLURM_SUBMIT_DIR/${input} $TMPDIR/MINP
 
@@ -36,7 +29,7 @@ cp $SLURM_SUBMIT_DIR/${input} $TMPDIR/MINP
 cd $TMPDIR
 
 # Run MRCC with srun for MPI para
-% if background == True:
+% if background == 'yes':
 $MRCCEXE >& $SLURM_SUBMIT_DIR/${output} &
 % else:
 $MRCCEXE >& $SLURM_SUBMIT_DIR/${output} 

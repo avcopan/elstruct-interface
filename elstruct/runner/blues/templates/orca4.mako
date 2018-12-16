@@ -29,7 +29,7 @@ ssh -n $HOST " mkdir -p $TMPDIR                                                 
                cp $TMPDIR/*.gbw  $CWD/Job_Data 2>> $CWD/log                                  ;
                cp $TMPDIR/*.hess $CWD/Job_Data 2>> $CWD/log                                  ;
                cp $TMPDIR/*.pot  $CWD/Job_Data 2>> $CWD/log                                   " \
-% if background == True:
+% if background == 'yes':
                &
 % endif
 

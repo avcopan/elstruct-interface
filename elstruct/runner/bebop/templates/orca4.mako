@@ -19,13 +19,6 @@ module add openmpi/2.1.1-v23idfv
 export TMPDIR=${scratch}
 mkdir -p $TMPDIR
 
-# Set variable that includes ampersand if run in the background
-% if background == True:
-BACKGROUND="&"
-% else:
-BACKGROUND=""
-% endif
-
 # Copy the input file to scratch 
 cp $SLURM_SUBMIT_DIR/${input} $TMPDIR/${input}
 
@@ -36,7 +29,7 @@ if [ -e $SLURM_SUBMIT_DIR/input.hess ]; then cp $SLURM_SUBMIT_DIR/input.hess $TM
 if [ -e $SLURM_SUBMIT_DIR/input.pot  ]; then cp $SLURM_SUBMIT_DIR/input.pot  $TMPDIR/guess.pot  ; fi 
 
 # Run Orca
-% if background == True:
+% if background == 'yes':
 $ORCAEXE $TMPDIR/${input} > $SLURM_SUBMIT_DIR/${output} &
 % else:
 $ORCAEXE $TMPDIR/${input} > $SLURM_SUBMIT_DIR/${output} 

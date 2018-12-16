@@ -24,7 +24,7 @@ ssh -n $HOST " soft add +intel-parallel-studio-17.0.4  ;
                cp $CWD/${input} $TMPDIR/MINP           ;
                cd $TMPDIR                              ;
                $MRCCEXE >& $CWD/${output}               " \
-% if background == True:
+% if background == 'yes':
                &
 % endif 
 
