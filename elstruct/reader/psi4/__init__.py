@@ -20,10 +20,9 @@ PATTERNS = {
 def energy(theory, output):
     assert theory in PATTERNS.keys()
     pattern = PATTERNS[theory]
-    captures = ref.captures(pattern, output)
+    capture = ref.last_capture(pattern, output)
 
-    if not captures:
+    if capture is None:
         raise ValueError("No energy found in ouput!")
 
-    energy = float(captures[-1])
-    return energy
+    return float(capture)
