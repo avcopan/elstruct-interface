@@ -35,9 +35,9 @@
  
  {ccsd,maxit=100}
 
- Variables initialized (889), CPU time= 0.01 sec
- Commands  initialized (702), CPU time= 0.00 sec, 572 directives.
- Default parameters read. Elapsed time= 0.08 sec
+ Variables initialized (889), CPU time= 0.00 sec
+ Commands  initialized (702), CPU time= 0.01 sec, 572 directives.
+ Default parameters read. Elapsed time= 0.07 sec
 
  Checking input...
  Passed
@@ -51,7 +51,7 @@
 
  **********************************************************************************************************************************
  LABEL *                                                                                 
-  64 bit serial version                                                                  DATE: 15-Dec-18          TIME: 18:55:48  
+  64 bit serial version                                                                  DATE: 15-Dec-18          TIME: 19:30:06  
  **********************************************************************************************************************************
 
  SHA1:             b6b3a4772808bb2d43777f23454e145ddfe12dc3
@@ -141,7 +141,7 @@ Geometry recognized as XYZ
  Memory used in sort:       0.56 MW
 
  SORT1 READ        6192. AND WROTE        3946. INTEGRALS IN      1 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.00 SEC
- SORT2 READ        3946. AND WROTE        4885. INTEGRALS IN      1 RECORDS. CPU TIME:     0.01 SEC, REAL TIME:     0.01 SEC
+ SORT2 READ        3946. AND WROTE        4885. INTEGRALS IN      1 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.01 SEC
 
  FILE SIZES:   FILE 1:    19.4 MBYTE,  FILE 4:     4.2 MBYTE,   TOTAL:     23.6 MBYTE
 
@@ -156,8 +156,8 @@ Geometry recognized as XYZ
                                            T        V       H0       H01     AOSYM     SMH    MOLCAS    ERIS     OPER   
 
  PROGRAMS   *        TOTAL       INT
- CPU TIMES  *         0.20      0.11
- REAL TIME  *         0.52 SEC
+ CPU TIMES  *         0.19      0.11
+ REAL TIME  *         0.51 SEC
  DISK USED  *        23.89 MB      
  **********************************************************************************************************************************
 
@@ -246,8 +246,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF  
 
  PROGRAMS   *        TOTAL       RHF       INT
- CPU TIMES  *         0.23      0.03      0.11
- REAL TIME  *         0.57 SEC
+ CPU TIMES  *         0.23      0.04      0.11
+ REAL TIME  *         0.55 SEC
  DISK USED  *        23.89 MB      
  **********************************************************************************************************************************
 
@@ -298,7 +298,7 @@ Geometry recognized as XYZ
   10      1.63385294    -0.36365305   -75.89630334    -0.00006915    -0.00021016  0.12D-06  0.63D-07  6  2     0.01     0.00
   11      1.63365137    -0.36363994   -75.89629023     0.00001311     0.00002386  0.13D-07  0.67D-08  6  3     0.01     0.00
   12      1.63354805    -0.36363061   -75.89628090     0.00000933     0.00001128  0.19D-09  0.19D-08  6  5     0.01     0.00
-  13      1.63352780    -0.36363480   -75.89628510    -0.00000419     0.00000251  0.77D-10  0.46D-09  6  1     0.02     0.00
+  13      1.63352780    -0.36363480   -75.89628510    -0.00000419     0.00000251  0.77D-10  0.46D-09  6  1     0.01     0.00
   14      1.63352936    -0.36363706   -75.89628736    -0.00000226     0.00000152  0.88D-11  0.74D-10  6  2     0.02     0.00
   15      1.63354620    -0.36363885   -75.89628915    -0.00000179    -0.00000098  0.36D-11  0.18D-10  6  6     0.02     0.00
   16      1.63355639    -0.36363873   -75.89628903     0.00000012    -0.00000079  0.16D-11  0.22D-11  6  4     0.02     0.00
@@ -361,8 +361,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF  
 
  PROGRAMS   *        TOTAL      CCSD       RHF       INT
- CPU TIMES  *         0.28      0.03      0.03      0.11
- REAL TIME  *         0.62 SEC
+ CPU TIMES  *         0.27      0.04      0.04      0.11
+ REAL TIME  *         0.61 SEC
  DISK USED  *        23.89 MB      
  **********************************************************************************************************************************
 

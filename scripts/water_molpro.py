@@ -25,11 +25,32 @@ PROGRAM = 'molpro2015'
 HOSTNODES = 'b444'
 
 # User the runner function to submit to Blues/Bebop
-elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
+#elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
+
+subprocess.call(
+                  [
+                   'python', 
+                   '/home/kmoore/elstruct-interface/elstruct/runner/blues/sblues.py',
+                   PROGRAM, 
+                   HOSTNODES,
+                   '-J', str(1), 
+                   '-n', str(1), 
+                   '-i', 'input.dat', 
+                   '-o', 'output.dat', 
+                   '-d', '/scratch/$USER', 
+                   '-s', 'yes', 
+                   '-b', 'no'
+                  ]
+                 )
 
 # Obtain output string that would be passed to reader function
-with open('output.dat') as out_fle:
-    OUTPUT_STR = out_fle.read()
+f = open('output.dat','r') 
+OUTPUT_STR = f.read()
+f.close()
+
+
+#with open('output.dat') as out_fle:
+#    OUTPUT_STR = out_fle.read()
 
 print(OUTPUT_STR)
 

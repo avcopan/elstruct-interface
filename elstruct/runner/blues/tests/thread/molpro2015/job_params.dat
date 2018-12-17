@@ -1,0 +1,2 @@
+hostnodes = b440 b441 b442 b443
+command = python /home/kmoore/elstruct-interface/elstruct/runner/blues/sblues.py molpro2015 HOST -n 8 -b no

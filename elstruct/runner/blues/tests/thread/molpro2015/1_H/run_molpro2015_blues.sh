@@ -4,7 +4,7 @@
 CWD=$(pwd)
 
 # Set host
-HOST=b444
+HOST=b440
 
 # Load Molpro 
 soft add +molpro-2015.1-mvapich2
@@ -26,12 +26,13 @@ MOLPRO_LIB=/soft/molpro/2015.1_mvapich2/lib/
 TMPDIR=/scratch/$USER
 
 # Set runtime options for MPI
-MPI_OPTIONS="-n 1 -ppn 1 -hosts $HOST"
+MPI_OPTIONS="-n 8 -ppn 8 -hosts $HOST"
+
+# Set variable that includes ampersand if run in the background
 
 # Set runtime options for Molpro
 MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/output.dat"
 
 # Run the molpro executable
-mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/input.dat &
-
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/input.dat 
 

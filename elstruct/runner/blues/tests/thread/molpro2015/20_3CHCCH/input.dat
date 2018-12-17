@@ -1,0 +1,41 @@
+memory,950,m
+gthresh,energy=1.0d-10,orbital=1.0d-10
+
+nosym
+angstrom
+Geometry = {
+C      0.0000000000   0.0000000000  -0.0435486147
+C      0.0000000000   1.2766068493   0.0399914227
+C      0.0000000000  -1.2766068493   0.0399914227
+H      0.0000000000   2.3105676622  -0.2170821407
+H      0.0000000000  -2.3105676622  -0.2170821407
+}
+
+set,charge=0
+set,spin=2
+
+basis=cc-pVDZ
+{df-rhf,maxit=300}
+{df-luccsd(t),maxit=150}
+eDZ = energy
+
+basis=cc-pVTZ
+{df-rhf,maxit=300}
+{df-luccsd(t),maxit=150}
+eTZ = energy
+
+basis=cc-pVQZ
+{df-rhf,maxit=300}
+{df-luccsd(t),maxit=150}
+eQZ = energy
+
+basis=cc-pV5Z
+{df-rhf,maxit=300}
+{df-luccsd(t),maxit=150}
+e5Z = energy
+
+show,eDZ
+show,eTZ
+show,eQZ
+show,e5Z
+

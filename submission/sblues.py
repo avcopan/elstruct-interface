@@ -83,7 +83,6 @@ print('\nCreated Blues Submission Script\n')
 
 
 ##### SUBMIT JOB IF -s FLAG SET TO TRUE ##### 
-
 if SUBMIT_OPTIONS["submit"] == True:
   subprocess.call(["./"+SUB_FILE])
   print('Job submitted to Blues node(s): '+SUBMIT_OPTIONS["hostnodes"]+'\n')
