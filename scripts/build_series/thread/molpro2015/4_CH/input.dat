@@ -1,4 +1,4 @@
-memory,950,m
+memory,1000,m
 gthresh,energy=1.0d-10,orbital=1.0d-10
 
 nosym

@@ -12,13 +12,13 @@
  id        : anlgov
 
  Nodes     nprocs
- b443         7
+ b440         7
  Number of processes for MPI-2 version of Molpro:   nprocs(total)=    8   nprocs(compute)=    7   nprocs(helper)=    1
 
  Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
  default implementation of scratch files=sf  
 
- memory,950,m
+ memory,1000,m
  gthresh,energy=1.0d-10,orbital=1.0d-10
  
  nosym
@@ -55,6 +55,32 @@
  show,eQZ
  show,e5Z
  
+ccsd(t),maxit=150}
+ eQZ = energy
+ 
+ basis=cc-pV5Z
+ {df-rhf,maxit=300}
+ {df-luccsd(t),maxit=150}
+ e5Z = energy
+ 
+ show,eDZ
+ show,eTZ
+ show,eQZ
+ show,e5Z
+ 
+ccsd(t),maxit=150}
+ eQZ = energy
+ 
+ basis=cc-pV5Z
+ {df-rhf,maxit=300}
+ {df-luccsd(t),maxit=150}
+ e5Z = energy
+ 
+ show,eDZ
+ show,eTZ
+ show,eQZ
+ show,e5Z
+ 
 
  Variables initialized (889), CPU time= 0.01 sec
  Commands  initialized (702), CPU time= 0.01 sec, 572 directives.
@@ -72,7 +98,7 @@
 
  **********************************************************************************************************************************
  LABEL *                                                                                 
-  64 bit mpp version                                                                     DATE: 17-Dec-18          TIME: 13:59:19  
+  64 bit mpp version                                                                     DATE: 18-Dec-18          TIME: 13:06:17  
  **********************************************************************************************************************************
 
  SHA1:             b6b3a4772808bb2d43777f23454e145ddfe12dc3
@@ -93,7 +119,7 @@
 
 
 
- Variable memory set to  950000000 words,  buffer space   230000 words
+ Variable memory set to 1000000000 words,  buffer space   230000 words
 
  ZSYMEL=NOSYM
  ZUNIT=ANG
@@ -161,16 +187,13 @@ Geometry recognized as XYZ
                                            T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER   
 
  PROGRAMS   *        TOTAL       INT
- CPU TIMES  *         0.46      0.24
- REAL TIME  *         0.96 SEC
+ CPU TIMES  *         0.92      0.68
+ REAL TIME  *         1.57 SEC
  DISK USED  *         0.00 MB      
  GA USED    *         0.00 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
-
-1PROGRAM * RHF-SCF (OPEN SHELL)       Authors: W. Meyer, H.-J. Werner
-
-
- NUMBER OF ELECTRONS:       4+    2-    SPACE SYMMETRY=1    SPIN SYMMETRY: Triplet 
+**********************************************************************************
+ ELECTRONS:       4+    2-    SPACE SYMMETRY=1    SPIN SYMMETRY: Triplet 
  CONVERGENCE THRESHOLDS:    1.00E-10 (Density)    1.00E-11 (Energy)
  INTEGRAL THRESHOLDS:       1.00E-12 (Initial)    1.00E-12 (Final)
  MAX. NUMBER OF ITERATIONS:      300
@@ -181,34 +204,47 @@ Geometry recognized as XYZ
 
 
  
- Basis set CC-PVDZ/JKFIT generated.      Number of basis functions:   70 
- 
- Orbital guess generated from atomic densities. Full valence occupancy:    5
- Using density fitting in orbital guess
- 
- Coulomb and exchange fitting
+ 11PROGRAM * RHF-SCF (OPEN SHELL)       Authors: W. Meyer, H.-J. Werner
+
+
+ NUMBER OF ELECTRONS:       4+    2-    SPACE SYMMETRY=1    SPIN SYMMETRY: Triplet 
+ CONVERGENCE THRESHOLDS:    1.00E-10  Coulomb and exchange fitting
+ Thresholds for fitting:       THRAO_COUL= 1.0D-15    THRAO_EXCH= 1.0D-13    THRMO= 1.0D-12    THRPROD= 1.0D-12    THRASM= 1.0D-12
+                               THR2HLF=    1.0D-12
+
+ Molecular orbital dump at record        2100.2
+ -0.60 (CLOSED) -0.30 (OPEN) 
+
+
+
+   Basis set CC-PVDZ/JKFIT generated.      Number of basis functions:   70     Orbital guess generated from atomic densities. Full valence occupancy:    5  Using density fitting in orbital guess
+  Coulomb and exchange fitting
  Thresholds for fitting:       THRAO_COUL= 1.0D-15    THRAO_EXCH= 1.0D-13    THRMO= 1.0D-12    THRPROD= 1.0D-12    THRASM= 1.0D-12
                                THR2HLF=    1.0D-12
 
  Molecular orbital dump at record        2100.2
 
- Initial alpha occupancy:   4
- Initial beta  occupancy:   2
- Wave function symmetry:    1
+       -37.65965499     24.416733   -0.00000    0.00000   -0.00000    0      0.0      0.0     start
+    2      0.000D+00      0.142D-01       -37.68052184     25.222236   -0.00000   -0.00000    0.00000    1      0.0      0.0     diag,B
+    3      0.495D-01      0.362D-02       -37.68235383     25.502783    0.00000   -0.00000    0.00000    2      0.0      0.0     diag,B
+    4      0.160D-01      0.599D-03       -37.68240572     25.523865    0.00000   -0.00000    1      0.000D+00      0.000D+00       -37.    5      0.262D-02      0.258D-03       -37.68241535     25.529056    0.00000   -0.0000    2      0.000D+00      0.142D-01       -37.6    6      0.239D-02      0.578D-05       -37.68241535     25.529405    0.00000   -0.0000    3      0.502D-01      0.362D-02       -37.6    7      0.388D-04      0.180D-05       -37.68241535     25.529321    0.00000   -0.0000    4      0.164D-01      0.599D-03       -37.6    8      0.120D-04      0.204D-07       -37.68241535     25.529322    0.00000   -0.0000    5      0.267D-02      0.258D-03       -37.6    9      0.129D-06      0.641D-09       -37.68241535     25.529322    0.00000   -0.0000    6      0.240D-02      0.578D-05       -37.6   10      0.191D-08      0.296D-09       -37.68241535     25.529323    0.00000   -0.0000    7      0.389D-04      0.180D-05       -37   11      0.163D-08      0.302D-12       -37.68241535     25.529323    0.00000   -0.00000     8      0.120D-04      0.204D-07       -37   12      0.176D-11      0.348D-14       -37.68241535     25.529323    0.00000   -0.00000     9      0.129D-06      0.641D-09       -37.68241535     25.529322   -0.00000    0.00000   -0.00000    8      0.0      0.1     diag,B   11      0.164D-08      0.302D-12       -37.68241535     25.529323   -0.00000    0.00000   -0.00000    6      0.0      0.0     diag,B
+   12      0.176D-11      0.350D-14       -37.68241535     25.529323   -0.00000    0.00000   -0.00000    0      0.0      0.1     orth
 
- ITERATION   DDIFF            GRAD            ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   CPU(IT)  CPU(TOT)  ORB.
-    1      0.000D+00      0.000D+00       -37.65965499     24.416733    0.00000   -0.00000   -0.00000    0      0.0      0.0     start
-    2      0.000D+00      0.142D-01       -37.68052184     25.222236    0.00000    0.00000   -0.00000    1      0.0      0.0     diag,B
-    3      0.501D-01      0.362D-02       -37.68235383     25.502783    0.00000    0.00000   -0.00000    2      0.0      0.0     diag,B
-    4      0.163D-01      0.599D-03       -37.68240572     25.523865    0.00000    0.00000   -0.00000    3      0.0      0.0     diag,B
-    5      0.266D-02      0.258D-03       -37.68241535     25.529056    0.00000    0.00000    0.00000    4      0.0      0.0     diag,B
-    6      0.240D-02      0.578D-05       -37.68241535     25.529405    0.00000    0.00000    0.00000    5      0.0      0.0     diag,B
-    7      0.389D-04      0.180D-05       -37.68241535     25.529321    0.00000    0.00000    0.00000    6      0.0      0.0     fixocc
-    8      0.120D-04      0.204D-07       -37.68241535     25.529322    0.00000    0.00000    0.00000    7      0.0      0.0     diag,B
-    9      0.129D-06      0.641D-09       -37.68241535     25.529322    0.00000    0.00000    0.00000    8      0.0      0.0     diag,B
-   10      0.192D-08      0.296D-09       -37.68241535     25.529323    0.00000    0.00000    0.00000    9      0.0      0.0     orth
-   11      0.164D-08      0.302D-12       -37.68241535     25.529323   -0.00000    0.00000    0.00000    6      0.0      0.1     diag,B
-   12      0.177D-11      0.344D-14       -37.68241535     25.529323   -0.00000    0.00000    0.00000    0      0.0      0.1     orth
+ Final alpha occupancy:   4
+ Final beta  occupancy:   2
+
+ !RHF STATE 1.1 Energy                -37.682415354712
+ Nuclear energy                         0.00000000
+ One-electron energy                  -50.44707661
+ Two-electron energy                   12.76466125
+ Virial quotient                       -0.99999992
+ !RHF STATE 1.1 Dipole moment          -0.00000000     0.00000000    -0.00000000
+ Dipole moment /Debye                  -0.00000000     0.00000000    -0.00000000
+
+ Orbital energies:
+
+         1.1            11      0.164D-08      0.302D-12       -37.68241535     25.529323   -0.00000    0.00000   -0.00000    6      0.0      0.1     diag,B
+   12      0.177D-11      0.341D-14       -37.68241535     25.529323   -0.00000    0.00000    0.00000    0      0.0      0.1     orth
 
  Final alpha occupancy:   4
  Final beta  occupancy:   2
@@ -231,24 +267,7 @@ Geometry recognized as XYZ
  LUMO-HOMO         0.467410 =      12.7189eV
 
 
- **********************************************************************************************************************************
- DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
-              1      18       19.06       500      610      700      900      950      970     1000      129      960     1100   
-                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
-                                         1400     1410     1200     1210     1080     1600     1650     1700   
-                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER   
-
-              2       4        0.37       700     1000      520     2100   
-                                         GEOM     BASIS   MCVARS     RHF  
-
- PROGRAMS   *        TOTAL       RHF       INT
- CPU TIMES  *         0.51      0.05      0.24
- REAL TIME  *         1.06 SEC
- DISK USED  *       136.48 MB      
- SF USED    *         0.07 MB      
- GA USED    *         3.27 MB       (max)       0.00 MB       (current)
- **********************************************************************************************************************************
-
+ *******************************************************************
 
  Input parameters for LOCAL:
 
@@ -274,8 +293,7 @@ Geometry recognized as XYZ
  Number of core orbitals:           1 (   1 )
  Number of closed-shell orbitals:   1 (   1 )
  Number of active  orbitals:        2 (   2 )
- Number of external orbitals:      10 (  10 )
-
+ Number of external orbitals:    Basis set CC-
  Options for lccsd:
 
    local=       4
@@ -300,15 +318,67 @@ Geometry recognized as XYZ
  Thresholds:
 
  THRLOC=  1.00D-06 (Smallest allowed eigenvalue in domain redundancy check)
+ THRGAP=  1.00D-06 (Minimum e Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
+
+ Local correlation treatment
+ ===========================
+
+ LOCAL=5  IBASO=0  NONORM=0  IDLCOR=2  KEEPCORE=0  SKIPD=3  LOCSNG=0  LOCMUL=0  CANBLK=0  SHELLPERM=F
+
+ Thresholds:
+
+ THRLOC=  1.00D-06 (Smallest allowed eigenvalue in domain redundancy check)
  THRGAP=  1.00D-06 (Minimum eigenvalue gap in domain redundancy check)
  THRLOCT= 1.00D-06 (Smallest allowed eigenvalue in domain redundancy check of triples)
- THRGAPT= 1.00D-06 (Minimum eigenvalue gap in domain redundancy check of triples)
- THRORB=  1.00D-06 (Norm of projected orbitals)
- THRMP2=  1.00D-08 (Neglect of small Fock matrix elements)
+ THRGAPT= 1.00D-06 (Minimum eigenvalue ga
+ Options for lccsd:
 
- Orbital domain selection criteria:
+   local=       4
+   itripl=      1
+   iopdom=      5
+   isdom=       2
+   i3ext=       3
+   i4ext=       1
 
- CHGFRAC=  0.980   CHGMIN=   0.010   CHGMINH=  0.030   CHGMAX=  0.400   CHGMIN_PAIRS=  0.200    MERGEDOM=0   CANBLK=0
+ Using operators K(Cij)  
+
+ icfit_3ext= 2  icfit_ 
+ Open shell orbital   3.1 in localization group 2
+ Open shell orbital   4.1 in localization group 2
+
+ No localization done for single atom
+
+ Generating projected atomic orbitals
+ 
+ Deleting projected core orbital    1.1 (C 1s)    Norm=  0.44D-03
+
+ Ranking of atoms according to Loewdin charges
+
+ Orbital domains
+
+   Orb.   Atom     Charge      Crit.
+   2.1    1 C       2.00       1.000
+   3.1    1 C       2.00       1.000
+   4.1    1 C       2.00       1.000
+
+ Number of strong pairs:           6
+m
+
+ Generating projected atomic orbitals
+ 
+ Deleting projected core orbital    1.1 (C 1s)    Norm=  0.44D-03
+
+ Ranking of atoms according to Loewdin charges
+
+ Orbital domains
+
+   Orb.   Atom     Charge      Crit.
+   2.1    1 C       2.00       1.000
+   3.1    1 C       2.00       1.000
+   4.1    1 C       2.00       1.000
+
+ Number of strong pairs:           6
+400   CHGMIN_PAIRS=  0.200    MERGEDOM=0   CANBLK=0
 
  Weak and distant pair selection criteria:
 
@@ -341,8 +411,8 @@ Geometry recognized as XYZ
  Average pair domain sizes:       13    (strong pairs:  13, close pairs:   0, weak pairs:   0, distant pairs:   0)
  Number of redundant orbitals:    18
 
- Largest S-eigenvalue of redundant functions:  0.0000D+00   Pair:   0  Symmetry: 0
- Smallest S-eigenvalue of domains              0.8496D-01   Pair:   1  Symmetry: 1
+ Largest S-eigenvalue of redundant functions:  0.2224D-15   Pair:   6  Symmetry: 1
+ Smallest S-eigenvalue of domains              0.8496D-01   Pair:   6  Symmetry: 1
 
  United MP2 domains:        min=  13  max=  13  average=  13
  United LUCCSD domains:     min=  13  max=  13  average=  13
@@ -352,69 +422,75 @@ Geometry recognized as XYZ
 
  CPU-time for pair domains:             0.00 SEC
 
+ CPU-time for pair domains:             0.05 SEC
+
  Distance criteria for operator lists:     RMAXJ=      8.00  RMAXK=      8.00  RMAXL=     15.00
  Distance criteria for operator domains:   RDOMJ=      0.00  RDOMK=      8.00
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+ File size for 4-external integrals using center quadruplets:  268.961 KB
+                                                Number of operators J(kl):        6 (  0.01 MB)   Domain sizes:    min=  13  max=  13  average=  13
 
- Using operator domains:    iopdom=5   sdom=2  kextyp=0   triptyp=2
-
- Number of orbital pairs:          6
- Length of K(kl) list:             6
+ Using operator domains:    iopdom=5 Number of operators J/K(E):       9 (  0.02 MB)   Domain sizes:    min=  13  max=  13  average=  13
+    6
  Number of operators K(kl):        6 (  0.01 MB)   Domain sizes:    min=  13  max=  13  average=  13
- Number of operators J(kl):        6 (  0.01 MB)   Domain sizes:    min=  13  max=  13  average=  13
- Number of y,z intermediates:      9
- Number of operators J/K(E):       9 (  0.02 MB)   Domain sizes:    min=  13  max=  13  average=  13
 
  Number of orbital triples:        7  Number of 3-external CSFS:          23625
 
  Triples domains:           min=  14  max=  15  average=  15
  United T domains:          min=  14  max=  15  average=  15
+ Triples per orbital:       min=   
+ Number of orbital triples: File size for 4-external integrals using center quadruplets:  268.961 KB
+        min=  14  max=  15  average=  15
+ United T domains:          min=  14  max=  15  average=  15
  Triples per orbital:       min=   5  max=   5  average=   5
  
  File size for 4-external integrals using center quadruplets:  268.961 KB
+
 
  Number of N-1 electron functions:               4
  Number of N-2 electron functions:               6
  Number of singly external CSFs:                54
  Number of doubly external CSFs:               990
  Total number of CSFs:                        1044
-
  Number of correlated orbitals:                  3
  Number of strong pair functions:                6
  Total number of pair functions:                 6
  Number of singly external local CSFs:          45
- Number of doubly external local CSFs:        1035 (all pairs)      1035 (strong pairs)         0 (weak pairs)
- Total number of local CSFs:                  1081 (all pairs)      1081 (strong pairs)
-
- Using 3-external integrals
-
+ Number of doubly external local CSFs:        1035 (
+ Number of correlated orbitals:                  3
+ Number of strong pair functions:                6
+ Total number of pair functions:             
+ Using Using 3-external inte
  File size for 3-external integrals using MO/center triples:    69.961 KB
- Memory available:                       949996550 words
- Memory left for 3ext caching:           949848149 words
-
- Minimum memory for triples:                 16445 words
+ Memor Memory available:                       999996550  Memor Memory left for 3ext caching:           999848149 
+ Minim Minimum memory for triples:                 16445 
+ Used  Used memory for triples:                    54612  cachi caching ratio 3-ext integrals:  100.0%
+ minimal number of LMOs cached:      3
+ estimated number of LMOs cached: 
+ AO-ba AO-basis loaded. Number of functions:                  14
+ 16445 words
 
  Used memory for triples:                    54612 words
  caching ratio 3-ext integrals:  100.0%
  minimal number of LMOs cached:      3
  estimated number of LMOs cached:    3
- 
- AO-basis loaded. Number of functions:                  14
+
 
  Fitting-basis CC-PVDZ-MP2FIT loaded for 0-2-external integrals.
 
  Number of fitting functions:                       56
- CPU time for 2-ext exchange integrals            0.00 sec, Elapsed time=      0.00 sec
+ CPU time for 2-ext exchange integrals            0.02 sec, Elapsed time=      0.02 sec
 
  Using incore algorithm in dfasmbl_coul, locfit=0
 
  CPU time for 2-ext Coulomb integrals             0.00 sec, Elapsed time=      0.00 sec
- CPU time for DF-2ext transformation (total)      0.00 sec, Elapsed time=      0.00 sec
+ CPU time for DF-2ext transformation (total)      0.02 sec, Elapsed time=      0.02 sec
  Local fitting disabled for 3-ext integrals
 
  Fitting-basis CC-PVDZ-MP2FIT loaded for 3-external integrals.
 
  Number of fitting functions:                       56
- CPU time for DF-3ext transformations             2.29 sec, Elapsed time=      3.48 sec (including assembly of 3ext integrals)
+ CPU time for DF-3ext transformations             2.95 sec, Elapsed time=     17.94 sec (including assembly of 3ext integrals)
 
  2-ext integrals generated in 3-ext are re-used
  
@@ -422,18 +498,18 @@ Geometry recognized as XYZ
 
  Number of fitting functions:                       56
  Distributing 4-ext file on two disks:               28561                5866               34427
- CPU time for DF-4ext transformations             0.00 sec, Elapsed time=      0.00 sec
+ CPU time for DF-4ext transformations             0.04 sec, Elapsed time=      0.10 sec
 
  Reference energy:                    -37.68241535
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.02294050    -0.05541697   -37.73783232    -0.05541697    -0.00008152  0.69D-05  0.24D-04  1  1     2.34
-   2      1.02301206    -0.05550141   -37.73791676    -0.00008444    -0.00000034  0.49D-07  0.96D-07  2  2     2.34
-   3      1.02301263    -0.05550167   -37.73791702    -0.00000026    -0.00000000  0.19D-09  0.31D-09  3  3     2.35
-   4      1.02301267    -0.05550169   -37.73791705    -0.00000003    -0.00000000  0.94D-12  0.24D-12  4  4     2.35
-   5      1.02301267    -0.05550169   -37.73791705    -0.00000000    -0.00000000  0.18D-14  0.11D-14  5  5     2.35
-   6      1.02301267    -0.05550169   -37.73791705     0.00000000    -0.00000000  0.40D-17  0.33D-17  6  6     2.35
-   7      1.02301267    -0.05550169   -37.73791705     0.00000000    -0.00000000  0.10D-20  0.25D-20  6  1     2.35
+   1      1.02294050    -0.05541697   -37.73783232    -0.05541697    -0.00008152  0.69D-05  0.24D-04  1  1     3.09
+   2      1.02301211    -0.05550147   -37.73791682    -0.00008450    -0.00000034  0.49D-07  0.96D-07  2  2     3.09
+   3      1.02301263    -0.05550167   -37.73791702    -0.00000020    -0.00000000  0.18D-09  0.31D-09  3  3     3.09
+   4      1.02301267    -0.05550169   -37.73791705    -0.00000002    -0.00000000  0.91D-12  0.25D-12  4  4     3.09
+   5      1.02301267    -0.05550169   -37.73791705    -0.00000000    -0.00000000  0.18D-14  0.11D-14  5  5     3.09
+   6      1.02301267    -0.05550169   -37.73791705     0.00000000    -0.00000000  0.38D-17  0.34D-17  6  6     3.10
+   7      1.02301267    -0.05550169   -37.73791705     0.00000000    -0.00000000  0.96D-21  0.25D-20  6  1     3.10
 
  Spin contamination <S**2-Sz**2-Sz>     0.00706360
 
@@ -453,21 +529,23 @@ Geometry recognized as XYZ
  Reference energy:                    -37.68241535
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.03658113    -0.06886916   -37.75128451    -0.06886916    -0.00419533  0.84D-04  0.17D-02  1  1     2.36
-   2      1.04694887    -0.07614096   -37.75855632    -0.00727181    -0.00078838  0.16D-04  0.36D-03  2  2     2.37
-   3      1.04957900    -0.07686712   -37.75928248    -0.00072616    -0.00006741  0.18D-05  0.32D-04  3  3     2.38
-   4      1.04993135    -0.07696643   -37.75938179    -0.00009931    -0.00000156  0.47D-07  0.68D-06  4  4     2.39
-   5      1.04990194    -0.07694472   -37.75936007     0.00002172    -0.00000003  0.11D-08  0.96D-08  5  5     2.40
-   6      1.04992067    -0.07695483   -37.75937019    -0.00001012    -0.00000000  0.30D-09  0.86D-09  6  6     2.41
-   7      1.04991862    -0.07695349   -37.75936885     0.00000134    -0.00000000  0.15D-10  0.37D-10  6  1     2.42
-   8      1.04991884    -0.07695357   -37.75936893    -0.00000008    -0.00000000  0.25D-12  0.12D-11  6  3     2.43
-   9      1.04991877    -0.07695357   -37.75936892     0.00000001    -0.00000000  0.34D-13  0.14D-12  6  2     2.44
-  10      1.04991873    -0.07695356   -37.75936892     0.00000001    -0.00000000  0.58D-14  0.10D-13  6  4     2.45
-  11      1.04991873    -0.07695356   -37.75936892     0.00000000    -0.00000000  0.20D-15  0.23D-15  6  5     2.46
+   1      1.03658113    -0.06886916   -37.75128451    -0.06886916    -0.00419533  0.84D-04  0.17D-02  1  1     3.11
+   2      1.04709979    -0.07623795   -37.75865331    -0.00736879    -0.00078838  0.16D-04  0.36D-03  2  2     3.12
+   3      1.04962265    -0.07688578   -37.75930113    -0.00064783    -0.00006486  0.18D-05  0.30D-04  3  3     3.13
+   4      1.04993334    -0.07696660   -37.75938195    -0.00008082    -0.00000146  0.48D-07  0.62D-06  4  4     3.14
+   5      1.04990215    -0.07694471   -37.75936007     0.00002188    -0.00000003  0.12D-08  0.97D-08  5  5     3.15
+   6      1.04992083    -0.07695494   -37.75937029    -0.00001022    -0.00000000  0.30D-09  0.85D-09  6  6     3.16
+   7      1.04991859    -0.07695348   -37.75936884     0.00000145    -0.00000000  0.15D-10  0.38D-10  6  1     3.17
+   8      1.04991883    -0.07695357   -37.75936892    -0.00000009    -0.00000000  0.25D-12  0.12D-11  6  3     3.18
+   9      1.04991877    -0.07695356   -37.75936892     0.00000000    -0.00000000  0.34D-13  0.14D-12  6  2     3.19
+  10      1.04991873    -0.07695356   -37.75936892     0.00000000    -0.00000000  0.59D-14  0.10D-13  6  4     3.20
+  11      1.04991873    -0.07695356   -37.75936892     0.00000000    -0.00000000  0.21D-15  0.21D-15  6  5     3.21
+  12      1.04991874    -0.07695356   -37.75936891     0.00000000    -0.00000000  0.84D-17  0.24D-16  6  6     3.22
+  13      1.04991874    -0.07695356   -37.75936891    -0.00000000    -0.00000000  0.14D-18  0.14D-17  6  1     3.23
 
  Spin contamination <S**2-Sz**2-Sz>     0.00022162
 
- Norm of t1 vector:      0.04794979      S-energy:    -0.00333892      T1 diagnostic:  0.00680872
+ Norm of t1 vector:      0.04794979      S-energy:    -0.00333892      T1 diagnostic:  0.00680848
  Norm of t2 vector:      0.21821905      P-energy:    -0.07361464
                                          Alpha-Beta:  -0.06264686
                                          Alpha-Alpha: -0.01096778
@@ -475,8 +553,8 @@ Geometry recognized as XYZ
 
  ENTERING LOCAL TRIPLES SECTION
  computing T2S/ST2S on-the-fly
- Memory available:                       949967315 words
- Memory left for 3ext caching:           949826798 words
+ Memory available:                       999967315 words
+ Memory left for 3ext caching:           999826798 words
 
  Minimum memory for triples:                  8561 words
 
@@ -504,7 +582,7 @@ Geometry recognized as XYZ
 
  (1) Triples without internal-internal couplings:
 
- CPU time for local triples(1):  User=0.01 sec, Sys=0.00 sec, Total=0.01 sec, Elapsed=0.00 sec
+ CPU time for local triples(1):  User=0.00 sec, Sys=0.01 sec, Total=0.01 sec, Elapsed=0.00 sec
 
  Memory used:          186993 words
  etrip=
@@ -515,22 +593,22 @@ Geometry recognized as XYZ
  
   Reference energy                    -37.682415354712
  
-  LUCCSD correlation energy            -0.076953560442
- !LUCCSD total energy                 -37.759368915154
+  LUCCSD correlation energy            -0.076953559958
+ !LUCCSD total energy                 -37.759368914670
 
-  LUCCSD[T0] correlation energy        -0.077895185158   triples contribution= -0.000941624716
-  LUCCSD[T0] total energy             -37.760310539871
+  LUCCSD[T0] correlation energy        -0.077895184688   triples contribution= -0.000941624729
+  LUCCSD[T0] total energy             -37.760310539400
 
-  LUCCSD(T0) correlation energy        -0.077907739879   triples contribution= -0.000954179437
- !LUCCSD(T0) total energy             -37.760323094591
+  LUCCSD(T0) correlation energy        -0.077907739408   triples contribution= -0.000954179449
+ !LUCCSD(T0) total energy             -37.760323094120
 
  Program statistics:
 
- Available memory:                       949999900
- Available memory in lrmp2:              949996446
+ Available memory:                       999999900
+ Available memory in lrmp2:              999996446
  Max. memory used in lrmp2:                   9322
  Min. memory needed in lrmp2:                 8199
- Available memory in luccsd:             949995013
+ Available memory in luccsd:             999995013
  Max. memory used in luccsd:                 21974
  Min. memory needed in luccsd:               20851
 
@@ -547,10 +625,10 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF  
 
  PROGRAMS   *        TOTAL LUCCSD(T)       RHF       INT
- CPU TIMES  *         3.01      2.48      0.05      0.24
- REAL TIME  *         6.18 SEC
+ CPU TIMES  *         4.33      3.25      0.07      0.71
+ REAL TIME  *        20.20 SEC
  DISK USED  *       137.23 MB      
- SF USED    *         1.70 MB      
+ SF USED    *         1.80 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
  SETTING EDZ            =       -37.76032309  AU                              
@@ -616,10 +694,10 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS   
 
  PROGRAMS   *        TOTAL       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *         3.34      0.33      2.48      0.05      0.24
- REAL TIME  *         6.55 SEC
+ CPU TIMES  *         4.67      0.34      3.25      0.07      0.71
+ REAL TIME  *        20.74 SEC
  DISK USED  *       137.23 MB      
- SF USED    *         1.70 MB      
+ SF USED    *         1.80 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
 
@@ -660,17 +738,17 @@ Geometry recognized as XYZ
 
  ITERATION   DDIFF            GRAD            ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   CPU(IT)  CPU(TOT)  ORB.
     1      0.000D+00      0.000D+00       -37.68656489     25.535031   -0.00000    0.00000    0.00000    0      0.0      0.0     start
-    2      0.000D+00      0.196D-02       -37.68669251     25.531767   -0.00000    0.00000    0.00000    1      0.0      0.0     diag,B
-    3      0.217D-02      0.277D-03       -37.68670215     25.526614   -0.00000   -0.00000   -0.00000    2      0.0      0.0     diag,B
-    4      0.599D-03      0.607D-04       -37.68670307     25.523149   -0.00000   -0.00000   -0.00000    3      0.0      0.0     diag,B
-    5      0.185D-03      0.781D-05       -37.68670308     25.522660   -0.00000   -0.00000   -0.00000    4      0.0      0.0     diag,B
-    6      0.120D-04      0.179D-05       -37.68670308     25.522703   -0.00000   -0.00000   -0.00000    5      0.0      0.0     diag,B
-    7      0.579D-05      0.298D-06       -37.68670308     25.522701   -0.00000   -0.00000   -0.00000    6      0.0      0.0     diag,B
-    8      0.141D-05      0.740D-07       -37.68670308     25.522698   -0.00000   -0.00000   -0.00000    7      0.0      0.0     orth
-    9      0.289D-06      0.131D-07       -37.68670308     25.522697   -0.00000   -0.00000   -0.00000    8      0.0      0.0     diag,B
-   10      0.477D-07      0.560D-10       -37.68670308     25.522697   -0.00000   -0.00000   -0.00000    9      0.0      0.0     diag,B
-   11      0.159D-09      0.653D-11       -37.68670308     25.522697   -0.00000   -0.00000   -0.00000    9      0.0      0.0     diag,B
-   12      0.475D-11      0.191D-12       -37.68670308     25.522697   -0.00000   -0.00000    0.00000    0      0.0      0.0     orth
+    2      0.000D+00      0.196D-02       -37.68669251     25.531767   -0.00000    0.00000   -0.00000    1      0.0      0.0     diag,B
+    3      0.217D-02      0.277D-03       -37.68670215     25.526614   -0.00000    0.00000   -0.00000    2      0.0      0.0     diag,B
+    4      0.600D-03      0.607D-04       -37.68670307     25.523149    0.00000    0.00000    0.00000    3      0.0      0.0     diag,B
+    5      0.185D-03      0.781D-05       -37.68670308     25.522660    0.00000    0.00000    0.00000    4      0.0      0.0     diag,B
+    6      0.121D-04      0.179D-05       -37.68670308     25.522703    0.00000    0.00000   -0.00000    5      0.0      0.0     diag,B
+    7      0.580D-05      0.298D-06       -37.68670308     25.522701    0.00000    0.00000   -0.00000    6      0.0      0.0     diag,B
+    8      0.141D-05      0.740D-07       -37.68670308     25.522698    0.00000    0.00000   -0.00000    7      0.0      0.0     orth
+    9      0.289D-06      0.131D-07       -37.68670308     25.522697    0.00000    0.00000    0.00000    8      0.0      0.0     diag,B
+   10      0.479D-07      0.560D-10       -37.68670308     25.522697    0.00000    0.00000    0.00000    9      0.0      0.0     diag,B
+   11      0.159D-09      0.653D-11       -37.68670308     25.522697    0.00000   -0.00000    0.00000    9      0.0      0.0     diag,B
+   12      0.476D-11      0.191D-12       -37.68670308     25.522697    0.00000   -0.00000    0.00000    0      0.0      0.0     orth
 
  Final alpha occupancy:   4
  Final beta  occupancy:   2
@@ -680,8 +758,8 @@ Geometry recognized as XYZ
  One-electron energy                  -50.44805162
  Two-electron energy                   12.76134854
  Virial quotient                       -0.99999718
- !RHF STATE 1.1 Dipole moment          -0.00000000    -0.00000000     0.00000000
- Dipole moment /Debye                  -0.00000000    -0.00000000     0.00000000
+ !RHF STATE 1.1 Dipole moment           0.00000000    -0.00000000     0.00000000
+ Dipole moment /Debye                   0.00000000    -0.00000000     0.00000000
 
  Orbital energies:
 
@@ -704,10 +782,10 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF  
 
  PROGRAMS   *        TOTAL       RHF       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *         3.39      0.05      0.33      2.48      0.05      0.24
- REAL TIME  *         6.61 SEC
+ CPU TIMES  *         4.72      0.05      0.34      3.25      0.07      0.71
+ REAL TIME  *        20.81 SEC
  DISK USED  *       138.50 MB      
- SF USED    *         1.70 MB      
+ SF USED    *         1.80 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
 
@@ -803,8 +881,8 @@ Geometry recognized as XYZ
  Average pair domain sizes:       29    (strong pairs:  29, close pairs:   0, weak pairs:   0, distant pairs:   0)
  Number of redundant orbitals:    18
 
- Largest S-eigenvalue of redundant functions:  0.5236D-20   Pair:   6  Symmetry: 1
- Smallest S-eigenvalue of domains              0.3876D-01   Pair:   6  Symmetry: 1
+ Largest S-eigenvalue of redundant functions:  0.3351D-15   Pair:   4  Symmetry: 1
+ Smallest S-eigenvalue of domains              0.3876D-01   Pair:   4  Symmetry: 1
 
  United MP2 domains:        min=  29  max=  29  average=  29
  United LUCCSD domains:     min=  29  max=  29  average=  29
@@ -812,7 +890,7 @@ Geometry recognized as XYZ
  Number of correlated orbitals in LUCCSD:   3
  Total United LUCCSD domain size:          29
 
- CPU-time for pair domains:             0.04 SEC
+ CPU-time for pair domains:             0.02 SEC
 
  Distance criteria for operator lists:     RMAXJ=      8.00  RMAXK=      8.00  RMAXL=     15.00
  Distance criteria for operator domains:   RDOMJ=      0.00  RDOMK=      8.00
@@ -850,8 +928,8 @@ Geometry recognized as XYZ
  Using 3-external integrals
 
  File size for 3-external integrals using MO/center triples:   656.086 KB
- Memory available:                       949992214 words
- Memory left for 3ext caching:           949754133 words
+ Memory available:                       999992214 words
+ Memory left for 3ext caching:           999754133 words
 
  Minimum memory for triples:                128317 words
 
@@ -865,18 +943,18 @@ Geometry recognized as XYZ
  Fitting-basis CC-PVTZ-MP2FIT loaded for 0-2-external integrals.
 
  Number of fitting functions:                       81
- CPU time for 2-ext exchange integrals            0.01 sec, Elapsed time=      0.01 sec
+ CPU time for 2-ext exchange integrals            0.00 sec, Elapsed time=      0.01 sec
 
  Using incore algorithm in dfasmbl_coul, locfit=0
 
  CPU time for 2-ext Coulomb integrals             0.00 sec, Elapsed time=      0.00 sec
- CPU time for DF-2ext transformation (total)      0.01 sec, Elapsed time=      0.01 sec
+ CPU time for DF-2ext transformation (total)      0.00 sec, Elapsed time=      0.01 sec
  Local fitting disabled for 3-ext integrals
 
  Fitting-basis CC-PVTZ-MP2FIT loaded for 3-external integrals.
 
  Number of fitting functions:                       81
- CPU time for DF-3ext transformations             2.93 sec, Elapsed time=      2.93 sec (including assembly of 3ext integrals)
+ CPU time for DF-3ext transformations             3.25 sec, Elapsed time=      3.25 sec (including assembly of 3ext integrals)
 
  2-ext integrals generated in 3-ext are re-used
  
@@ -884,18 +962,18 @@ Geometry recognized as XYZ
 
  Number of fitting functions:                       81
  Distributing 4-ext file on two disks:              707281               55754              763035
- CPU time for DF-4ext transformations             0.01 sec, Elapsed time=      0.02 sec
+ CPU time for DF-4ext transformations             0.01 sec, Elapsed time=      0.01 sec
 
  Reference energy:                    -37.68670308
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.02751971    -0.07149417   -37.75819725    -0.07149417    -0.00011095  0.13D-04  0.35D-04  1  1     3.02
-   2      1.02763549    -0.07160956   -37.75831264    -0.00011539    -0.00000065  0.13D-06  0.21D-06  2  2     3.02
-   3      1.02763686    -0.07161030   -37.75831338    -0.00000074    -0.00000000  0.60D-09  0.10D-08  3  3     3.02
-   4      1.02763691    -0.07161028   -37.75831337     0.00000002    -0.00000000  0.27D-11  0.68D-12  4  4     3.02
-   5      1.02763691    -0.07161029   -37.75831337    -0.00000000    -0.00000000  0.66D-14  0.30D-14  5  5     3.02
-   6      1.02763691    -0.07161029   -37.75831337     0.00000000    -0.00000000  0.27D-16  0.19D-16  6  6     3.02
-   7      1.02763691    -0.07161029   -37.75831337     0.00000000    -0.00000000  0.28D-19  0.25D-19  6  1     3.02
+   1      1.02751971    -0.07149417   -37.75819725    -0.07149417    -0.00011095  0.13D-04  0.35D-04  1  1     3.32
+   2      1.02763565    -0.07160971   -37.75831279    -0.00011554    -0.00000065  0.13D-06  0.21D-06  2  2     3.32
+   3      1.02763688    -0.07161031   -37.75831339    -0.00000060    -0.00000000  0.58D-09  0.10D-08  3  3     3.32
+   4      1.02763691    -0.07161028   -37.75831336     0.00000003    -0.00000000  0.26D-11  0.68D-12  4  4     3.32
+   5      1.02763691    -0.07161029   -37.75831337    -0.00000000    -0.00000000  0.65D-14  0.31D-14  5  5     3.32
+   6      1.02763691    -0.07161029   -37.75831337     0.00000000    -0.00000000  0.25D-16  0.19D-16  6  6     3.32
+   7      1.02763691    -0.07161029   -37.75831337     0.00000000    -0.00000000  0.26D-19  0.24D-19  6  1     3.32
 
  Spin contamination <S**2-Sz**2-Sz>     0.01011910
 
@@ -915,24 +993,24 @@ Geometry recognized as XYZ
  Reference energy:                    -37.68670308
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.04124346    -0.08420300   -37.77090608    -0.08420300    -0.00384735  0.11D-03  0.16D-02  1  1     3.05
-   2      1.05257896    -0.09132038   -37.77802346    -0.00711738    -0.00078273  0.18D-04  0.36D-03  2  2     3.08
-   3      1.05404995    -0.09145066   -37.77815375    -0.00013029    -0.00005646  0.20D-05  0.25D-04  3  3     3.10
-   4      1.05511010    -0.09187036   -37.77857344    -0.00041969    -0.00000592  0.19D-06  0.28D-05  4  4     3.12
-   5      1.05507872    -0.09184751   -37.77855059     0.00002285    -0.00000008  0.18D-08  0.34D-07  5  5     3.14
-   6      1.05509485    -0.09185431   -37.77855739    -0.00000681    -0.00000000  0.69D-09  0.17D-08  6  6     3.17
-   7      1.05509353    -0.09185326   -37.77855635     0.00000105    -0.00000000  0.64D-10  0.93D-10  6  1     3.20
-   8      1.05509400    -0.09185341   -37.77855649    -0.00000015    -0.00000000  0.30D-11  0.63D-11  6  3     3.22
-   9      1.05509393    -0.09185339   -37.77855647     0.00000002    -0.00000000  0.65D-13  0.38D-12  6  2     3.25
-  10      1.05509387    -0.09185337   -37.77855646     0.00000002    -0.00000000  0.16D-13  0.39D-13  6  4     3.27
-  11      1.05509389    -0.09185338   -37.77855646    -0.00000001    -0.00000000  0.20D-14  0.24D-14  6  5     3.29
-  12      1.05509389    -0.09185338   -37.77855646     0.00000000    -0.00000000  0.62D-16  0.94D-16  6  6     3.32
-  13      1.05509389    -0.09185338   -37.77855646     0.00000000    -0.00000000  0.42D-17  0.13D-16  6  1     3.34
-  14      1.05509389    -0.09185338   -37.77855646    -0.00000000    -0.00000000  0.20D-18  0.69D-18  6  3     3.37
+   1      1.04124346    -0.08420300   -37.77090608    -0.08420300    -0.00384735  0.11D-03  0.16D-02  1  1     3.35
+   2      1.05277978    -0.09143543   -37.77813851    -0.00723243    -0.00078273  0.18D-04  0.36D-03  2  2     3.37
+   3      1.05407700    -0.09145860   -37.77816168    -0.00002317    -0.00005388  0.20D-05  0.24D-04  3  3     3.39
+   4      1.05512127    -0.09187468   -37.77857776    -0.00041608    -0.00000565  0.18D-06  0.27D-05  4  4     3.42
+   5      1.05507985    -0.09184781   -37.77855089     0.00002687    -0.00000008  0.19D-08  0.33D-07  5  5     3.44
+   6      1.05509526    -0.09185449   -37.77855757    -0.00000668    -0.00000000  0.71D-09  0.16D-08  6  6     3.47
+   7      1.05509356    -0.09185328   -37.77855637     0.00000120    -0.00000000  0.63D-10  0.94D-10  6  1     3.49
+   8      1.05509400    -0.09185341   -37.77855649    -0.00000012    -0.00000000  0.30D-11  0.64D-11  6  3     3.51
+   9      1.05509392    -0.09185339   -37.77855647     0.00000002    -0.00000000  0.63D-13  0.37D-12  6  2     3.54
+  10      1.05509388    -0.09185337   -37.77855646     0.00000001    -0.00000000  0.16D-13  0.38D-13  6  4     3.57
+  11      1.05509389    -0.09185338   -37.77855646    -0.00000001    -0.00000000  0.21D-14  0.24D-14  6  5     3.59
+  12      1.05509389    -0.09185338   -37.77855646     0.00000000    -0.00000000  0.66D-16  0.10D-15  6  6     3.62
+  13      1.05509389    -0.09185338   -37.77855646     0.00000000    -0.00000000  0.45D-17  0.12D-16  6  1     3.64
+  14      1.05509389    -0.09185338   -37.77855646    -0.00000000    -0.00000000  0.24D-18  0.71D-18  6  3     3.67
 
  Spin contamination <S**2-Sz**2-Sz>     0.00112901
 
- Norm of t1 vector:      0.05387245      S-energy:    -0.00368563      T1 diagnostic:  0.00553121
+ Norm of t1 vector:      0.05387245      S-energy:    -0.00368563      T1 diagnostic:  0.00549477
  Norm of t2 vector:      0.22845492      P-energy:    -0.08816775
                                          Alpha-Beta:  -0.07368340
                                          Alpha-Alpha: -0.01448435
@@ -940,8 +1018,8 @@ Geometry recognized as XYZ
 
  ENTERING LOCAL TRIPLES SECTION
  computing T2S/ST2S on-the-fly
- Memory available:                       949847090 words
- Memory left for 3ext caching:           949655645 words
+ Memory available:                       999847090 words
+ Memory left for 3ext caching:           999655645 words
 
  Minimum memory for triples:                 81681 words
 
@@ -969,7 +1047,7 @@ Geometry recognized as XYZ
 
  (1) Triples without internal-internal couplings:
 
- CPU time for local triples(1):  User=0.04 sec, Sys=0.00 sec, Total=0.04 sec, Elapsed=0.00 sec
+ CPU time for local triples(1):  User=0.06 sec, Sys=0.00 sec, Total=0.06 sec, Elapsed=0.01 sec
 
  Memory used:          656945 words
  etrip=
@@ -980,22 +1058,22 @@ Geometry recognized as XYZ
  
   Reference energy                    -37.686703082260
  
-  LUCCSD correlation energy            -0.091853377456
- !LUCCSD total energy                 -37.778556459715
+  LUCCSD correlation energy            -0.091853377454
+ !LUCCSD total energy                 -37.778556459714
 
-  LUCCSD[T0] correlation energy        -0.093781924458   triples contribution= -0.001928547002
-  LUCCSD[T0] total energy             -37.780485006717
+  LUCCSD[T0] correlation energy        -0.093781924456   triples contribution= -0.001928547002
+  LUCCSD[T0] total energy             -37.780485006716
 
-  LUCCSD(T0) correlation energy        -0.093802030062   triples contribution= -0.001948652606
- !LUCCSD(T0) total energy             -37.780505112322
+  LUCCSD(T0) correlation energy        -0.093802030060   triples contribution= -0.001948652606
+ !LUCCSD(T0) total energy             -37.780505112320
 
  Program statistics:
 
- Available memory:                       949999900
- Available memory in lrmp2:              949992077
+ Available memory:                       999999900
+ Available memory in lrmp2:              999992077
  Max. memory used in lrmp2:                  38058
  Min. memory needed in lrmp2:                33255
- Available memory in luccsd:             949988436
+ Available memory in luccsd:             999988436
  Max. memory used in luccsd:                 80679
  Min. memory needed in luccsd:               75876
 
@@ -1012,8 +1090,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF  
 
  PROGRAMS   *        TOTAL LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *         6.82      3.40      0.05      0.33      2.48      0.05      0.24
- REAL TIME  *        10.10 SEC
+ CPU TIMES  *         8.45      3.69      0.05      0.34      3.25      0.07      0.71
+ REAL TIME  *        24.63 SEC
  DISK USED  *       141.57 MB      
  SF USED    *        14.36 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
@@ -1083,8 +1161,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF     BASIS   
 
  PROGRAMS   *        TOTAL       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *         7.10      0.28      3.40      0.05      0.33      2.48      0.05      0.24
- REAL TIME  *        10.43 SEC
+ CPU TIMES  *         8.68      0.24      3.69      0.05      0.34      3.25      0.07      0.71
+ REAL TIME  *        24.89 SEC
  DISK USED  *       141.57 MB      
  SF USED    *        14.36 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
@@ -1126,19 +1204,19 @@ Geometry recognized as XYZ
  Molecular orbital dump at record        2102.2
 
  ITERATION   DDIFF            GRAD            ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   CPU(IT)  CPU(TOT)  ORB.
-    1      0.000D+00      0.000D+00       -37.68826266     25.523633   -0.00000   -0.00000    0.00000    0      0.0      0.0     start
-    2      0.000D+00      0.670D-03       -37.68829190     25.522628   -0.00000   -0.00000   -0.00000    1      0.0      0.0     diag,B
-    3      0.717D-03      0.109D-03       -37.68829438     25.521393   -0.00000   -0.00000    0.00000    2      0.0      0.0     diag,B
-    4      0.967D-04      0.262D-04       -37.68829468     25.520368   -0.00000   -0.00000    0.00000    3      0.0      0.0     diag,B
-    5      0.285D-04      0.650D-05       -37.68829470     25.519980   -0.00000   -0.00000    0.00000    4      0.0      0.0     diag,B
-    6      0.876D-05      0.125D-05       -37.68829470     25.519948   -0.00000   -0.00000    0.00000    5      0.0      0.0     diag,B
-    7      0.195D-05      0.295D-06       -37.68829470     25.519954   -0.00000   -0.00000    0.00000    6      0.0      0.0     diag,B
-    8      0.582D-06      0.910D-07       -37.68829470     25.519956   -0.00000   -0.00000    0.00000    7      0.0      0.0     orth
-    9      0.246D-06      0.805D-08       -37.68829470     25.519955   -0.00000   -0.00000    0.00000    8      0.0      0.1     diag,B
-   10      0.188D-07      0.217D-08       -37.68829470     25.519955   -0.00000   -0.00000    0.00000    9      0.0      0.1     diag,B
-   11      0.608D-08      0.181D-09       -37.68829470     25.519955   -0.00000    0.00000    0.00000    9      0.0      0.1     diag,B
+    1      0.000D+00      0.000D+00       -37.68826266     25.523633    0.00000   -0.00000    0.00000    0      0.0      0.0     start
+    2      0.000D+00      0.670D-03       -37.68829190     25.522628    0.00000    0.00000    0.00000    1      0.0      0.0     diag,B
+    3      0.718D-03      0.109D-03       -37.68829438     25.521393    0.00000   -0.00000    0.00000    2      0.0      0.0     diag,B
+    4      0.967D-04      0.262D-04       -37.68829468     25.520368    0.00000    0.00000    0.00000    3      0.0      0.0     diag,B
+    5      0.285D-04      0.650D-05       -37.68829470     25.519980    0.00000    0.00000   -0.00000    4      0.0      0.0     diag,B
+    6      0.877D-05      0.125D-05       -37.68829470     25.519948    0.00000    0.00000    0.00000    5      0.0      0.0     diag,B
+    7      0.196D-05      0.295D-06       -37.68829470     25.519954    0.00000    0.00000    0.00000    6      0.0      0.0     diag,B
+    8      0.583D-06      0.910D-07       -37.68829470     25.519956    0.00000    0.00000   -0.00000    7      0.0      0.1     orth
+    9      0.246D-06      0.805D-08       -37.68829470     25.519955    0.00000    0.00000   -0.00000    8      0.0      0.1     diag,B
+   10      0.188D-07      0.217D-08       -37.68829470     25.519955    0.00000    0.00000    0.00000    9      0.0      0.1     diag,B
+   11      0.608D-08      0.181D-09       -37.68829470     25.519955    0.00000    0.00000    0.00000    9      0.0      0.1     diag,B
    12      0.384D-09      0.328D-10       -37.68829470     25.519955    0.00000    0.00000    0.00000    9      0.0      0.1     diag,B
-   13      0.628D-10      0.285D-11       -37.68829470     25.519955    0.00000    0.00000    0.00000    0      0.0      0.1     orth
+   13      0.630D-10      0.285D-11       -37.68829470     25.519955    0.00000   -0.00000    0.00000    0      0.0      0.1     orth
 
  Final alpha occupancy:   4
  Final beta  occupancy:   2
@@ -1148,8 +1226,8 @@ Geometry recognized as XYZ
  One-electron energy                  -50.44827205
  Two-electron energy                   12.75997735
  Virial quotient                       -1.00000106
- !RHF STATE 1.1 Dipole moment           0.00000000     0.00000000     0.00000000
- Dipole moment /Debye                   0.00000000     0.00000000     0.00000000
+ !RHF STATE 1.1 Dipole moment           0.00000000    -0.00000000     0.00000000
+ Dipole moment /Debye                   0.00000000    -0.00000000     0.00000000
 
  Orbital energies:
 
@@ -1172,8 +1250,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF     BASIS     RHF  
 
  PROGRAMS   *        TOTAL       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *         7.18      0.08      0.28      3.40      0.05      0.33      2.48      0.05      0.24
- REAL TIME  *        10.52 SEC
+ CPU TIMES  *         8.75      0.07      0.24      3.69      0.05      0.34      3.25      0.07      0.71
+ REAL TIME  *        24.98 SEC
  DISK USED  *       142.97 MB      
  SF USED    *        14.36 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
@@ -1271,8 +1349,8 @@ Geometry recognized as XYZ
  Average pair domain sizes:       54    (strong pairs:  54, close pairs:   0, weak pairs:   0, distant pairs:   0)
  Number of redundant orbitals:    18
 
- Largest S-eigenvalue of redundant functions:  0.7354D-15   Pair:   2  Symmetry: 1
- Smallest S-eigenvalue of domains              0.1914D-02   Pair:   2  Symmetry: 1
+ Largest S-eigenvalue of redundant functions:  0.1668D-14   Pair:   6  Symmetry: 1
+ Smallest S-eigenvalue of domains              0.1914D-02   Pair:   6  Symmetry: 1
 
  United MP2 domains:        min=  54  max=  54  average=  54
  United LUCCSD domains:     min=  54  max=  54  average=  54
@@ -1280,7 +1358,7 @@ Geometry recognized as XYZ
  Number of correlated orbitals in LUCCSD:   3
  Total United LUCCSD domain size:          54
 
- CPU-time for pair domains:             0.00 SEC
+ CPU-time for pair domains:             0.01 SEC
 
  Distance criteria for operator lists:     RMAXJ=      8.00  RMAXK=      8.00  RMAXL=     15.00
  Distance criteria for operator domains:   RDOMJ=      0.00  RDOMK=      8.00
@@ -1318,8 +1396,8 @@ Geometry recognized as XYZ
  Using 3-external integrals
 
  File size for 3-external integrals using MO/center triples:     3.881 MB
- Memory available:                       949980617 words
- Memory left for 3ext caching:           949249194 words
+ Memory available:                       999980617 words
+ Memory left for 3ext caching:           999249194 words
 
  Minimum memory for triples:                728342 words
 
@@ -1337,14 +1415,14 @@ Geometry recognized as XYZ
 
  Using incore algorithm in dfasmbl_coul, locfit=0
 
- CPU time for 2-ext Coulomb integrals             0.00 sec, Elapsed time=      0.00 sec
- CPU time for DF-2ext transformation (total)      0.01 sec, Elapsed time=      0.01 sec
+ CPU time for 2-ext Coulomb integrals             0.00 sec, Elapsed time=      0.01 sec
+ CPU time for DF-2ext transformation (total)      0.01 sec, Elapsed time=      0.02 sec
  Local fitting disabled for 3-ext integrals
 
  Fitting-basis CC-PVQZ-MP2FIT loaded for 3-external integrals.
 
  Number of fitting functions:                      132
- CPU time for DF-3ext transformations             2.97 sec, Elapsed time=      2.99 sec (including assembly of 3ext integrals)
+ CPU time for DF-3ext transformations             3.06 sec, Elapsed time=      3.07 sec (including assembly of 3ext integrals)
 
  2-ext integrals generated in 3-ext are re-used
  
@@ -1352,18 +1430,18 @@ Geometry recognized as XYZ
 
  Number of fitting functions:                      132
  Distributing 4-ext file on two disks:             8503056              338704             8841760
- CPU time for DF-4ext transformations             0.13 sec, Elapsed time=      0.17 sec
+ CPU time for DF-4ext transformations             0.16 sec, Elapsed time=      0.16 sec
 
  Reference energy:                    -37.68829470
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.02853110    -0.07690659   -37.76520129    -0.07690659    -0.00011844  0.17D-04  0.38D-04  1  1     3.15
-   2      1.02866615    -0.07703128   -37.76532599    -0.00012470    -0.00000082  0.22D-06  0.26D-06  2  2     3.15
-   3      1.02866725    -0.07703124   -37.76532594     0.00000005    -0.00000001  0.12D-08  0.19D-08  3  3     3.16
-   4      1.02866720    -0.07703105   -37.76532576     0.00000018    -0.00000000  0.56D-11  0.22D-11  4  4     3.16
-   5      1.02866721    -0.07703105   -37.76532576    -0.00000000    -0.00000000  0.17D-13  0.14D-13  5  5     3.16
-   6      1.02866720    -0.07703105   -37.76532576     0.00000000    -0.00000000  0.69D-16  0.77D-16  6  6     3.16
-   7      1.02866720    -0.07703105   -37.76532576     0.00000000    -0.00000000  0.12D-18  0.20D-18  6  1     3.16
+   1      1.02853110    -0.07690659   -37.76520129    -0.07690659    -0.00011844  0.17D-04  0.38D-04  1  1     3.27
+   2      1.02866639    -0.07703150   -37.76532620    -0.00012491    -0.00000082  0.22D-06  0.26D-06  2  2     3.27
+   3      1.02866728    -0.07703126   -37.76532596     0.00000024    -0.00000001  0.11D-08  0.19D-08  3  3     3.28
+   4      1.02866720    -0.07703105   -37.76532576     0.00000020    -0.00000000  0.53D-11  0.23D-11  4  4     3.28
+   5      1.02866721    -0.07703105   -37.76532576    -0.00000000    -0.00000000  0.17D-13  0.14D-13  5  5     3.28
+   6      1.02866720    -0.07703105   -37.76532576     0.00000000    -0.00000000  0.66D-16  0.76D-16  6  6     3.29
+   7      1.02866720    -0.07703105   -37.76532576     0.00000000    -0.00000000  0.11D-18  0.19D-18  6  1     3.29
 
  Spin contamination <S**2-Sz**2-Sz>     0.01237006
 
@@ -1383,25 +1461,25 @@ Geometry recognized as XYZ
  Reference energy:                    -37.68829470
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.04154601    -0.08831492   -37.77660963    -0.08831492    -0.00366943  0.12D-03  0.15D-02  1  1     3.41
-   2      1.05032964    -0.09375174   -37.78204644    -0.00543681    -0.00077135  0.18D-04  0.35D-03  2  2     3.65
-   3      1.05475620    -0.09566336   -37.78395806    -0.00191162    -0.00011284  0.30D-05  0.54D-04  3  3     3.90
-   4      1.05509562    -0.09559739   -37.78389210     0.00006596    -0.00000735  0.47D-06  0.32D-05  4  4     4.16
-   5      1.05538834    -0.09571894   -37.78401365    -0.00012155    -0.00000046  0.14D-07  0.22D-06  5  5     4.40
-   6      1.05537059    -0.09570955   -37.78400426     0.00000939    -0.00000001  0.67D-09  0.26D-08  6  6     4.64
-   7      1.05536839    -0.09570868   -37.78400338     0.00000087    -0.00000000  0.15D-09  0.15D-09  6  1     4.89
-   8      1.05537004    -0.09570939   -37.78400409    -0.00000071    -0.00000000  0.12D-10  0.15D-10  6  2     5.13
-   9      1.05536980    -0.09570923   -37.78400394     0.00000015    -0.00000000  0.39D-12  0.95D-12  6  3     5.40
-  10      1.05536986    -0.09570926   -37.78400396    -0.00000003    -0.00000000  0.22D-13  0.12D-12  6  4     5.64
-  11      1.05536988    -0.09570927   -37.78400398    -0.00000002    -0.00000000  0.36D-14  0.14D-13  6  5     5.88
-  12      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.26D-15  0.71D-15  6  6     6.14
-  13      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.34D-16  0.79D-16  6  1     6.38
-  14      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.12D-17  0.47D-17  6  2     6.63
-  15      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.20D-19  0.16D-18  6  3     6.89
+   1      1.04154601    -0.08831492   -37.77660963    -0.08831492    -0.00366943  0.12D-03  0.15D-02  1  1     3.53
+   2      1.05030647    -0.09373843   -37.78203314    -0.00542351    -0.00077135  0.18D-04  0.35D-03  2  2     3.78
+   3      1.05482382    -0.09569492   -37.78398962    -0.00195649    -0.00011361  0.30D-05  0.55D-04  3  3     4.02
+   4      1.05510040    -0.09559786   -37.78389257     0.00009706    -0.00000708  0.46D-06  0.30D-05  4  4     4.27
+   5      1.05539174    -0.09572027   -37.78401497    -0.00012240    -0.00000044  0.14D-07  0.21D-06  5  5     4.51
+   6      1.05537067    -0.09570955   -37.78400426     0.00001071    -0.00000001  0.71D-09  0.28D-08  6  6     4.75
+   7      1.05536838    -0.09570865   -37.78400336     0.00000090    -0.00000000  0.15D-09  0.15D-09  6  1     5.00
+   8      1.05537008    -0.09570941   -37.78400411    -0.00000075    -0.00000000  0.12D-10  0.15D-10  6  2     5.24
+   9      1.05536982    -0.09570926   -37.78400396     0.00000015    -0.00000000  0.41D-12  0.10D-11  6  4     5.48
+  10      1.05536987    -0.09570927   -37.78400397    -0.00000001    -0.00000000  0.22D-13  0.14D-12  6  3     5.72
+  11      1.05536988    -0.09570927   -37.78400398    -0.00000000    -0.00000000  0.29D-14  0.99D-14  6  5     5.97
+  12      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.44D-15  0.11D-14  6  6     6.21
+  13      1.05536987    -0.09570927   -37.78400398    -0.00000000    -0.00000000  0.27D-16  0.65D-16  6  1     6.45
+  14      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.20D-17  0.90D-17  6  2     6.70
+  15      1.05536987    -0.09570927   -37.78400398     0.00000000    -0.00000000  0.64D-20  0.64D-19  6  4     6.94
 
  Spin contamination <S**2-Sz**2-Sz>     0.00156599
 
- Norm of t1 vector:      0.05554539      S-energy:    -0.00371694      T1 diagnostic:  0.00526392
+ Norm of t1 vector:      0.05554539      S-energy:    -0.00371694      T1 diagnostic:  0.00520488
  Norm of t2 vector:      0.22865822      P-energy:    -0.09199233
                                          Alpha-Beta:  -0.07670363
                                          Alpha-Alpha: -0.01528871
@@ -1409,8 +1487,8 @@ Geometry recognized as XYZ
 
  ENTERING LOCAL TRIPLES SECTION
  computing T2S/ST2S on-the-fly
- Memory available:                       949363590 words
- Memory left for 3ext caching:           948860210 words
+ Memory available:                       999363590 words
+ Memory left for 3ext caching:           998860210 words
 
  Minimum memory for triples:                500299 words
 
@@ -1427,7 +1505,7 @@ Geometry recognized as XYZ
 
  (1) Triples without internal-internal couplings:
 
- CPU time for local triples(1):  User=0.27 sec, Sys=0.00 sec, Total=0.27 sec, Elapsed=0.04 sec
+ CPU time for local triples(1):  User=0.28 sec, Sys=0.00 sec, Total=0.28 sec, Elapsed=0.04 sec
 
  Memory used:         3400906 words
  etrip=
@@ -1438,22 +1516,22 @@ Geometry recognized as XYZ
  
   Reference energy                    -37.688294704979
  
-  LUCCSD correlation energy            -0.095709271202
- !LUCCSD total energy                 -37.784003976181
+  LUCCSD correlation energy            -0.095709271158
+ !LUCCSD total energy                 -37.784003976137
 
-  LUCCSD[T0] correlation energy        -0.097934482382   triples contribution= -0.002225211181
-  LUCCSD[T0] total energy             -37.786229187361
+  LUCCSD[T0] correlation energy        -0.097934482336   triples contribution= -0.002225211178
+  LUCCSD[T0] total energy             -37.786229187315
 
-  LUCCSD(T0) correlation energy        -0.097956300974   triples contribution= -0.002247029772
- !LUCCSD(T0) total energy             -37.786251005953
+  LUCCSD(T0) correlation energy        -0.097956300927   triples contribution= -0.002247029769
+ !LUCCSD(T0) total energy             -37.786251005906
 
  Program statistics:
 
- Available memory:                       949999900
- Available memory in lrmp2:              949980445
+ Available memory:                       999999900
+ Available memory in lrmp2:              999980445
  Max. memory used in lrmp2:                 121104
  Min. memory needed in lrmp2:               105369
- Available memory in luccsd:             949970279
+ Available memory in luccsd:             999970279
  Max. memory used in luccsd:                249301
  Min. memory needed in luccsd:              233566
 
@@ -1470,8 +1548,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF     BASIS     RHF  
 
  PROGRAMS   *        TOTAL LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *        14.16      6.96      0.08      0.28      3.40      0.05      0.33      2.48      0.05      0.24
- REAL TIME  *        17.85 SEC
+ CPU TIMES  *        15.78      7.01      0.07      0.24      3.69      0.05      0.34      3.25      0.07      0.71
+ REAL TIME  *        32.45 SEC
  DISK USED  *       152.73 MB      
  SF USED    *       108.76 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
@@ -1543,8 +1621,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF     BASIS     RHF     BASIS   
 
  PROGRAMS   *        TOTAL       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT
- CPU TIMES  *        14.45      0.29      6.96      0.08      0.28      3.40      0.05      0.33      2.48      0.05      0.24
- REAL TIME  *        18.21 SEC
+ CPU TIMES  *        16.07      0.28      7.01      0.07      0.24      3.69      0.05      0.34      3.25      0.07      0.71
+ REAL TIME  *        32.76 SEC
  DISK USED  *       152.73 MB      
  SF USED    *       108.76 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
@@ -1586,19 +1664,19 @@ Geometry recognized as XYZ
  Molecular orbital dump at record        2103.2
 
  ITERATION   DDIFF            GRAD            ENERGY        2-EL.EN.            DIPOLE MOMENTS         DIIS   CPU(IT)  CPU(TOT)  ORB.
-    1      0.000D+00      0.000D+00       -37.68863084     25.520002    0.00000    0.00000    0.00000    0      0.0      0.0     start
-    2      0.000D+00      0.355D-03       -37.68863846     25.520291    0.00000    0.00000    0.00000    1      0.0      0.0     diag,B
-    3      0.294D-03      0.317D-04       -37.68863896     25.519818   -0.00000    0.00000    0.00000    2      0.0      0.1     diag,B
-    4      0.380D-04      0.751D-05       -37.68863905     25.519401   -0.00000    0.00000    0.00000    3      0.0      0.1     diag,B
-    5      0.139D-04      0.216D-05       -37.68863906     25.519175   -0.00000    0.00000    0.00000    4      0.0      0.1     diag,B
-    6      0.406D-05      0.561D-06       -37.68863906     25.519114   -0.00000    0.00000    0.00000    5      0.0      0.1     diag,B
-    7      0.882D-06      0.174D-06       -37.68863906     25.519112   -0.00000    0.00000    0.00000    6      0.0      0.1     diag,B
-    8      0.343D-06      0.388D-07       -37.68863906     25.519114   -0.00000    0.00000    0.00000    7      0.0      0.1     orth
-    9      0.866D-07      0.709D-08       -37.68863906     25.519114    0.00000    0.00000    0.00000    8      0.0      0.1     diag,B
-   10      0.188D-07      0.642D-09       -37.68863906     25.519114   -0.00000    0.00000    0.00000    9      0.0      0.1     diag,B
-   11      0.155D-08      0.111D-09       -37.68863906     25.519114   -0.00000    0.00000    0.00000    9      0.0      0.1     diag,B
-   12      0.118D-09      0.451D-10       -37.68863906     25.519114    0.00000   -0.00000    0.00000    9      0.0      0.2     diag,B
-   13      0.701D-10      0.481D-11       -37.68863906     25.519114   -0.00000   -0.00000    0.00000    0      0.0      0.2     orth
+    1      0.000D+00      0.000D+00       -37.68863084     25.520002    0.00000   -0.00000    0.00000    0      0.0      0.0     start
+    2      0.000D+00      0.355D-03       -37.68863846     25.520291    0.00000   -0.00000    0.00000    1      0.0      0.0     diag,B
+    3      0.294D-03      0.317D-04       -37.68863896     25.519818    0.00000   -0.00000    0.00000    2      0.0      0.1     diag,B
+    4      0.380D-04      0.751D-05       -37.68863905     25.519401    0.00000    0.00000   -0.00000    3      0.0      0.1     diag,B
+    5      0.139D-04      0.216D-05       -37.68863906     25.519175    0.00000    0.00000   -0.00000    4      0.0      0.1     diag,B
+    6      0.406D-05      0.561D-06       -37.68863906     25.519114    0.00000    0.00000    0.00000    5      0.0      0.1     diag,B
+    7      0.885D-06      0.174D-06       -37.68863906     25.519112   -0.00000    0.00000    0.00000    6      0.0      0.1     diag,B
+    8      0.344D-06      0.388D-07       -37.68863906     25.519114   -0.00000    0.00000    0.00000    7      0.0      0.1     orth
+    9      0.866D-07      0.709D-08       -37.68863906     25.519114   -0.00000    0.00000    0.00000    8      0.0      0.1     diag,B
+   10      0.188D-07      0.642D-09       -37.68863906     25.519114   -0.00000    0.00000   -0.00000    9      0.0      0.1     diag,B
+   11      0.155D-08      0.111D-09       -37.68863906     25.519114    0.00000    0.00000   -0.00000    9      0.0      0.1     diag,B
+   12      0.118D-09      0.451D-10       -37.68863906     25.519114    0.00000    0.00000   -0.00000    9      0.0      0.2     diag,B
+   13      0.701D-10      0.481D-11       -37.68863906     25.519114    0.00000    0.00000   -0.00000    0      0.0      0.2     orth
 
  Final alpha occupancy:   4
  Final beta  occupancy:   2
@@ -1608,8 +1686,8 @@ Geometry recognized as XYZ
  One-electron energy                  -50.44819614
  Two-electron energy                   12.75955708
  Virial quotient                       -0.99999949
- !RHF STATE 1.1 Dipole moment          -0.00000000    -0.00000000     0.00000000
- Dipole moment /Debye                  -0.00000000    -0.00000000     0.00000000
+ !RHF STATE 1.1 Dipole moment           0.00000000     0.00000000    -0.00000000
+ Dipole moment /Debye                   0.00000000     0.00000000    -0.00000000
 
  Orbital energies:
 
@@ -1632,8 +1710,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF     BASIS     RHF     BASIS     RHF  
 
  PROGRAMS   *        TOTAL       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF
- CPU TIMES  *        14.62      0.17      0.29      6.96      0.08      0.28      3.40      0.05      0.33      2.48      0.05
- REAL TIME  *        18.38 SEC
+ CPU TIMES  *        16.24      0.18      0.28      7.01      0.07      0.24      3.69      0.05      0.34      3.25      0.07
+ REAL TIME  *        32.94 SEC
  DISK USED  *       152.78 MB      
  SF USED    *       108.76 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
@@ -1731,8 +1809,8 @@ Geometry recognized as XYZ
  Average pair domain sizes:       90    (strong pairs:  90, close pairs:   0, weak pairs:   0, distant pairs:   0)
  Number of redundant orbitals:    18
 
- Largest S-eigenvalue of redundant functions:  0.1967D-14   Pair:   4  Symmetry: 1
- Smallest S-eigenvalue of domains              0.5993D-03   Pair:   4  Symmetry: 1
+ Largest S-eigenvalue of redundant functions:  0.2908D-14   Pair:   1  Symmetry: 1
+ Smallest S-eigenvalue of domains              0.5993D-03   Pair:   1  Symmetry: 1
 
  United MP2 domains:        min=  90  max=  90  average=  90
  United LUCCSD domains:     min=  90  max=  90  average=  90
@@ -1778,8 +1856,8 @@ Geometry recognized as XYZ
  Using 3-external integrals
 
  File size for 3-external integrals using MO/center triples:    17.444 MB
- Memory available:                       949952681 words
- Memory left for 3ext caching:           946769370 words
+ Memory available:                       999952681 words
+ Memory left for 3ext caching:           996769370 words
 
  Minimum memory for triples:               3180230 words
 
@@ -1793,18 +1871,18 @@ Geometry recognized as XYZ
  Fitting-basis CC-PV5Z-MP2FIT loaded for 0-2-external integrals.
 
  Number of fitting functions:                      193
- CPU time for 2-ext exchange integrals            0.01 sec, Elapsed time=      0.01 sec
+ CPU time for 2-ext exchange integrals            0.01 sec, Elapsed time=      0.02 sec
 
  Using incore algorithm in dfasmbl_coul, locfit=0
 
- CPU time for 2-ext Coulomb integrals             0.03 sec, Elapsed time=      0.03 sec
+ CPU time for 2-ext Coulomb integrals             0.03 sec, Elapsed time=      0.02 sec
  CPU time for DF-2ext transformation (total)      0.04 sec, Elapsed time=      0.04 sec
  Local fitting disabled for 3-ext integrals
 
  Fitting-basis CC-PV5Z-MP2FIT loaded for 3-external integrals.
 
  Number of fitting functions:                      193
- CPU time for DF-3ext transformations             3.12 sec, Elapsed time=      3.19 sec (including assembly of 3ext integrals)
+ CPU time for DF-3ext transformations             3.28 sec, Elapsed time=      3.35 sec (including assembly of 3ext integrals)
 
  2-ext integrals generated in 3-ext are re-used
  
@@ -1812,18 +1890,18 @@ Geometry recognized as XYZ
 
  Number of fitting functions:                      193
  Distributing 4-ext file on two disks:            65610000             1523536            67133536
- CPU time for DF-4ext transformations             1.32 sec, Elapsed time=      1.35 sec
+ CPU time for DF-4ext transformations             1.26 sec, Elapsed time=      1.30 sec
 
  Reference energy:                    -37.68863906
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.02879976    -0.07907748   -37.76771654    -0.07907748    -0.00011946  0.17D-04  0.38D-04  1  1     4.54
-   2      1.02894018    -0.07920512   -37.76784417    -0.00012764    -0.00000085  0.25D-06  0.27D-06  2  2     4.55
-   3      1.02893987    -0.07920357   -37.76784263     0.00000154    -0.00000001  0.11D-08  0.24D-08  3  3     4.56
-   4      1.02893960    -0.07920316   -37.76784222     0.00000042    -0.00000000  0.43D-11  0.52D-11  4  4     4.56
-   5      1.02893959    -0.07920316   -37.76784222     0.00000000    -0.00000000  0.15D-13  0.31D-13  5  5     4.57
-   6      1.02893959    -0.07920316   -37.76784221     0.00000000    -0.00000000  0.89D-16  0.13D-15  6  6     4.58
-   7      1.02893959    -0.07920316   -37.76784221     0.00000000    -0.00000000  0.10D-18  0.29D-18  6  1     4.58
+   1      1.02879976    -0.07907748   -37.76771654    -0.07907748    -0.00011946  0.17D-04  0.38D-04  1  1     4.65
+   2      1.02894048    -0.07920539   -37.76784445    -0.00012791    -0.00000085  0.25D-06  0.27D-06  2  2     4.65
+   3      1.02893990    -0.07920360   -37.76784266     0.00000179    -0.00000001  0.10D-08  0.24D-08  3  3     4.66
+   4      1.02893960    -0.07920316   -37.76784222     0.00000044    -0.00000000  0.41D-11  0.54D-11  4  4     4.67
+   5      1.02893959    -0.07920316   -37.76784222     0.00000000    -0.00000000  0.15D-13  0.31D-13  5  5     4.68
+   6      1.02893959    -0.07920316   -37.76784221     0.00000000    -0.00000000  0.86D-16  0.13D-15  6  6     4.68
+   7      1.02893959    -0.07920316   -37.76784221     0.00000000    -0.00000000  0.98D-19  0.29D-18  6  1     4.69
 
  Spin contamination <S**2-Sz**2-Sz>     0.01270274
 
@@ -1843,25 +1921,24 @@ Geometry recognized as XYZ
  Reference energy:                    -37.68863906
 
  ITER.     SQ.NORM      CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME
-   1      1.04137349    -0.08957905   -37.77821811    -0.08957905    -0.00365799  0.13D-03  0.15D-02  1  1     6.56
-   2      1.04894870    -0.09430297   -37.78294203    -0.00472392    -0.00076888  0.19D-04  0.35D-03  2  2     8.34
-   3      1.05423995    -0.09679647   -37.78543553    -0.00249350    -0.00015757  0.41D-05  0.76D-04  3  3    10.09
-   4      1.05490119    -0.09683025   -37.78546931    -0.00003378    -0.00001119  0.69D-06  0.50D-05  4  4    12.04
-   5      1.05518690    -0.09694288   -37.78558194    -0.00011262    -0.00000059  0.24D-07  0.28D-06  5  5    13.78
-   6      1.05518362    -0.09693740   -37.78557646     0.00000548    -0.00000001  0.29D-09  0.67D-08  6  6    15.55
-   7      1.05518569    -0.09693813   -37.78557719    -0.00000074    -0.00000000  0.13D-09  0.18D-09  6  1    17.29
-   8      1.05518631    -0.09693840   -37.78557746    -0.00000027    -0.00000000  0.27D-10  0.24D-10  6  2    19.04
-   9      1.05518579    -0.09693818   -37.78557724     0.00000022    -0.00000000  0.14D-11  0.18D-11  6  4    20.78
-  10      1.05518582    -0.09693818   -37.78557723     0.00000000    -0.00000000  0.41D-13  0.19D-12  6  3    22.57
-  11      1.05518588    -0.09693819   -37.78557725    -0.00000002    -0.00000000  0.34D-14  0.27D-13  6  5    24.31
-  12      1.05518587    -0.09693819   -37.78557725     0.00000000    -0.00000000  0.41D-15  0.17D-14  6  6    26.05
-  13      1.05518587    -0.09693819   -37.78557725     0.00000000    -0.00000000  0.52D-16  0.17D-15  6  1    27.80
-  14      1.05518587    -0.09693819   -37.78557725    -0.00000000    -0.00000000  0.73D-17  0.22D-16  6  2    29.57
-  15      1.05518587    -0.09693819   -37.78557725     0.00000000    -0.00000000  0.39D-18  0.78D-18  6  4    31.32
+   1      1.04137349    -0.08957905   -37.77821811    -0.08957905    -0.00365799  0.13D-03  0.15D-02  1  1     6.49
+   2      1.04891536    -0.09428352   -37.78292258    -0.00470447    -0.00076888  0.19D-04  0.35D-03  2  2     8.24
+   3      1.05432003    -0.09683427   -37.78547333    -0.00255075    -0.00015901  0.42D-05  0.76D-04  3  3     9.98
+   4      1.05490819    -0.09683133   -37.78547039     0.00000294    -0.00001071  0.68D-06  0.47D-05  4  4    11.74
+   5      1.05519137    -0.09694487   -37.78558393    -0.00011354    -0.00000056  0.23D-07  0.27D-06  5  5    13.73
+   6      1.05518376    -0.09693742   -37.78557648     0.00000745    -0.00000001  0.29D-09  0.66D-08  6  6    15.72
+   7      1.05518579    -0.09693816   -37.78557722    -0.00000073    -0.00000000  0.14D-09  0.17D-09  6  1    17.51
+   8      1.05518635    -0.09693842   -37.78557748    -0.00000026    -0.00000000  0.28D-10  0.24D-10  6  2    19.49
+   9      1.05518582    -0.09693819   -37.78557725     0.00000023    -0.00000000  0.16D-11  0.20D-11  6  4    21.30
+  10      1.05518583    -0.09693818   -37.78557724     0.00000001    -0.00000000  0.44D-13  0.20D-12  6  3    23.25
+  11      1.05518585    -0.09693818   -37.78557724    -0.00000000    -0.00000000  0.35D-14  0.27D-13  6  1    25.07
+  12      1.05518587    -0.09693819   -37.78557725    -0.00000001    -0.00000000  0.40D-15  0.17D-14  6  5    26.84
+  13      1.05518587    -0.09693819   -37.78557725    -0.00000000    -0.00000000  0.58D-16  0.14D-15  6  6    28.60
+  14      1.05518587    -0.09693819   -37.78557725     0.00000000    -0.00000000  0.59D-17  0.10D-16  6  2    30.36
 
  Spin contamination <S**2-Sz**2-Sz>     0.00167823
 
- Norm of t1 vector:      0.05568351      S-energy:    -0.00371138      T1 diagnostic:  0.00554374
+ Norm of t1 vector:      0.05568351      S-energy:    -0.00371138      T1 diagnostic:  0.00547455
  Norm of t2 vector:      0.22822186      P-energy:    -0.09322681
                                          Alpha-Beta:  -0.07769262
                                          Alpha-Alpha: -0.01553420
@@ -1869,8 +1946,8 @@ Geometry recognized as XYZ
 
  ENTERING LOCAL TRIPLES SECTION
  computing T2S/ST2S on-the-fly
- Memory available:                       947688015 words
- Memory left for 3ext caching:           945422291 words
+ Memory available:                       997688015 words
+ Memory left for 3ext caching:           995422291 words
 
  Minimum memory for triples:               2262643 words
 
@@ -1898,7 +1975,7 @@ Geometry recognized as XYZ
 
  (1) Triples without internal-internal couplings:
 
- CPU time for local triples(1):  User=1.45 sec, Sys=0.01 sec, Total=1.46 sec, Elapsed=0.21 sec
+ CPU time for local triples(1):  User=1.52 sec, Sys=0.01 sec, Total=1.53 sec, Elapsed=0.22 sec
 
  Memory used:        15605386 words
  etrip=
@@ -1909,22 +1986,22 @@ Geometry recognized as XYZ
  
   Reference energy                    -37.688639059468
  
-  LUCCSD correlation energy            -0.096938190785
- !LUCCSD total energy                 -37.785577250253
+  LUCCSD correlation energy            -0.096938190737
+ !LUCCSD total energy                 -37.785577250205
 
-  LUCCSD[T0] correlation energy        -0.099267513307   triples contribution= -0.002329322522
-  LUCCSD[T0] total energy             -37.787906572775
+  LUCCSD[T0] correlation energy        -0.099267513254   triples contribution= -0.002329322516
+  LUCCSD[T0] total energy             -37.787906572722
 
-  LUCCSD(T0) correlation energy        -0.099289487385   triples contribution= -0.002351296600
- !LUCCSD(T0) total energy             -37.787928546852
+  LUCCSD(T0) correlation energy        -0.099289487332   triples contribution= -0.002351296595
+ !LUCCSD(T0) total energy             -37.787928546800
 
  Program statistics:
 
- Available memory:                       949999900
- Available memory in lrmp2:              949952482
+ Available memory:                       999999900
+ Available memory in lrmp2:              999952482
  Max. memory used in lrmp2:                 324792
  Min. memory needed in lrmp2:               282381
- Available memory in luccsd:             949926332
+ Available memory in luccsd:             999926332
  Max. memory used in luccsd:                662824
  Min. memory needed in luccsd:              620413
 
@@ -1941,10 +2018,10 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF     BASIS     RHF     BASIS     RHF     BASIS     RHF  
 
  PROGRAMS   *        TOTAL LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)       RHF       INT LUCCSD(T)
- CPU TIMES  *        46.20     31.56      0.17      0.29      6.96      0.08      0.28      3.40      0.05      0.33      2.48
- REAL TIME  *        51.50 SEC
+ CPU TIMES  *        46.86     30.60      0.18      0.28      7.01      0.07      0.24      3.69      0.05      0.34      3.25
+ REAL TIME  *        65.28 SEC
  DISK USED  *       178.84 MB      
- SF USED    *       677.05 MB      
+ SF USED    *       675.83 MB      
  GA USED    *         3.27 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
  SETTING E5Z            =       -37.78792855  AU                              
@@ -1953,7 +2030,7 @@ Geometry recognized as XYZ
  EQZ              =       -37.78625101 AU
  E5Z              =       -37.78792855 AU
 
- DF-LUCCSD(T)/cc-pV5Z energy=    -37.787928546852
+ DF-LUCCSD(T)/cc-pV5Z energy=    -37.787928546800
 
        LUCCSD(T)        DF-RHF         LUCCSD(T)        DF-RHF         LUCCSD(T)        DF-RHF         LUCCSD(T)        DF-RHF  
     -37.78792855    -37.68863906    -37.78625101    -37.68829470    -37.78050511    -37.68670308    -37.76032309    -37.68241535
