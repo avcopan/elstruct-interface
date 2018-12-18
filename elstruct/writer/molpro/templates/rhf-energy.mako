@@ -1,4 +1,6 @@
-memory,500,m
+***,${comment}
+
+memory,${memory},m
 gthresh,orbital=1.d-${thresh_log}
 
 angstrom

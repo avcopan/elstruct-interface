@@ -15,7 +15,7 @@ TEMPLATE_FILES = {
 
 
 def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
-           thresh_log=12):
+           thresh_log=12, memory=8, comment='Single Point Energy'):
     assert theory in TEMPLATE_FILES.keys()
 
     geom_str = xyz_string(labels, coords)
@@ -25,7 +25,9 @@ def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
         'geom': geom_str,
         'basis': basis,
         'thresh_log': thresh_log,
-        'niter': niter}
+        'niter': niter
+        'memory': memory
+        'comment': comment}
 
     template_file_name = TEMPLATE_FILES[theory]
     template_file_path = os.path.join(TEMPLATE_PATH, template_file_name)

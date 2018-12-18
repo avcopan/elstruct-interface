@@ -1,4 +1,4 @@
-""" input file writers for molpro
+""" input file writers for orca
 """
 import os
 from mako.template import Template
@@ -10,25 +10,23 @@ TEMPLATE_PATH = os.path.join(DIR_PATH, 'templates')
 
 TEMPLATE_FILES = {
     params.METHOD.RHF: 'rhf-energy.mako',
-    params.METHOD.CCSD: 'ccsd-energy.mako',
 }
 
 
 def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
-           thresh_log=12, memory=8, comment='Single Point Energy'):
+           thresh_log=12,  memory=8, nprocs=8 
+           comment='Single Point Energy'):
     assert theory in TEMPLATE_FILES.keys()
 
     geom_str = xyz_string(labels, coords)
-    spin = mult - 1
-    memory = int(memory * (1000.0 / 8.0 ))
     fill_vals = {
         'charge': charge,
-        'spin': spin,
+        'mult': mult,
         'geom': geom_str,
         'basis': basis,
         'thresh_log': thresh_log,
-        'niter': niter,
-        'memory': memory,
+        'niter': niter
+        'memory': memory
         'comment': comment}
 
     template_file_name = TEMPLATE_FILES[theory]
@@ -36,7 +34,3 @@ def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
 
     input_str = Template(filename=template_file_path).render(**fill_vals)
     return input_str
-
-
-
-

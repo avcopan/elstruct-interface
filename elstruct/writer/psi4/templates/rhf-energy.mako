@@ -1,3 +1,7 @@
+# ${comment}
+
+memory ${memory} GB
+
 molecule{
 ${charge} ${mult}
 ${geom}
