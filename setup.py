@@ -15,4 +15,7 @@ setup(name="elstruct",
                 "elstruct.reader.psi4",
                 "elstruct.reader.molpro",
                 "elstruct.reader.rere"],
+      package_data={'': ['elstruct/writer/*/templates/*.mako', 
+                         'elstruct/runner/*/templates/*.mako']},
+      include_package_data=True,
       scripts=["scripts/sblues"])
