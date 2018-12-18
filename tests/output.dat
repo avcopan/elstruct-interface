@@ -12,7 +12,7 @@
  id        : anlgov
 
  Nodes     nprocs
- b444         3
+ b451         3
  Number of processes for MPI-2 version of Molpro:   nprocs(total)=    4   nprocs(compute)=    3   nprocs(helper)=    1
 
  Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
@@ -36,7 +36,7 @@
  
  {ccsd,maxit=100}
 
- Variables initialized (889), CPU time= 0.01 sec
+ Variables initialized (889), CPU time= 0.00 sec
  Commands  initialized (702), CPU time= 0.01 sec, 572 directives.
  Default parameters read. Elapsed time= 0.06 sec
 
@@ -52,7 +52,7 @@
 
  **********************************************************************************************************************************
  LABEL *                                                                                 
-  64 bit mpp version                                                                     DATE: 17-Dec-18          TIME: 23:31:02  
+  64 bit mpp version                                                                     DATE: 17-Dec-18          TIME: 23:33:55  
  **********************************************************************************************************************************
 
  SHA1:             b6b3a4772808bb2d43777f23454e145ddfe12dc3
@@ -144,7 +144,7 @@ Geometry recognized as XYZ
 
  Memory used in sort:       0.56 MW
 
- SORT1 READ       19290. AND WROTE        4208. INTEGRALS IN      1 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.01 SEC
+ SORT1 READ       19290. AND WROTE        4208. INTEGRALS IN      1 RECORDS. CPU TIME:     0.01 SEC, REAL TIME:     0.01 SEC
  SORT2 READ       12665. AND WROTE       13826. INTEGRALS IN      3 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.00 SEC
 
  Node minimum:        4366.  Node maximum:        4927. integrals
@@ -256,7 +256,7 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF  
 
  PROGRAMS   *        TOTAL       RHF       INT
- CPU TIMES  *         0.23      0.01      0.11
+ CPU TIMES  *         0.24      0.02      0.11
  REAL TIME  *         0.49 SEC
  DISK USED  *        71.35 MB      
  SF USED    *         0.00 MB      
@@ -285,7 +285,7 @@ Geometry recognized as XYZ
  Length of K-op  integral file:               0.01 MB
  Length of 3-ext integral record:             0.00 MB
 
- Integral transformation finished. Total CPU:   0.00 sec, npass=  1  Memory used:   0.07 MW
+ Integral transformation finished. Total CPU:   0.01 sec, npass=  1  Memory used:   0.07 MW
 
  Reference energy:                    -75.54572803
 
@@ -307,7 +307,7 @@ Geometry recognized as XYZ
    7      1.68216742    -0.36454555   -75.91027358    -0.00083603    -0.00156984  0.66D-06  0.36D-04  6  1     0.02     0.00
    8      1.69319345    -0.36494225   -75.91067027    -0.00039669    -0.00101346  0.41D-05  0.59D-05  6  4     0.02     0.00
    9      1.69842983    -0.36536791   -75.91109594    -0.00042566    -0.00056117  0.28D-06  0.12D-05  6  2     0.02     0.00
-  10      1.70077594    -0.36543409   -75.91116212    -0.00006618    -0.00024937  0.38D-06  0.83D-07  6  3     0.02     0.00
+  10      1.70077594    -0.36543409   -75.91116212    -0.00006618    -0.00024937  0.38D-06  0.83D-07  6  3     0.03     0.00
   11      1.70104087    -0.36546891   -75.91119693    -0.00003481    -0.00005037  0.14D-07  0.21D-07  6  4     0.03     0.00
   12      1.70091305    -0.36545696   -75.91118499     0.00001194     0.00001234  0.25D-08  0.22D-08  6  5     0.03     0.00
   13      1.70101800    -0.36546114   -75.91118917    -0.00000418    -0.00001013  0.11D-09  0.26D-09  6  6     0.03     0.00
@@ -374,8 +374,8 @@ Geometry recognized as XYZ
                                          GEOM     BASIS   MCVARS     RHF  
 
  PROGRAMS   *        TOTAL      CCSD       RHF       INT
- CPU TIMES  *         0.28      0.04      0.01      0.11
- REAL TIME  *         0.56 SEC
+ CPU TIMES  *         0.30      0.06      0.02      0.11
+ REAL TIME  *         0.57 SEC
  DISK USED  *        71.50 MB      
  SF USED    *         0.16 MB      
  GA USED    *         0.00 MB       (max)       0.00 MB       (current)

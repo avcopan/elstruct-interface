@@ -12,7 +12,7 @@
  id        : anlgov
 
  Nodes     nprocs
- b444         3
+ b451         3
  Number of processes for MPI-2 version of Molpro:   nprocs(total)=    4   nprocs(compute)=    3   nprocs(helper)=    1
 
  Using customized tuning parameters: mindgm=1; mindgv=20; mindgc=4; mindgr=1; noblas=0; minvec=7
@@ -33,12 +33,10 @@
  set,charge=0
  
  {rhf,maxit=100}
- 
- {ccsd,maxit=100}
 
- Variables initialized (889), CPU time= 0.01 sec
+ Variables initialized (889), CPU time= 0.00 sec
  Commands  initialized (702), CPU time= 0.01 sec, 572 directives.
- Default parameters read. Elapsed time= 0.06 sec
+ Default parameters read. Elapsed time= 0.07 sec
 
  Checking input...
  Passed
@@ -52,7 +50,7 @@
 
  **********************************************************************************************************************************
  LABEL *                                                                                 
-  64 bit mpp version                                                                     DATE: 17-Dec-18          TIME: 23:31:02  
+  64 bit mpp version                                                                     DATE: 17-Dec-18          TIME: 23:33:52  
  **********************************************************************************************************************************
 
  SHA1:             b6b3a4772808bb2d43777f23454e145ddfe12dc3
@@ -145,7 +143,7 @@ Geometry recognized as XYZ
  Memory used in sort:       0.56 MW
 
  SORT1 READ       19290. AND WROTE        4208. INTEGRALS IN      1 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.01 SEC
- SORT2 READ       12665. AND WROTE       13826. INTEGRALS IN      3 RECORDS. CPU TIME:     0.00 SEC, REAL TIME:     0.00 SEC
+ SORT2 READ       12665. AND WROTE       13826. INTEGRALS IN      3 RECORDS. CPU TIME:     0.01 SEC, REAL TIME:     0.00 SEC
 
  Node minimum:        4366.  Node maximum:        4927. integrals
 
@@ -161,7 +159,7 @@ Geometry recognized as XYZ
 
  PROGRAMS   *        TOTAL       INT
  CPU TIMES  *         0.22      0.11
- REAL TIME  *         0.47 SEC
+ REAL TIME  *         0.46 SEC
  DISK USED  *        12.68 MB      
  GA USED    *         0.00 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
@@ -257,133 +255,15 @@ Geometry recognized as XYZ
 
  PROGRAMS   *        TOTAL       RHF       INT
  CPU TIMES  *         0.23      0.01      0.11
- REAL TIME  *         0.49 SEC
+ REAL TIME  *         0.48 SEC
  DISK USED  *        71.35 MB      
  SF USED    *         0.00 MB      
  GA USED    *         0.00 MB       (max)       0.00 MB       (current)
  **********************************************************************************************************************************
 
+ RHF/cc-pVDZ energy=    -75.545728027289
 
-1PROGRAM * CCSD (Closed-shell coupled cluster)     Authors: C. Hampel, H.-J. Werner, 1991, M. Deegan, P.J. Knowles, 1992
-
-
- Convergence thresholds:  THRVAR = 1.00D-08  THRDEN = 1.00D-06
-
- Number of core orbitals:           1 (   1   0   0   0 )
- Number of closed-shell orbitals:   4 (   2   1   1   0 )
- Number of external orbitals:      19 (   8   3   6   2 )
-
- Molecular orbitals read from record     2100.2  Type=RHF/CANONICAL (state 1.1)
-
- Number of N-1 electron functions:               4
- Number of N-2 electron functions:              10
- Number of singly external CSFs:                25
- Number of doubly external CSFs:               805
- Total number of CSFs:                         831
-
- Length of J-op  integral file:               0.00 MB
- Length of K-op  integral file:               0.01 MB
- Length of 3-ext integral record:             0.00 MB
-
- Integral transformation finished. Total CPU:   0.00 sec, npass=  1  Memory used:   0.07 MW
-
- Reference energy:                    -75.54572803
-
- MP2 singlet pair energy:              -0.21984785
- MP2 triplet pair energy:              -0.09813019
- MP2 correlation energy:               -0.31797804
- MP2 total energy:                    -75.86370607
-
- SCS-MP2 correlation energy:           -0.32487621   (PS=  1.200000  PT=  0.333333)
- SCS-MP2 total energy:                -75.87060423
-
- ITER.      SQ.NORM     CORR.ENERGY   TOTAL ENERGY   ENERGY CHANGE        DEN1      VAR(S)    VAR(P)  DIIS     TIME  TIME/IT
-   1      1.23131587    -0.33142102   -75.87714905    -0.01344298     0.03303596  0.18D-01  0.22D-01  1  1     0.01     0.00
-   2      1.30914548    -0.34137768   -75.88710571    -0.00995666    -0.02917821  0.28D-02  0.84D-02  2  2     0.01     0.00
-   3      1.47415227    -0.35816905   -75.90389708    -0.01679137    -0.02711573  0.11D-02  0.18D-02  3  3     0.01     0.00
-   4      1.60088316    -0.36313071   -75.90885874    -0.00496166    -0.01572487  0.16D-03  0.62D-03  4  4     0.01     0.00
-   5      1.64059245    -0.36257765   -75.90830567     0.00055306    -0.00331441  0.65D-04  0.19D-03  5  5     0.02     0.00
-   6      1.66498569    -0.36370952   -75.90943755    -0.00113188    -0.00174335  0.22D-04  0.80D-04  6  6     0.02     0.00
-   7      1.68216742    -0.36454555   -75.91027358    -0.00083603    -0.00156984  0.66D-06  0.36D-04  6  1     0.02     0.00
-   8      1.69319345    -0.36494225   -75.91067027    -0.00039669    -0.00101346  0.41D-05  0.59D-05  6  4     0.02     0.00
-   9      1.69842983    -0.36536791   -75.91109594    -0.00042566    -0.00056117  0.28D-06  0.12D-05  6  2     0.02     0.00
-  10      1.70077594    -0.36543409   -75.91116212    -0.00006618    -0.00024937  0.38D-06  0.83D-07  6  3     0.02     0.00
-  11      1.70104087    -0.36546891   -75.91119693    -0.00003481    -0.00005037  0.14D-07  0.21D-07  6  4     0.03     0.00
-  12      1.70091305    -0.36545696   -75.91118499     0.00001194     0.00001234  0.25D-08  0.22D-08  6  5     0.03     0.00
-  13      1.70101800    -0.36546114   -75.91118917    -0.00000418    -0.00001013  0.11D-09  0.26D-09  6  6     0.03     0.00
-  14      1.70102945    -0.36546232   -75.91119035    -0.00000118    -0.00000139  0.27D-10  0.56D-10  6  1     0.03     0.00
-  15      1.70102406    -0.36546152   -75.91118955     0.00000080     0.00000051  0.29D-11  0.69D-11  6  4     0.03     0.00
-  16      1.70102044    -0.36546152   -75.91118954     0.00000001     0.00000005  0.36D-12  0.75D-12  6  2     0.03     0.00
-
- Norm of t1 vector:      0.34102448      S-energy:     0.00000009      T1 diagnostic:  0.08525612
-                                                                       D1 diagnostic:  0.19360888
-
- Singles amplitudes (print threshold =  0.500E-01):
-
-         I         SYM. A    A   T(IA)
-
-         2         1         1      0.11758357
-         2         1         3     -0.06325643
-         4         3         1      0.18454804
-
- Doubles amplitudes (print threshold =  0.500E-01):
-
-         I         J         SYM. A    SYM. B    A         B      T(IJ, AB)
-
-         2         2         1         1         1         1     -0.37098880
-         2         2         3         3         1         1     -0.12682393
-         4         4         1         1         1         1     -0.16016923
-         4         4         3         3         1         1     -0.33913503
-         4         2         1         3         1         1      0.26053513
-         4         2         3         1         1         1      0.22158566
-
-
- RESULTS
- =======
-
-  Reference energy                    -75.545728027289
-  CCSD singlet pair energy             -0.320570799504
-  CCSD triplet pair energy             -0.044890811652
-  CCSD correlation energy              -0.365461517011
-
- !CCSD total energy                   -75.911189544300
-
- Timing summary (sec):
-
- STEP                 CPU(USER)    SYS     CPU(TOT)    WALL
- Transformation          0.01      0.00      0.01      0.01
- CCSD iterations         0.02      0.02      0.04      0.04
-
- Program statistics:
-
- Available memory in ccsd:               499999836
- Min. memory needed in ccsd:                  5661
- Max. memory used in ccsd:                    6126
- Max. memory used in cckext:                 38485 (16 integral passes)
-
-
-
- **********************************************************************************************************************************
- DATASETS  * FILE   NREC   LENGTH (MB)   RECORD NAMES
-              1      19       19.16       500      610      700      900      950      970     1000      129      960     1100   
-                                          VAR    BASINP    GEOM    SYMINP    ZMAT    AOBASIS   BASIS     P2S    ABASIS      S 
-                                         1400     1410     1200     1210     1080     1600     1650     1700     1380   
-                                           T        V       H0       H01     AOSYM     SMH    MOLCAS    OPER     JKOP   
-
-              2       4        0.40       700     1000      520     2100   
-                                         GEOM     BASIS   MCVARS     RHF  
-
- PROGRAMS   *        TOTAL      CCSD       RHF       INT
- CPU TIMES  *         0.28      0.04      0.01      0.11
- REAL TIME  *         0.56 SEC
- DISK USED  *        71.50 MB      
- SF USED    *         0.16 MB      
- GA USED    *         0.00 MB       (max)       0.00 MB       (current)
- **********************************************************************************************************************************
-
- CCSD/cc-pVDZ energy=    -75.911189544300
-
-        CCSD            RHF-SCF 
-    -75.91118954    -75.54572803
+        RHF-SCF 
+    -75.54572803
  **********************************************************************************************************************************
  Variable memory released

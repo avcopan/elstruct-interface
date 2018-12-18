@@ -5,26 +5,39 @@ import subprocess
 from mako.template import Template
 from ... import params
 
+
+# Obtain the path to the directory containing the templates
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 TEMPLATE_PATH = os.path.join(DIR_PATH, 'templates')
 
+# Dictionary containing the names of the template files
 TEMPLATE_FILES = {
-    params.PROGRAM.PSI4: 'psi4.mako',
+    params.PROGRAM.CFOUR: 'cfour2.mako',
+    params.PROGRAM.GAUSSIAN: 'gaussian09.mako',
     params.PROGRAM.MOLPRO: 'molpro2015.mako',
+    params.PROGRAM.MOLPRO_MPPX: 'molpro2015-mppx.mako',
+    params.PROGRAM.ORCA: 'orca4.mako',
+    params.PROGRAM.PSI4: 'psi4.mako',
 }
 
 
-def submit(program, hostnodes, ncores_per_node=1, njobs=1, 
-           input_name='input.dat', output_name='output.dat', scratch='/scratch/$USER', 
-           submit=True, background=False):
+def submit(program, hostnodes, njobs=1, ncores_per_node=1, 
+           input_name='input.dat', output_name='output.dat', 
+           scratch='/scratch/$USER', submit=True, background=False):
+    ''' Function writes a Blues job submission script by filling in various templates for
+        electronic structure programs and then submits the job.
+    '''
+    
+    # Checks if requested program is in list of supported template files
     if program not in TEMPLATE_FILES.keys():
       raise ValueError('Program requested is not currently supported')
 
+    # Dictionary containing all potential variables to be fed into the template 
     fill_vals = {
         'program': program,
         'hostnodes': hostnodes,
-        'ncores_per_node': ncores_per_node,
         'njobs': njobs,
+        'ncores_per_node': ncores_per_node,
         'input': input_name,
         'output': output_name,
         'scratch': scratch,
@@ -48,7 +61,7 @@ def submit(program, hostnodes, ncores_per_node=1, njobs=1,
       else:
         raise ValueError('No machines file found. Please place desired nodes in a vertical list in a file named machines')
 
-    # Determine the TOTAL number of nodes for calling MPI; if needed 
+    # Determine the TOTAL number of nodes for calling MPI and add to the dictionary
     fill_vals["nnodes"] = hostnodes.count('b')
 
     # Check for njobs > 2 and set appropriate variables and flag errors if other variables not set correctly
@@ -60,32 +73,27 @@ def submit(program, hostnodes, ncores_per_node=1, njobs=1,
     # Determine the TOTAL number of cores for calling MPI; if needed 
     fill_vals["ncores_total"] = fill_vals["nnodes"] * ncores_per_node 
 
-    #################################################
-
+    # Obtain the name of the template corresponding to the requested electronic structure job
     template_file_name = TEMPLATE_FILES[program]
     template_file_path = os.path.join(TEMPLATE_PATH, template_file_name)
 
+    # Create template object with the user-requested options
     substituted_template = Template(filename=template_file_path).render(**fill_vals)
 
     # Write the submission script in the working directory
-    SUB_FILE = "run_"+program+"_blues.sh"
-    with open(SUB_FILE,"w") as submissionfile:
+    job_submission_file = "run_"+program+"_blues.sh"
+    with open(job_submission_file,"w") as submissionfile:
       submissionfile.write(substituted_template)
 
     # Make the shell script an execuatable
-    subprocess.call(["chmod", "+x", SUB_FILE])
+    subprocess.call(["chmod", "+x", job_submission_file])
     #print('\nCreated Blues Submission Script\n')
 
-    #################################################
-
-
-    ##### SUBMIT JOB IF -s FLAG SET TO TRUE ##### 
+    # Immediately submit the job if the submit option set to true  
     if submit:
-      return_code = subprocess.check_call(os.path.join('.', SUB_FILE))
-    #  print('Job submitted to Blues node(s): '+hostnodes+'\n')
-
-    #################################################
+      return_code = subprocess.check_call(os.path.join('.', job_submission_file))
+      #print('Job submitted to Blues node(s): '+hostnodes+'\n')
 
 
-    #### END PROGRAM #####
+
 

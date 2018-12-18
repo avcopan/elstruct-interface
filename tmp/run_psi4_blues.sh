@@ -4,5 +4,5 @@
 CWD=$(pwd)
 
 # Run Psi4
-psi4 -n 1 -i $CWD/input.dat -o $CWD/output.dat 
+psi4 -n 4 -i $CWD/input.dat -o $CWD/output.dat 
 

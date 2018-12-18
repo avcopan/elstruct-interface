@@ -3,7 +3,7 @@ import subprocess
 
 # Assign variables to build input string
 THEORY = 'ccsd'
-BASIS = '6-31G*'
+BASIS = 'cc-pVDZ'
 CHARGE = 0
 MULT = 1
 LABELS = ('O', 'H', 'H')
@@ -23,41 +23,19 @@ with open('input.dat', 'w') as inp_fle:
 # Assign variables that are passed to the runner function
 PROGRAM = 'molpro2015'
 HOSTNODES = 'b444'
+NCORES_PER_NODE = 4
 
 # User the runner function to submit to Blues/Bebop
-#elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
-
-subprocess.call(
-                  [
-                   'python', 
-                   '/home/kmoore/elstruct-interface/elstruct/runner/blues/sblues.py',
-                   PROGRAM, 
-                   HOSTNODES,
-                   '-J', str(1), 
-                   '-n', str(1), 
-                   '-i', 'input.dat', 
-                   '-o', 'output.dat', 
-                   '-d', '/scratch/$USER', 
-                   '-s', 'yes', 
-                   '-b', 'no'
-                  ]
-                 )
+elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES, ncores_per_node=NCORES_PER_NODE)
 
 # Obtain output string that would be passed to reader function
-f = open('output.dat','r') 
-OUTPUT_STR = f.read()
-f.close()
-
-
-#with open('output.dat') as out_fle:
-#    OUTPUT_STR = out_fle.read()
-
-print(OUTPUT_STR)
-
+with open('output.dat') as out_fle:
+    OUTPUT_STR = out_fle.read()
 
 # User energy reader function to get the single point energy
-#ENERGY = elstruct.reader.molpro.energy(
-#        theory=THEORY, output=OUTPUT_STR)
+ENERGY = elstruct.reader.molpro.energy(
+        theory=THEORY, output=OUTPUT_STR)
 
 # Print energy to screen
-#print(ENERGY)
+print(ENERGY)
+

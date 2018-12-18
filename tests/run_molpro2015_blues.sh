@@ -4,7 +4,7 @@
 CWD=$(pwd)
 
 # Set host
-HOST=b444
+HOST=b451
 
 # Load Molpro 
 soft add +molpro-2015.1-mvapich2

@@ -2,10 +2,10 @@ import elstruct
 import subprocess
 
 # Assign variables to build input string
-THEORY = 'ccsd'
-BASIS = 'STO-3G'
-CHARGE = 1
-MULT = 2
+THEORY = 'rhf'
+BASIS = '6-31G*'
+CHARGE = 0
+MULT = 1
 LABELS = ('O', 'H', 'H')
 COORDS = ((0.000000000000,  0.000000000000, -0.143225816552),
           (0.000000000000,  1.638036840407,  1.136548822547),
@@ -23,9 +23,10 @@ with open('input.dat', 'w') as inp_fle:
 # Assign variables that are passed to the runner function
 PROGRAM = 'psi4'
 HOSTNODES = 'b451'
+NCORES_PER_NODE = 4
 
 # User the runner function to submit psi4 job to Blues/Bebop
-elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES)
+elstruct.runner.blues.submit(program=PROGRAM, hostnodes=HOSTNODES, ncores_per_node=NCORES_PER_NODE)
 
 # Obtain output string that would be passed to reader function
 with open('output.dat') as out_fle:
