@@ -34,7 +34,7 @@ for linenum in mult_lines:
 count = 0
 for i in range(len(names)):
 
-  if count == 20:
+  if count == 10:
     sys.exit()
 
   # Create and go into the directory

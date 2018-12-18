@@ -15,7 +15,7 @@ def write_lccsdt(geom, mult, basis='reg'):
     basis_sets = ['aug-cc-pVDZ', 'aug-cc-pVTZ', 'aug-cc-pVQZ', 'aug-cc-pV5Z']
 
   # Head of file string
-  head_str = '''memory,950,m
+  head_str = '''memory,1000,m
 gthresh,energy=1.0d-10,orbital=1.0d-10
 
 nosym

@@ -25,9 +25,9 @@ def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
         'geom': geom_str,
         'basis': basis,
         'thresh_log': thresh_log,
-        'niter': niter
-        'memory': memory
-        'nprocs': nprocs
+        'niter': niter,
+        'memory': memory,
+        'nprocs': nprocs,
         'comment': comment}
 
     template_file_name = TEMPLATE_FILES[theory]

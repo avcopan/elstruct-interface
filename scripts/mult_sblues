@@ -1,0 +1,105 @@
+#!/usr/bin/env python
+
+import time
+import sys
+import os
+import subprocess
+import elstruct
+from thread import tag_team_starmap
+
+def sort_fxn(string):
+  ''' Function used as a key in list.sort() call to sort by dir indices 
+  '''
+  return int(string.split('_')[0])
+
+def submit_fxn(jobpath, keywords, worker_id):
+  ''' Changes to job directory and calls elstruct.runner, feeding in node ID. 
+  '''
+  
+  # Initialize dictionary for containing options 
+  submit_options = {
+    'program' : 'program',
+    'hostnodes' : worker_id,
+    'njobs' : 1,
+    'ncores_per_node' : 1,
+    'input_name' : 'input.dat',
+    'output_name' : 'output.dat',
+    'scratch' : '/scratch/$USER',
+    'submit' : True,
+    'background' : False
+  }
+
+  # Parse options string and change the dictionary values if keyword is in the string 
+  keywords_list = keywords.split(',')[1:]
+  for keyword in keywords_list:
+    tmp = keyword.split('=')
+    key = tmp[0].strip()
+    val = tmp[1].strip()
+    if key == 'njobs' or key == 'ncores_per_node':
+      submit_options[key] = int(val)
+    if key == 'submit' or key == 'background':
+      submit_options[key] = bool(val)
+    else:
+      submit_options[key] = val
+
+  #print(submit_options)
+
+  ## Change into the jobdir
+  os.chdir(jobpath)
+  print(os.getcwd())
+  time.sleep(5)
+
+  ## Run the blues runner function
+  #elstruct.runner.blues.submit(
+  #  program=submit_options['program'],
+  #  hostnodes=submit_options['hostnodes'],
+  #  njobs=submit_options['njobs'],
+  #  ncores_per_node=submit_options['ncores_per_node'],
+  #  input_name=submit_options['input_name'],
+  #  output_name=submit_options['output_name'],
+  #  scratch=submit_options['scratch'],
+  #  submit=submit_options['submit'],
+  #  background=submit_options['background']
+  #)
+
+  return None
+
+# Get the lsit of directories containing each job
+mainpath = os.getcwd()+'/'
+
+# Get the initial list of the job directories
+jobdirs = os.listdir('.')
+
+# Check for a jop params file and exit if it does not exist
+if os.path.exists('err'):
+  jobdirs.remove('err')
+if os.path.exists('./job_params.dat'):
+  jobdirs.remove('job_params.dat')
+else:
+  print('Need a job_params.dat file specifying job params')
+  sys.exit()
+
+# Sort the jobdirectoires and append the prepend the rest of the path  
+jobdirs.sort(key=sort_fxn)
+jobpaths = [ mainpath+jobdir for jobdir in jobdirs ]  
+
+# Open the thread file and read in the job parameters
+with open('job_params.dat','r') as paramfile:
+  paramlines = paramfile.readlines()
+
+worker_ids = paramlines[0].strip().split()[2:]
+print(worker_ids)
+keywords_str = ''
+for i in range(1,len(paramlines)):
+  if paramlines[i].strip() != '':
+    keywords_str = keywords_str + ',' + paramlines[i].strip()
+key_list = [ keywords_str for i in range(len(jobpaths)) ]
+
+# Zip the paths and commands to pass into submission function
+submit_args = tuple(zip(jobpaths, key_list))
+for x in submit_args:
+  print(x)
+
+# Call the submssion function
+tag_team_starmap(submit_fxn, submit_args, worker_ids)
+
