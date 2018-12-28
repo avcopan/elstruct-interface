@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+
+import os
+import numpy as np
+from mako.template import Template
+
+# Set ranges to for job submission
+dist = np.arange(1.0,3.0,0.05) 
+angle = np.arange(90.0,170.0,1.0)
+
+# Get the name of the template
+filename = 'nno_sp.mako'
+dir_path = os.path.dirname(os.path.realpath(__file__))
+template_file = os.path.join(dir_path, 'templates', filename)
+
+for i in range(len(dist)):
+
+  os.mkdir('{0:3.2f}'.format(dist[i]))
+  os.chdir('{0:3.2f}'.format(dist[i]))
+
+  for j in range(len(angle)):
+
+    fill_vals = {
+      'dist'  : dist[i],
+      'angle' : angle[j]
+    }
+  
+    if (j+1) % 4 == 1:
+      os.mkdir('JOB'+str(j+1))
+      os.chdir('JOB'+str(j+1))
+      os.mkdir('calc1')
+      os.chdir('calc1')
+      with open('input.dat',"w") as inputfile:
+        inputfile.write(Template(filename=template_file).render(**fill_vals))
+      os.chdir('../')
+    elif (j+1) % 4 == 0:
+      os.mkdir('calc4')
+      os.chdir('calc4')
+      with open('input.dat',"w") as inputfile:
+        inputfile.write(Template(filename=template_file).render(**fill_vals))
+      os.chdir('../../')
+    else:
+      os.mkdir('calc'+str((j+1)%4))
+      os.chdir('calc'+str((j+1)%4))
+      with open('input.dat',"w") as inputfile:
+        inputfile.write(Template(filename=template_file).render(**fill_vals))
+      os.chdir('../')
+
+  os.chdir('../')

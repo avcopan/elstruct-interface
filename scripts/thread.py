@@ -64,7 +64,7 @@ class _Worker(Thread):
         """
         while not self.term_signal.is_set():
             try:
-                args = self.args_queue.get(block=True, timeout=0.05)
+                args = self.args_queue.get(block=True)
                 ret = self.function(*args, worker_id=self.worker_id)
                 self.ret_queue.put(ret)
             except EmptyQueue:

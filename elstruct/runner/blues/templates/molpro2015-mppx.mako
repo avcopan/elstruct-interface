@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Set current working directory
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host
 HOST=${hostnodes}

@@ -51,8 +51,8 @@ def submit(program, account, partition='bdwall', nnodes=1, njobs=1, ncores_per_n
     }
 
     # Check if input file exists
-    if os.path.exists('./'+input_name) == False:
-      raise ValueError('Input file does not exist in current submission directory')
+    #if os.path.exists('./'+input_name) == False:
+    #  raise ValueError('Input file does not exist in current submission directory')
 
     # Check for njobs > 2 and set appropriate variables and flag errors if other variables not set correctly
     if njobs > 1 and nnodes> 1:

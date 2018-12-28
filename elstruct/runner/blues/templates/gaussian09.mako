@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set path
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host node to the one specified by the user
 HOST=${hostnodes}

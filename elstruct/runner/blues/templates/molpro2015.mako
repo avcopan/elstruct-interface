@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Set current working directory
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host
 HOST=${hostnodes}
@@ -28,8 +28,6 @@ TMPDIR=${scratch}
 # Set runtime options for MPI
 MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts $HOST"
 
-# Set variable that includes ampersand if run in the background
-
 # Set runtime options for Molpro
 % if njobs == 1:
 MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/${output}"
@@ -49,7 +47,7 @@ mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input}
 % else:
  % for i in range(njobs):
   % if background == 'yes':
-mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} % 
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} &
   % else:
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} 
   % endif

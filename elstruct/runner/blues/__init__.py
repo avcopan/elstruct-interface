@@ -41,13 +41,14 @@ def submit(program, hostnodes, njobs=1, ncores_per_node=1,
         'input': input_name,
         'output': output_name,
         'scratch': scratch,
+        'workdir': os.getcwd(),
         'submit': ('yes' if submit else 'no'),
         'background': ('yes' if background else 'no'),
     }
 
     # Check if input file exists
-    if os.path.exists('./'+input_name) == False:
-      raise ValueError('Input file does not exist in current submission directory')
+    #if os.path.exists('./'+input_name) == False:
+    #  raise ValueError('Input file does not exist in current submission directory')
 
     # Check if user wishes to allocate nodes using a machine file; reset hostnodes variable if so
     if hostnodes == 'machines':
@@ -57,12 +58,12 @@ def submit(program, hostnodes, njobs=1, ncores_per_node=1,
          for line in machinefile:
             if line.strip() != '':
               nodes = nodes + line.strip() + ','
-         hostnodes = nodes[:-1]
+         fill_vals["hostnodes"] = nodes[:-1]
       else:
         raise ValueError('No machines file found. Please place desired nodes in a vertical list in a file named machines')
 
     # Determine the TOTAL number of nodes for calling MPI and add to the dictionary
-    fill_vals["nnodes"] = hostnodes.count('b')
+    fill_vals["nnodes"] = fill_vals["hostnodes"].count('b')
 
     # Check for njobs > 2 and set appropriate variables and flag errors if other variables not set correctly
     if njobs > 1 and fill_vals["nnodes"] > 1:
