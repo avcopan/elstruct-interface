@@ -22,7 +22,7 @@ TEMPLATE_FILES = {
 
 
 def submit(program, hostnodes, njobs=1, ncores_per_node=1, 
-           input_name=None, output_name=None
+           input_name=None, output_name=None,
            scratch='/scratch/$USER', submit=True, background=False):
     ''' Function writes a Blues job submission script by filling in various templates for
         electronic structure programs and then submits the job.

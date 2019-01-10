@@ -6,23 +6,18 @@ class METHOD():
     RHF      = 'rhf'
     UHF      = 'uhf'
     MP2      = 'mp2'
-    RMP2     = 'rmp2'
-    UMP2     = 'ump2'
-    CCSD     = 'ccsd'
-    CCSD(T)  = 'ccsd(t)'
-    RCCSD(T) = 'rccsd(t)'
-    UCCSD(T) = 'uccsd(t)'
+    RHF_MP2  = 'rhf-mp2'
+    UHF_MP2  = 'uhf-mp2'
+    RHF_RMP2 = 'rhf-rmp2'
+    RHF_CCSD = 'rhf-ccsd'
+    RHF_RCCSD = 'rhf-rccsd'
+    RHF_CCSD_T  = 'rhf-ccsd(t)'
+    RHF_RCCSD_T = 'rhf-rccsd(t)'
     CASSCF   = 'casscf'
     CASPT2   = 'caspt2'
     icCASPT2 = 'iccaspt2'
     MRCISD_Q = 'mrcisd+q'
     CUSTOM   = 'custom'
-    # Density functional theory methods
-    B3LYP    = 'B3LYP'
-    B2PLYP   = 'B2PLYP'
-    WB97X    = 'wB97X'
-    M062X    = 'M06-2X'
-}
 
 
 class BASIS():
