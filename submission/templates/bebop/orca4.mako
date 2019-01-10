@@ -29,12 +29,16 @@ if [ -e $SLURM_SUBMIT_DIR/input.hess ]; then cp $SLURM_SUBMIT_DIR/input.hess $TM
 if [ -e $SLURM_SUBMIT_DIR/input.pot  ]; then cp $SLURM_SUBMIT_DIR/input.pot  $TMPDIR/guess.pot  ; fi 
 
 # Run Orca
-$ORCAEXE $TMPDIR/${input} > $SLURM_SUBMIT_DIR/${output}
+% if background == 'yes':
+$ORCAEXE $TMPDIR/${input} > $SLURM_SUBMIT_DIR/${output} &
+% else:
+$ORCAEXE $TMPDIR/${input} > $SLURM_SUBMIT_DIR/${output} 
+% endif
 
 # Place other useful job info in a separate directory 
-mkdir -p $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB_ID
-cp $TMPDIR/*.xyz  $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB_ID 
-cp $TMPDIR/*.gbw  $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB_ID
-cp $TMPDIR/*.hess $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB_ID 
-cp $TMPDIR/*.pot  $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB_ID
+mkdir -p $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB
+cp $TMPDIR/*.xyz  $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB 
+cp $TMPDIR/*.gbw  $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB
+cp $TMPDIR/*.hess $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB 
+cp $TMPDIR/*.pot  $SLURM_SUBMIT_DIR/Job_Data_$SLURM_JOB
 

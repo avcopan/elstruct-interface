@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set path to the working directory
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host node to the one specified by the user
 HOST=${hostnodes}
@@ -13,22 +13,29 @@ export ORCAEXE=$(which orca)
 
 # Set variable for the scratch directory
 export TMPDIR=${scratch}
+timestamp=$(date +%s%9N)
+export SCRDIR=$TMPDIR/ORCASCR_$timestamp
 
 # SSH into Blues node, run Orca, and copy any data from job
-ssh -n $HOST " mkdir -p $TMPDIR                                                              ;
-               export PATH=$PATH                                                             ;
+ssh -n $HOST " export PATH=$PATH                                                             ;
                export LD_LIBRARY_PATH=$LD_LIBRARY_PATH                                       ;
-               cp $CWD/input.dat $TMPDIR/input.dat                                           ;
-               if [ -e $CWD/input.xyz  ]; then cp $CWD/input.xyz  $TMPDIR/guess.xyz  ; fi    ;
-               if [ -e $CWD/input.gbw  ]; then cp $CWD/input.gbw  $TMPDIR/guess.gbw  ; fi    ;
-               if [ -e $CWD/input.hess ]; then cp $CWD/input.hess $TMPDIR/guess.hess ; fi    ; 
-               if [ -e $CWD/input.pot  ]; then cp $CWD/input.pot  $TMPDIR/guess.pot  ; fi    ;
-               $ORCAEXE $TMPDIR/input.dat > $CWD/output.dat 2>> $CWD/log                     ;
+               mkdir -p $TMPDIR                                                              ;
+               mkdir -p $SCRDIR                                                              ;
+               cp $CWD/input.dat $SCRDIR/input.dat                                           ;
+               if [ -e $CWD/input.xyz  ]; then cp $CWD/input.xyz  $SCRDIR/guess.xyz  ; fi    ;
+               if [ -e $CWD/input.gbw  ]; then cp $CWD/input.gbw  $SCRDIR/guess.gbw  ; fi    ;
+               if [ -e $CWD/input.hess ]; then cp $CWD/input.hess $SCRDIR/guess.hess ; fi    ;
+               if [ -e $CWD/input.pot  ]; then cp $CWD/input.pot  $SCRDIR/guess.pot  ; fi    ;
+               $ORCAEXE $SCRDIR/input.dat > $CWD/output.dat 2>> $CWD/err                     ;
                mkdir -p $CWD/Job_Data                                                        ;
-               cp $TMPDIR/*.xyz  $CWD/Job_Data 2>> $CWD/log                                  ;
-               cp $TMPDIR/*.gbw  $CWD/Job_Data 2>> $CWD/log                                  ;
-               cp $TMPDIR/*.hess $CWD/Job_Data 2>> $CWD/log                                  ;
-               cp $TMPDIR/*.pot  $CWD/Job_Data 2>> $CWD/log                                   " &
-
-
+               cp $SCRDIR/*.xyz  $CWD/Job_Data 2>> $CWD/err                                  ;
+               cp $SCRDIR/*.gbw  $CWD/Job_Data 2>> $CWD/err                                  ;
+               cp $SCRDIR/*.hess $CWD/Job_Data 2>> $CWD/err                                  ;
+               cp $SCRDIR/*.pot  $CWD/Job_Data 2>> $CWD/err                                  ;
+               cd $TMPDIR                                                                    ;
+               rm -r ORCASCR_$timestamp                                                      ;
+               cd $CWD                                                                         " \
+% if background == 'yes':
+               &
+% endif
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set path
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host node to the one specified by the user
 HOST=${hostnodes}
@@ -19,29 +19,36 @@ export OMP_NUM_THREADS=`echo 'scale=0;'$nproc'/'$CFOUR_NUM_CORES | bc`
 
 # Set the scratch and current working directory
 export TMPDIR=${scratch}
+timestamp=$(date +%s%9N)
+export SCRDIR=$TMPDIR/CFOURSCR_$timestamp
 
 # SSH into Blues node, run CFOUR, and copy any data from job
 ssh -n $HOST " soft add +intel-parallel-studio-17.0.4     ;
                export PATH=$PATH                          ;
                export CFOUR_NUM_CORES=$CFOUR_NUM_CORES    ;
                export OMP_NUM_THREADS=$OMP_NUM_THREADS    ;
-               mkdir -p $TMPDIR                           ;                                                              
-               cp $CWD/${input} $TMPDIR/ZMAT              ;
-               cp $CFOURBASIS/GENBAS $TMPDIR/GENBAS       ; 
-               cp $CFOURBASIS/ECPDATA $TMPDIR/ECPDATA     ; 
-               cd $TMPDIR                                 ;
+               mkdir -p $TMPDIR                           ;
+               mkdir -p $SCRDIR                           ;
+               cp $CWD/${input} $SCRDIR/ZMAT              ;
+               cp $CFOURBASIS/GENBAS $SCRDIR/GENBAS       ;
+               cp $CFOURBASIS/ECPDATA $SCRDIR/ECPDATA     ;
+               cd $SCRDIR                                 ;
                $CFOUREXE >& $CWD/${output}                ;
-               $CFOURXJA > $CWD/xja_out.dat               ;
+               $CFOURXJA >& $CWD/xja_out.dat              ;
                mkdir -p $CWD/Job_Data                     ;
-               cp $TMPDIR/den.dat  $CWD/Job_Data/den.dat  ;
-               cp $TMPDIR/FCMINT   $CWD/Job_Data/FCMINT   ;
-               cp $TMPDIR/FCMFINAL $CWD/Job_Data/FCMFINAL ; 
-               cp $TMPDIR/JOBARC   $CWD/Job_Data/JOBARC   ;
-               cp $TMPDIR/JAINDX   $CWD/Job_Data/JAINDX   ;
-               cp $TMPDIR/MOLDEN   $CWD/Job_Data/MOLDEN   ;
-               cp $TMPDIR/ZMATnew  $CWD/ZMATnew           ;
-               if [ -e "$TMPDIR/zmat001" ]; then mkdir $CWD/Disps ; cp $TMPDIR/zmat* $CWD/Disps ; fi ;
-               if [ -e "$TMPDIR/FJOBARC"  ]; then cp $TMPDIR/FJOBARC $CWD/Job_Data/FJOBARC      ; fi ;
-               cd $CWD                                    ;                                            " &
-
+               cp $SCRDIR/den.dat  $CWD/Job_Data/den.dat  ;
+               cp $SCRDIR/FCMINT   $CWD/Job_Data/FCMINT   ;
+               cp $SCRDIR/FCMFINAL $CWD/Job_Data/FCMFINAL ;
+               cp $SCRDIR/JOBARC   $CWD/Job_Data/JOBARC   ;
+               cp $SCRDIR/JAINDX   $CWD/Job_Data/JAINDX   ;
+               cp $SCRDIR/MOLDEN   $CWD/Job_Data/MOLDEN   ;
+               cp $SCRDIR/ZMATnew  $CWD/ZMATnew           ;
+               if [ -e "$SCRDIR/zmat001" ]; then mkdir $CWD/Disps ; cp $SCRDIR/zmat* $CWD/Disps ; fi ;
+               if [ -e "$SCRDIR/FJOBARC"  ]; then cp $SCRDIR/FJOBARC $CWD/Job_Data/FJOBARC      ; fi ;
+               cd $TMPDIR                                                                            ; 
+               rm -r CFOURSCR_$timestamp                                                             ;
+               cd $CWD                                                                                 " \
+% if background == 'yes':
+               &
+% endif
 

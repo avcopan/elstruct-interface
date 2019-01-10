@@ -1,0 +1,17 @@
+basis=cc-pVQZ
+scftype=RHF
+calc=CCSD(T)
+mem=30GB
+scfiguess=sad
+charge=0
+mult=1
+scfmaxit=300
+scftol=7
+cctol=7
+
+geom=xyz
+3
+  
+O       -3.3868544221      4.5682264827      0.0097586800                 
+H       -2.3975280687      4.5287348594     -0.0068897592                 
+H       -3.6762198590      3.6955688006     -0.3581266365  

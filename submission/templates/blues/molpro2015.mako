@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Set current working directory
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host
 HOST=${hostnodes}
@@ -23,27 +23,35 @@ soft add +gcc-4.7.2
 MOLPRO_LIB=/soft/molpro/2015.1_mvapich2/lib/
 
 # Set the Molpro scratch directory
-TMPDIR=${scratch}
+SCRDIR=${scratch}
 
 # Set runtime options for MPI
 MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts $HOST"
 
 # Set runtime options for Molpro
 % if njobs == 1:
-MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/${output}"
+MOLPRO_OPTIONS="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $SCRDIR -I $SCRDIR -W $SCRDIR -o $CWD/${output}"
 % else:
 % for i in range(njobs):
-MOLPRO_OPTIONS${i+1}="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o $CWD/calc${i+1}/${output}"
+MOLPRO_OPTIONS${i+1}="--nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $SCRDIR -I $SCRDIR -W $SCRDIR -o $CWD/calc${i+1}/${output}"
 % endfor
 % endif
 
 # Run the molpro executable
 % if njobs == 1:
+ % if background == 'yes':
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} &
+ % else:
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} 
+ % endif
 % else:
-% for i in range(njobs):
+ % for i in range(njobs):
+  % if background == 'yes':
 mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} &
-% endfor
+  % else:
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS${i+1} $CWD/calc${i+1}/${input} 
+  % endif
+ % endfor
 % endif
 
 

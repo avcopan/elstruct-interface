@@ -20,9 +20,9 @@ cmd_line_parser.add_argument("-J","--njobs",default=1,type=int,
   help="Run 'njobs' molpro2015 calcs on SINGLE node. Put jobs in calcn directory where 1<=n<=njobs. (default: %(default)d)")
 cmd_line_parser.add_argument("-n","--ncores_per_node",default=1,type=int,
   help="Number of cores for EACH node (default: %(default)d)")
-cmd_line_parser.add_argument("-i","--input",default="input.dat",
+cmd_line_parser.add_argument("-i","--input",
   help="Name of input file (default: %(default)s)")
-cmd_line_parser.add_argument("-o","--output",default="output.dat",
+cmd_line_parser.add_argument("-o","--output",
   help="Name of output file (default: %(default)s)")
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")

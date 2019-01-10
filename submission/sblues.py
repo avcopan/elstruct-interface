@@ -10,7 +10,7 @@ cmd_line_parser = argparse.ArgumentParser()
 
 # Use positional arguments to specify the program to be ran as well as the compute nodes 
 cmd_line_parser.add_argument("program",
-  help="Program to be run (Supported: cfour2, g09e, molpro2015, molpro2015-mppx, mrcc2018, orca4)")
+  help="Program to be run (Supported: cfour2, gaussian09, molpro2015, molpro2015-mppx, mrcc2018, orca4)")
 cmd_line_parser.add_argument("hostnodes",
   help="Options: (1) Enter as list: node1,node2,node3...; (2) List nodes in a 'machines' file")
 
@@ -19,14 +19,16 @@ cmd_line_parser.add_argument("-n","--ncores_per_node",default=1,type=int,
   help="Number of cores for EACH node (default: %(default)d)")
 cmd_line_parser.add_argument("-J","--njobs",default=1,type=int,
   help="Run 'njobs' molpro2015 calcs on SINGLE node. Put jobs in calcn directory where 1<=n<=njobs. (default: %(default)d)")
-cmd_line_parser.add_argument("-i","--input",default="input.dat",
+cmd_line_parser.add_argument("-i","--input",
   help="Name of input file (default: %(default)s)")
-cmd_line_parser.add_argument("-o","--output",default="output.dat",
+cmd_line_parser.add_argument("-o","--output",
   help="Name of output file (default: %(default)s)")
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")
-cmd_line_parser.add_argument("-s","--submit",default=True,
-  help="Automatically submit job? True/False (default: %(default)s)")
+cmd_line_parser.add_argument("-s","--submit",default='yes',
+  help="Automatically submit job? yes/no (default: %(default)s)")
+cmd_line_parser.add_argument("-b","--background",default='yes',
+  help="Run job in the background? yes/no (default: %(default)s)")
 
 #################################################
 
@@ -60,6 +62,18 @@ if SUBMIT_OPTIONS["njobs"] > 1 and SUBMIT_OPTIONS["program"] != "molpro2015":
 # Determine the TOTAL number of cores for calling MPI; if needed 
 SUBMIT_OPTIONS["ncores_total"] = SUBMIT_OPTIONS["nnodes"] * SUBMIT_OPTIONS["ncores_per_node"] 
 
+# Sets the name of the input flle and outfile based on the user request
+if SUBMIT_OPTIONS["input"] == None and SUBMIT_OPTIONS["output"] == None:
+  SUBMIT_OPTIONS["input"] = 'input.dat'   
+  SUBMIT_OPTIONS["output"] = 'output.dat'       
+elif SUBMIT_OPTIONS["input"] != None and SUBMIT_OPTIONS["output"] == None:
+  SUBMIT_OPTIONS["output"] = os.path.splitext(SUBMIT_OPTIONS["input"])[0] + '.out'       
+elif SUBMIT_OPTIONS["input"] == None and SUBMIT_OPTIONS["output"] != None:
+  SUBMIT_OPTIONS["input"] = 'input.dat'   
+
+# Set working directory
+SUBMIT_OPTIONS["workdir"] = os.getcwd()   
+
 #################################################
 
 
@@ -83,7 +97,7 @@ print('\nCreated Blues Submission Script\n')
 
 
 ##### SUBMIT JOB IF -s FLAG SET TO TRUE ##### 
-if SUBMIT_OPTIONS["submit"] == True:
+if SUBMIT_OPTIONS["submit"] == 'yes':
   subprocess.call(["./"+SUB_FILE])
   print('Job submitted to Blues node(s): '+SUBMIT_OPTIONS["hostnodes"]+'\n')
 

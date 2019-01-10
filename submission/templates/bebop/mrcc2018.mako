@@ -29,7 +29,11 @@ cp $SLURM_SUBMIT_DIR/${input} $TMPDIR/MINP
 cd $TMPDIR
 
 # Run MRCC with srun for MPI para
-$MRCCEXE >& $SLURM_SUBMIT_DIR/${output}
+% if background == 'yes':
+$MRCCEXE >& $SLURM_SUBMIT_DIR/${output} &
+% else:
+$MRCCEXE >& $SLURM_SUBMIT_DIR/${output} 
+% endif
 
 # Go back to working directory
 cd $SLURM_SUBMIT_DIR

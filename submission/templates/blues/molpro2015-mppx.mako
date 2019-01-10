@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Set current working directory
-CWD=$(pwd)
+CWD=${workdir}
 
 # Set host
 HOST=${hostnodes}
@@ -23,15 +23,19 @@ soft add +gcc-4.7.2
 MOLPRO_LIB=/soft/molpro/2015.1_mvapich2/lib/
 
 # Set the Molpro scratch directory
-TMPDIR=${scratch}
+SCRDIR=${scratch}
 
 # Set runtime options for MPI
 MPI_OPTIONS="-n ${ncores_total} -ppn ${ncores_per_node} -hosts $HOST"
 
 # Set runtime options for Molpro
-MOLPRO_OPTIONS="--mppx --nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o ${output}"
+MOLPRO_OPTIONS="--mppx --nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $SCRDIR -I $SCRDIR -W $SCRDIR -o $CWD/${output}"
 
 # Run the molpro executable
-mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $PWD/${input} &
+% if background == 'yes':
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} &
+% else:
+mpirun $MPI_OPTIONS $MOLPROEXE $MOLPRO_OPTIONS $CWD/${input} 
+% endif
 
 

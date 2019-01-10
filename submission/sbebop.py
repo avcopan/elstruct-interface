@@ -12,7 +12,7 @@ cmd_line_parser = argparse.ArgumentParser()
 
 # Use positional arguments to specify the program to be ran as well as the compute nodes 
 cmd_line_parser.add_argument("program",
-  help="Program to be run (Supported: cfour2, g09e, molpro2015, molpro2015-mppx, mrcc2018, nwchem6, orca4)")
+  help="Program to be run (Supported: cfour2, gaussian09, molpro2015, molpro2015-mppx, mrcc2018, nwchem6, orca4)")
 cmd_line_parser.add_argument("account",help="LCRC account charged for running on the Bebop queue")
 
 # Set additional parameters for user may want to control job submission 
@@ -28,14 +28,16 @@ cmd_line_parser.add_argument("-t","--walltime",default="2:00:00",
   help="Max wall time in HH:MM:SS (default: %(default)s)")
 cmd_line_parser.add_argument("-j","--jobname",default="run",
   help="Name of job on Bebop queue (default: %(default)s)")
-cmd_line_parser.add_argument("-i","--input",default="input.dat",
+cmd_line_parser.add_argument("-i","--input",
   help="Name of input file (default: %(default)s)")
-cmd_line_parser.add_argument("-o","--output",default="output.dat",
+cmd_line_parser.add_argument("-o","--output",
   help="Name of output file (default: %(default)s)")
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")
-cmd_line_parser.add_argument("-s","--submit",default=True,
-  help="Automatically submit job? True/False (default: %(default)s)")
+cmd_line_parser.add_argument("-s","--submit",default='yes',
+  help="Automatically submit job? yes/no (default: %(default)s)")
+cmd_line_parser.add_argument("-b","--background",default='yes',
+  help="Run job in the background? yes/no (default: %(default)s)")
 
 #################################################
 
@@ -53,6 +55,18 @@ if SUBMIT_OPTIONS["njobs"] > 1 and SUBMIT_OPTIONS["program"] != "molpro2015":
 
 # Determine the TOTAL number of cores for calling MPI; if needed 
 SUBMIT_OPTIONS["ncores_total"] = SUBMIT_OPTIONS["nnodes"] * SUBMIT_OPTIONS["ncores_per_node"] 
+
+# Sets the name of the input flle and outfile based on the user request
+if SUBMIT_OPTIONS["input"] == None and SUBMIT_OPTIONS["output"] == None:
+  SUBMIT_OPTIONS["input"] = 'input.dat'   
+  SUBMIT_OPTIONS["output"] = 'output.dat'       
+elif SUBMIT_OPTIONS["input"] != None and SUBMIT_OPTIONS["output"] == None:
+  SUBMIT_OPTIONS["output"] = os.path.splitext(SUBMIT_OPTIONS["input"])[0] + '.out'       
+elif SUBMIT_OPTIONS["input"] == None and SUBMIT_OPTIONS["output"] != None:
+  SUBMIT_OPTIONS["input"] = 'input.dat'   
+
+# Set working directory
+SUBMIT_OPTIONS["workdir"] = os.getcwd()   
 
 #################################################
 
@@ -73,7 +87,7 @@ print('\nCreated Bebop Submission Script\n')
 
 ##### SUBMIT JOB IF -s FLAG SET TO TRUE ##### 
 
-if SUBMIT_OPTIONS["submit"] == True:
+if SUBMIT_OPTIONS["submit"] == 'yes':
   subprocess.call(["sbatch", SUB_FILE])
   print('')
 

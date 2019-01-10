@@ -51,8 +51,13 @@ if [ -e $SLURM_SUBMIT_DIR/FCMINT       ]; then cp $SLURM_SUBMIT_DIR/FCMINT      
 cd $TMPDIR
 
 # Run CFOUR 
-$CFOUREXE >& $SLURM_SUBMIT_DIR/${output}
+% if background == 'yes':
+$CFOUREXE >& $SLURM_SUBMIT_DIR/${output} &
+$CFOURXJA &
+% else:
+$CFOUREXE >& $SLURM_SUBMIT_DIR/${output} 
 $CFOURXJA
+% endif
 
 # Place other useful job info in a separate directory 
 mkdir -p $SLURM_SUBMIT_DIR/Job_Data

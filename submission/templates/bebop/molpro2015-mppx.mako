@@ -24,5 +24,9 @@ export TMPDIR=${scratch}
 MOLPRO_OPTIONS="--mppx --nouse-logfile --no-xml-output -L $MOLPRO_LIB -d $TMPDIR -I $TMPDIR -W $TMPDIR -o ${output}"
 
 # Run Molpro with mpirun for MPI parallelization
+% if background == 'yes':
+srun molpro.exe $MOLPRO_OPTIONS $SLURM_SUBMIT_DIR/${input} &
+% else:
 srun molpro.exe $MOLPRO_OPTIONS $SLURM_SUBMIT_DIR/${input}
+% endif
 

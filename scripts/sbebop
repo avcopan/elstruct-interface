@@ -27,9 +27,9 @@ cmd_line_parser.add_argument("-t","--walltime",default="2:00:00",
   help="Max wall time in HH:MM:SS (default: %(default)s)")
 cmd_line_parser.add_argument("-j","--jobname",default="run",
   help="Name of job on the Bebop queue (default: %(default)s)")
-cmd_line_parser.add_argument("-i","--input",default="input.dat",
+cmd_line_parser.add_argument("-i","--input",
   help="Name of input file (default: %(default)s)")
-cmd_line_parser.add_argument("-o","--output",default="output.dat",
+cmd_line_parser.add_argument("-o","--output",
   help="Name of output file (default: %(default)s)")
 cmd_line_parser.add_argument("-d","--scratch",default="/scratch/$USER",
   help="Set the scratch directory (default: %(default)s)")

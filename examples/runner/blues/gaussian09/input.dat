@@ -1,0 +1,15 @@
+%mem=30gb
+%nproc=8
+
+#B3LYP/6-31G* Opt Freq(Anharm)
+
+Water
+
+0 1
+O
+H 1 r1
+H 1 r1 2 a1
+  Variables:
+r1  0.98
+a1  104.5
+

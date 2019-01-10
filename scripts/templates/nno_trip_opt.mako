@@ -10,21 +10,22 @@ Geometry = {
 }
 
 ! Parameters scanned in Grid; Constrained in Opt
-r2  =  1.05           ! N-O Distance
-a1  =  93.0           ! N-N-O Angle                    
+r2  =  ${dist}           ! N-O Distance
+a1  =  ${angle}          ! N-N-O Angle                    
 ! Optimized
-r1  =   1.21559602   ! N-N Distance
+r1  =  ${optdist}    ! N-N Distance
 
 basis=aug-cc-pVTZ
 {hf,maxit=1000
   wf,22,1,2,0}
+
 do i=1,8
  w(i)=1d0
 enddo
 E1=0d0
 E0=1d2
 
-dwciproc={
+rs2cproc={
   do j=1,30 
     {multi,maxit=40;close,5;noextra;failsafe;
       wf,22,1,2;state,1;weight,w(1);
@@ -45,11 +46,15 @@ dwciproc={
     enddo
   enddo
 
-{mrci;close,5;maxiter,100000,100000;wf,22,1,2,0}
-dwcienergy=energd
+{rs2c,shift=0.25;close,5;maxiter,100000,100000;wf,22,1,2,0}
+rs2cenergy=energy
 
 }
 
-{optg,gradient=1.d-6,proc=dwciproc,variable=dwcienergy
- active,r1
+{optg,gradient=1.d-4,proc=rs2cproc,variable=rs2cenergy
+ active,r1}
+
+{rs2c,shift=0.25;close,5;maxiter,100000,100000;wf,22,1,0,0}
+esing = energy
+
 

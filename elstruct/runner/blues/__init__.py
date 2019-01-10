@@ -22,7 +22,7 @@ TEMPLATE_FILES = {
 
 
 def submit(program, hostnodes, njobs=1, ncores_per_node=1, 
-           input_name='input.dat', output_name='output.dat', 
+           input_name=None, output_name=None
            scratch='/scratch/$USER', submit=True, background=False):
     ''' Function writes a Blues job submission script by filling in various templates for
         electronic structure programs and then submits the job.
@@ -73,6 +73,15 @@ def submit(program, hostnodes, njobs=1, ncores_per_node=1,
 
     # Determine the TOTAL number of cores for calling MPI; if needed 
     fill_vals["ncores_total"] = fill_vals["nnodes"] * ncores_per_node 
+
+    # Sets the name of the input flle and outfile based on the user request
+    if fill_vals["input"] == None and fill_vals["output"] == None:
+      fill_vals["input"] = 'input.dat'   
+      fill_vals["output"] = 'output.dat'       
+    elif fill_vals["input"] != None and fill_vals["output"] == None:
+      fill_vals["output"] = os.path.splitext(fill_vals["input"])[0] + '.out'       
+    elif fill_vals["input"] == None and fill_vals["output"] != None:
+      fill_vals["input"] = 'input.dat'   
 
     # Obtain the name of the template corresponding to the requested electronic structure job
     template_file_name = TEMPLATE_FILES[program]

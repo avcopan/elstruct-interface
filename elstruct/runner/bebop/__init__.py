@@ -62,6 +62,15 @@ def submit(program, account, partition='bdwall', nnodes=1, njobs=1, ncores_per_n
 
     # Determine the TOTAL number of cores for calling MPI; if needed 
     fill_vals["ncores_total"] = nnodes * ncores_per_node 
+    
+    # Sets the name of the input flle and outfile based on the user request
+    if fill_vals["input"] == None and fill_vals["output"] == None:
+      fill_vals["input"] = 'input.dat'   
+      fill_vals["output"] = 'output.dat'       
+    elif fill_vals["input"] != None and fill_vals["output"] == None:
+      fill_vals["output"] = os.path.splitext(fill_vals["input"])[0] + '.out'       
+    elif fill_vals["input"] == None and fill_vals["output"] != None:
+      fill_vals["input"] = 'input.dat'   
 
     # Obtain the name of the template corresponding to the requested electronic structure job
     template_file_name = TEMPLATE_FILES[program]
