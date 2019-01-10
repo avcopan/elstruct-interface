@@ -1,3 +1,0 @@
-hostnodes = b440 b441 b442 
-program = molpro2015
-ncores_per_node = 8
