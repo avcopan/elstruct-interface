@@ -1,16 +1,28 @@
 """
-Library of energy functions
+Library of functions to retrieve electronic energies from a Molpro 2015 output file
+
+Energies currently supported: 
+RHF, UHF, RHF_MP2, UHF_MP2, RHF_RMP2, RHF_CCSD, RHF_RCCSD, RHF_CCSD(T), RHF_RCCSD(T), 
+CASSCF, CASPT2, icCASPT2, MRCISD_Q,
+CUSTOM
+
 """
+
+__authors__ = "Kevin Moore, Andreas Copan"
+__updated__ = "2019-01-11"
 
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
 from ... import params
 
+
+##### Series of functions to read the electronic energy #####
+
 def pattern_reader(pattern, output_string):
-    ''' Use pattern to get energy from output file. 
+    """ Use pattern to retrieve the LAST electronic energy in the output file. 
         Returns energy as float.
-    '''   
+    """   
 
     # Locate the final energy in the output file
     energy_str = ref.last_capture(pattern, output_string) 
@@ -21,9 +33,9 @@ def pattern_reader(pattern, output_string):
     return energy
     
 def rhf_reader(output_string):
-    ''' Returns the RHF energy as a float. 
+    """ Returns the RHF energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
 
     # Set the string pattern to find the RHF energy
     rhf_pattern = ( 
@@ -42,9 +54,9 @@ def rhf_reader(output_string):
     return rhf_energy
 
 def uhf_reader(output_string):
-    ''' Returns the UHF energy as a float. 
+    """ Returns the UHF energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
 
     # Set the string pattern to find the UHF energy
     uhf_pattern = ( 
@@ -63,9 +75,9 @@ def uhf_reader(output_string):
     return uhf_energy
 
 def rhf_mp2_reader(output_string):
-    ''' Returns the RHF-MP2/RHF-UMP2 energy as a float. 
+    """ Returns the RHF-MP2/RHF-UMP2 energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     mp2_pattern = ( 
         'MP2 total energy:' + 
@@ -87,9 +99,9 @@ def rhf_mp2_reader(output_string):
     return mp2_energy
 
 def uhf_mp2_reader(output_string):
-    ''' Returns the UHF-MP2 energy as a float. 
+    """ Returns the UHF-MP2 energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     mp2_pattern = ( 
         'MP2 total energy:' + 
@@ -111,9 +123,9 @@ def uhf_mp2_reader(output_string):
     return mp2_energy
 
 def rhf_rmp2_reader(output_string):
-    ''' Returns the RHF-MP2 energy as a float. 
+    """ Returns the RHF-MP2 energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     mp2_pattern = ( 
         'MP2 total energy:' + 
@@ -135,9 +147,9 @@ def rhf_rmp2_reader(output_string):
     return mp2_energy
 
 def rhf_ccsd_reader(output_string):
-    ''' Returns the RHF-CCSD/RHF-UCCSD energy as a float. 
+    """ Returns the RHF-CCSD/RHF-UCCSD energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     ccsd_pattern = ( 
         'CCSD total energy:' + 
@@ -159,9 +171,9 @@ def rhf_ccsd_reader(output_string):
     return ccsd_energy
 
 def rhf_rccsd_reader(output_string):
-    ''' Returns the RHF-RCCSD energy as a float. 
+    """ Returns the RHF-RCCSD energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     ccsd_pattern = ( 
         'CCSD total energy:' + 
@@ -183,9 +195,9 @@ def rhf_rccsd_reader(output_string):
     return ccsd_energy
 
 def rhf_ccsd_t_reader(output_string):
-    ''' Returns the RHF-CCSD(T)/RHF-UCCSD(T) energy as a float. 
+    """ Returns the RHF-CCSD(T)/RHF-UCCSD(T) energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     ccsd_t_pattern = ( 
         'CCSD(T) total energy:' + 
@@ -207,9 +219,9 @@ def rhf_ccsd_t_reader(output_string):
     return ccsd_t_energy
 
 def rhf_rccsd_t_reader(output_string):
-    ''' Returns the RHF-RCCSD(T) energy as a float. 
+    """ Returns the RHF-RCCSD(T) energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
       
     ccsd_t_pattern = ( 
         'CCSD total energy:' + 
@@ -231,9 +243,9 @@ def rhf_rccsd_t_reader(output_string):
     return ccsd_t_energy
 
 def casscf_reader(output_string):
-    ''' Returns the CASSCF energy as a float. 
+    """ Returns the CASSCF energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
 
     # Set the string pattern to find the RHF energy
     casscf_pattern = ( 
@@ -252,9 +264,9 @@ def casscf_reader(output_string):
     return casscf_energy
 
 def caspt2_reader(output_string):
-    ''' Returns the CASPT2/ic-CASPT2 energy as a float. 
+    """ Returns the CASPT2/ic-CASPT2 energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
 
     # Set the string pattern to find the RHF energy
     caspt2_pattern = ( 
@@ -273,9 +285,9 @@ def caspt2_reader(output_string):
     return casscf_energy
 
 def mrcisd_q_reader(output_string):
-    ''' Returns the Davidson-corrected MRCI energy as a float. 
+    """ Returns the Davidson-corrected MRCI energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
 
     # Set the string pattern to find the RHF energy
     mrcisd_q_pattern = (
@@ -292,9 +304,9 @@ def mrcisd_q_reader(output_string):
     return mrcisd_q_energy
 
 def custom_e_reader(output_string):
-    ''' Returns the custom energy as a float. 
+    """ Returns the custom energy as a float. 
         Returns as a float. Units of Hartrees.
-    '''
+    """
 
     # Set the string pattern to find the RHF energy
     custom_e_pattern = ( 
@@ -310,8 +322,9 @@ def custom_e_reader(output_string):
 
     return custom_energy
 
-# Dictionary for strings to find the energies in the files
-# Supported: RHF, UHF, MP2, CCSD, [R/U/]CCSD(T), CASSCF (MULTI?), RS2, RS2C, MRCISD_Q, CUSTOM
+
+##### Dictionary of functions to read the energies in the files #####
+
 ENERGY_READERS = {
     params.METHOD.RHF: rhf_reader,
     params.METHOD.UHF: uhf_reader,
@@ -329,9 +342,12 @@ ENERGY_READERS = {
     params.METHOD.CUSTOM: custom_e_reader,
 }
 
+
+##### Energy function called by external scripts which calls the Energy Reader Dictionary #####
+
 def energy(method, output_string):
-    ''' Calls the appropriate function to read in the energy
-    '''
+    """ Calls the appropriate function to read in the energy
+    """
     assert method in ENERGY_READERS.keys()
     
     energy = ENERGY_READERS[method](output_string)
@@ -339,7 +355,8 @@ def energy(method, output_string):
     return energy
 
 
-### For lazy testing ###
+##### For lazy testing #####
+
 if __name__ == '__main__':
     with open('open_output.dat', 'r') as outfile:
         output_str = outfile.read()
