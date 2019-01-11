@@ -1,16 +1,18 @@
 """ output file readers for psi4
 """
+
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
 from ... import params
+
 
 PATTERNS = {
     params.METHOD.RHF: (
         'Final Energy:' + rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     ),
-    params.METHOD.CCSD: (
+    params.METHOD.RHF_CCSD: (
         'CCSD total energy' + rep.one_or_more(relib.WHITESPACE) + '=' +
         rep.one_or_more(relib.WHITESPACE) + rep.capturing(relib.FLOAT)
     )

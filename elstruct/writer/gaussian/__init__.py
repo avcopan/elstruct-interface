@@ -1,9 +1,11 @@
-""" input file writers for orca
+""" input file writers for Gaussian
 """
+
 import os
 from mako.template import Template
-from ..util import xyz_string
+from ...util import xyz_string
 from ... import params
+
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 TEMPLATE_PATH = os.path.join(DIR_PATH, 'templates')
@@ -12,10 +14,12 @@ TEMPLATE_FILES = {
     params.METHOD.RHF: 'rhf-energy.mako',
 }
 
-
 def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
-           thresh_log=12,  memory=8, nprocs=8 
+           thresh_log=12, memory=8, nprocs=8,
            comment='Single Point Energy'):
+    """ Writes a single-point energy input file for Gaussian 09e.
+    """
+
     assert theory in TEMPLATE_FILES.keys()
 
     geom_str = xyz_string(labels, coords)

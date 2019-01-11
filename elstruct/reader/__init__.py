@@ -1,3 +1,6 @@
+""" Modules to read information from electronic structure codes
+"""
+
 #from . import cfour
 #from . import gaussian
 from . import molpro
