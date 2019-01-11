@@ -98,7 +98,7 @@ def rhf_mp2_reader(output_string):
 
     return mp2_energy
 
-def uhf_mp2_reader(output_string):
+def uhf_ump2_reader(output_string):
     """ Returns the UHF-MP2 energy as a float. 
         Returns as a float. Units of Hartrees.
     """
@@ -327,13 +327,19 @@ def custom_e_reader(output_string):
 
 ENERGY_READERS = {
     params.METHOD.RHF: rhf_reader,
+    #params.METHOD.ROHF: rhf_reader,
     params.METHOD.UHF: uhf_reader,
     params.METHOD.RHF_MP2: rhf_mp2_reader,
-    params.METHOD.UHF_MP2: uhf_mp2_reader,
+    params.METHOD.UHF_UMP2: uhf_ump2_reader,
+    #ROHF_RMP2: rhf_reader,
     params.METHOD.RHF_RMP2: rhf_rmp2_reader,
     params.METHOD.RHF_CCSD: rhf_ccsd_reader,
+    #ROHF_RUCCSD: rhf_reader,
     params.METHOD.RHF_RCCSD: rhf_rccsd_reader,
+    #ROHF_RCCSD_T: rhf_reader,
     params.METHOD.RHF_CCSD_T: rhf_ccsd_t_reader,
+    #ROHF_UCCSD_T: rhf_reader,
+    #ROHF_RCCSD_T: rhf_reader,
     params.METHOD.RHF_RCCSD_T: rhf_rccsd_t_reader,
     params.METHOD.CASSCF: casscf_reader,
     params.METHOD.CASPT2: caspt2_reader,
