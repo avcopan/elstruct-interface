@@ -1,6 +1,10 @@
 """ common parameters
 """
 
+__authors__ = "Kevin Moore and Andreas Copan"
+__updated__ = "2019-01-11"
+
+
 class METHOD():
     """ Ab initio electronic structure methods
     """
@@ -18,11 +22,6 @@ class METHOD():
     RHF_CCSD_T = 'rhf-ccsd(t)'
     ROHF_UCCSD_T = 'rohf-uccsd(t)'
     ROHF_RCCSD_T = 'rohf-rccsd(t)'
-    # Multireference methods #
-    CASSCF = 'casscf'
-    CASPT2 = 'caspt2'
-    icCASPT2 = 'iccaspt2'
-    MRCISD_Q = 'mrcisd+q'
     # Custom, user-defined method #
     CUSTOM = 'custom'
     OPT = 'opt'
@@ -62,25 +61,35 @@ class PROPERTY():
     """
     DIPOLE_MOMENT = 'dipole_moment'
 
-class STATUS():
+class JOBSTATUS():
     """ Checking on the status of a job
     """
-    JOBTYPE = 'jobtype'
     ERROR_CHK = 'error_chk'
     COMPLETE = 'complete'
 
-class BASIS():
-    """ Various Basis Sets
+class JOBTYPE():
+    """ Various job types
     """
-    # Dunning Correlation-Consistent Basis Sets #
-    PVDZ = 'cc-pvdz'
-    PVTZ = 'cc-pvtz'
-    PVQZ = 'cc-pvqz'
+    SINGLE_POINT_ENERGY = 'sp_energy'
+    OPTIMIZATION = 'opt'
+    HARM_VIB_FREQ = 'harm_vib_freq'
+    ANHARM_VIB_FREQ = 'anharm_vib_freq'
+    OPT_AND_HARM_FREQ = 'opt_and_freq'
+    CUSTOM_JOB = 'custom_job'
+
+class STORAGE():
+    """ Various things for storing information
+    """ 
+    ENERGY = 'energy'
+    GEOMETRY = ' geometry'
+    FREQUENCIES = 'frequencies'
+    GRADIENT = 'gradient'
+    HESSIAN = 'hessian'
+
 
 class PROGRAM():
     """ Programs to be called
     """
-    # Electronic Structure Programs #
     CFOUR = 'cfour2'
     GAUSSIAN = 'gaussian09'
     MOLPRO = 'molpro2015'
@@ -90,7 +99,3 @@ class PROGRAM():
     ORCA = 'orca4'
     PSI4 = 'psi4'
     QCHEM = 'qchem'
-    # Kinetics Programs #
-    MESS = 'mess'
-    # Other Programs #
-    ESTOKTP = 'estoktp'

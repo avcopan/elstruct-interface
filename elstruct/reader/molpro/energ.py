@@ -4,8 +4,7 @@ Library of functions to retrieve electronic energies from a Molpro 2015 output f
 Energies currently supported:
 (1) RHF, ROHF, and UHF;
 (2) RHF, ROHF, and UHF reference MP2, UMP2, RMP2, CCSD, UCCSD, RCCSD, CCSD(T), UCCSD(T), RCCSD(T);
-(3) multireference CASSCF, CASPT2, icCASPT2, MRCISD_Q; and
-(4) custom, user-defined energies.
+(3) custom, user-defined energies.
 
 This script has the user call the function 'energy' which accepts the theory method and output
 file lines as input. The theoretical method serves as a key to a dictionary of functions. The
@@ -248,67 +247,6 @@ def rohf_rccsd_t_reader(output_string):
 
     return ccsd_t_energy
 
-def casscf_reader(output_string):
-    """ Retrieves the CASSCF energy.
-        Returns as a float. Units of Hartrees.
-    """
-
-    # Set the string pattern to find the RHF energy
-    casscf_pattern = (
-        '!MCSCF STATE' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) +
-        'Energy' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT)
-    )
-
-    # Obtain the CASSCF energy
-    casscf_energy = pattern_reader(casscf_pattern, output_string)
-
-    return casscf_energy
-
-def caspt2_reader(output_string):
-    """ Retrieves the CASPT2/ic-CASPT2 energy.
-        Returns as a float. Units of Hartrees.
-    """
-
-    # Set the string pattern to find the RHF energy
-    caspt2_pattern = (
-        '!RSPT2 STATE' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) +
-        'Energy' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT)
-    )
-
-    # Obtain the CASPT2/ic-CASPT2 energy
-    casscf_energy = pattern_reader(caspt2_pattern, output_string)
-
-    return casscf_energy
-
-def mrcisd_q_reader(output_string):
-    """ Retrieves the Davidson-corrected MRCISD energy.
-        Returns as a float. Units of Hartrees.
-    """
-
-    # Set the string pattern to find the RHF energy
-    mrcisd_q_pattern = (
-        'Cluster corrected energies' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) +
-        '(Davidson, fixed reference)'
-    )
-
-    # Obtain the CASPT2/ic-CASPT2 energy
-    mrcisd_q_energy = pattern_reader(mrcisd_q_pattern, output_string)
-
-    return mrcisd_q_energy
-
 def custom_e_reader(output_string):
     """ Retrieves the custom energy.
         Returns as a float. Units of Hartrees.
@@ -344,15 +282,11 @@ ENERGY_READERS = {
     params.METHOD.RHF_CCSD_T: rhf_rohf_ccsd_t_uccsd_t_reader,
     params.METHOD.ROHF_UCCSD_T: rhf_rohf_ccsd_t_uccsd_t_reader,
     params.METHOD.ROHF_RCCSD_T: rohf_rccsd_t_reader,
-    params.METHOD.CASSCF: casscf_reader,
-    params.METHOD.CASPT2: caspt2_reader,
-    params.METHOD.icCASPT2: caspt2_reader,
-    params.METHOD.MRCISD_Q: mrcisd_q_reader,
     params.METHOD.CUSTOM: custom_e_reader,
 }
 
 
-##### Energy function called by external scripts which calls the Energy Reader Dictionary #####
+##### Energy reader function called by external scripts #####
 
 def energy(method, output_string):
     """ Calls the appropriate function to read in the energy

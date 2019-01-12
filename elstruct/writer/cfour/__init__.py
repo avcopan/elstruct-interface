@@ -38,3 +38,13 @@ def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
 
     input_str = Template(filename=template_file_path).render(**fill_vals)
     return input_str
+
+def optimization():
+
+  return input_str
+
+def vib_frequency():
+
+  return input_str
+
+
