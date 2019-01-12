@@ -25,6 +25,7 @@ class METHOD():
     MRCISD_Q = 'mrcisd+q'
     # Custom, user-defined method #
     CUSTOM = 'custom'
+    OPT = 'opt'
 
 class STRUCTURE():
     """ Types of molecular structure
@@ -36,6 +37,37 @@ class STRUCTURE():
     INIT_GEOM_INT = 'init_geom_internal'
     # Rotational Constants #
     EQUIL_ROT_CONST = 'equil_rot_constant'
+
+class FREQUENCY():
+    """ Frequency Information
+    """    
+    HARM_FREQ = 'harm_freq'
+    ANHARM_FREQ = 'anharm_freq'
+    HARM_ZPVE = 'harm_zpve'
+    ANHARM_ZPVE = 'anharm_zpve'
+    ANHARM_MATRIX = 'anharm_matrix'
+    CENTRIG_DIST_CONST = 'centrig_dist_const'
+    VIBROT_MATRIX = 'vibrot_matrix'
+    
+class SURFACE():
+    """ Information about the Potential Energy Surface
+    """
+    GRADIENT_XYZ = 'grad_xyz'
+    GRADIENT_INT = 'grad_internal'
+    HESSIAN_XYZ = 'hessian_xyz'
+    HESSIAN_INT = 'hessian_int'
+
+class PROPERTY():
+    """ Molecular Properties of interest
+    """
+    DIPOLE_MOMENT = 'dipole_moment'
+
+class STATUS():
+    """ Checking on the status of a job
+    """
+    JOBTYPE = 'jobtype'
+    ERROR_CHK = 'error_chk'
+    COMPLETE = 'complete'
 
 class BASIS():
     """ Various Basis Sets
