@@ -1,8 +1,10 @@
-""" Check job status
+""" 
+Library of functions to retrieve frequency information from a Molpro 2015 output file.
+
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-15"
 
 from ..rere import find as ref
 from ..rere import pattern as rep
@@ -10,48 +12,55 @@ from ..rere import pattern_lib as relib
 from ... import params
 
 
-# Patterns for other utilities (note that job could finish with Error messages) 
-JOB_FINISH_PATTERN = 'Variable memory released'                         # Line printed if Molpro exits normally 
-E_ITER_FAIL_PATTERN = ''                                                # Printed when SCF, CC, iterations fail to converge 
-GEOM_OPT_FAIL_PATTERN = 'No convergence in max. number of iterations'   # Printed when geom. opt fails to converge 
+##### Series of functions to read job status information #####
 
-
-def determine_job_type(lines):
-    """ Determines what type of calculations were performed in the job
+def error_msg_reader(output_string):
+    """ Searches the output file for possible error messages.
     """
-    
-    job_type = 'single point energy'
 
-    if 'optg' in lines:
-        job_type += 'geometry optimization'
-    elif 'freq' in lines:
-        job_type += 'harmonic frequency'
+    # List of possible strings denoting error messages in the output file
+    error_msg_patterns = [
+        # Printed when SCF, CC, iterations fail to converge 
+         '',           
+        # Printed when geom. opt fails to converge 
+        'No convergence in max. number of iterations'    
+    ]
 
-    return job_type
+    # Initialize error_msg to empty string; replaced if error is found 
+    error_msg = ''
 
+    # Check for all of the error pattern strings
+    for pattern in error_msg_patterns:
+        check_error = ref.has_match(pattern, output_string)    
+        if check_error:
+            error_msg = pattern 
 
-##### Other useful functions #####
+    return error_msg
 
-def assess_job_status(lines)
+def complete_msg_reader(output_string):
     """ Checks if the job completes successfully.
         Returns job status and any error messages located
-        PSEUDOCODE BELOW
     """
 
-    search JOB_FINISH_PATTERN in file
-    search OTHER_ERROR_PATTERNS in file
-  
-    if JOB_FINISH_PATTERN in file
-        job_complete = True
+    # Line printed if Molpro exits normally 
+    complete_msg_pattern = 'Variable memory released'          
 
-    if OTHER_ERROR_PATTERNS in file
-        error_msg = message
-    else:
-        error_msg = ''
+    # Check if the job went to completion
+    complete_status = ref.has_match(complete_msg_pattern, output_string)
+   
+    return complete_status
 
-    if job_complete == True and error_msg == '':
-        job_status = 'Success'
-    else:
-        job_status = 'Failure'
 
-  return job_status, error_msg
+##### Status reader function called by external scripts #####
+
+def status(output_string):
+    """ Returns the status of a job.
+    """
+    
+    # Check if the job completed or if any error messages were printed 
+    job_complete = complete_msg_reader(output_string)
+    job_error_str = error_msg_reader(output_string) 
+
+    job_status = [complete_status, job_error_str] 
+
+    return job_status 

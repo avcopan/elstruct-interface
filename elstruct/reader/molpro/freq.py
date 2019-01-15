@@ -1,53 +1,91 @@
-""" Vibrational properties
+""" 
+Library of functions to retrieve frequency information from a Molpro 2015 output file.
+
+Frequencies currently supported:
+(1) Harmonic Vibrational Frequencies
+(2) Harmonic Zero-Point Vibrational Energy
+
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-15"
 
-#from ..rere import find as ref
+from ..rere import parse as repar
+from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
-#from ... import params
+from ... import params
 
 
-# Patterns for searching for vibrational frequency information
-VIB_FREQ_PATTERN = 'Wavenumbers [cm-1]   (.+)'
+##### Series of functions to read the frequency information #####
 
-ZPVE_PATTERN = (
-    'Zero point energy:' +
-    rep.one_or_more(relib.WHITESPACE) +
-    rep.capturing(relib.FLOAT) +
-    rep.one_or_more(relib.WHITESPACE) +
-    '[H]' +
-    rep.one_or_more(relib.WHITESPACE) +
-    rep.capturing(relib.FLOAT) +
-    rep.one_or_more(relib.WHITESPACE) +
-    '[1/CM]' +
-    rep.one_or_more(relib.WHITESPACE) +
-    rep.capturing(relib.FLOAT) +
-    rep.one_or_more(relib.WHITESPACE) +
-    '[KJ/MOL]'
-)
-
-def vib_freqs(lines):
+def harm_vib_freqs_reader(output_string):
     """ Reads the harmonic vibrational frequencies from the output file.
-        Returns the frequencies as a list in cm-1.
+        Returns the frequencies as a list of floats in cm-1.
     """
 
-    freqlines = ['aaaaa']
-    #freqlines = re.findall(VIB_FREQ_PATTERN, lines)
-    freqs = []
-    for line in freqlines:
-        if line.split()[0].strip() != '0.00':
-            freqs.extend(line.split())
+    # Pattern to locate all frequencies in a string
+    harm_vib_freq_pattern = (
+        'Wavenumbers \[cm-1\]' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(
+            rep.one_or_more(relib.FLOAT + 
+            rep.one_or_more(relib.WHITESPACE))
+        )
+    )
 
-    return freqs
+    # Obtain the frequencies for all degrees-of-freedom
+    all_freqs = repar.list_float_from_string(harm_vib_freq_pattern, output_string)
+    
+    # Remove the zero frequencies
+    vib_freqs = [freq for freq in all_freqs if freq != 0.0]
 
-def zpve(lines):
-    """ Reads the zero-point vibrational energy (ZPVE) from the output file.
-        Returns the ZPVE as a string; in Hartrees.
+    return vib_freqs
+
+def harm_zpve_reader(output_string):
+    """ Reads the harmonic zero-point vibrational energy (ZPVE) from the output file.
+        Returns the ZPVE as a float; in Hartrees.
     """
 
-    zpve = float(re.findall(ZPVE_PATTERN, lines)[-1])
+    # String pattern to retrieve the ZPVE
+    zpve_pattern = (
+        'Zero point energy:' +
+        rep.one_or_more(relib.WHITESPACE) + 
+        rep.capturing(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) + 
+        '\[H\]' +
+        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) + 
+        '\[1/CM\]' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.one_or_more(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) +
+        '\[KJ/MOL\]'
+    )
 
-    return zpve
+    # Obtain the ZPVE
+    harm_zpve = repar.sing_float_from_string(zpve_pattern, output_string)
+
+    return harm_zpve
+
+
+##### Dictionary of functions to read frequency information in the files #####
+
+FREQUENCY_READERS = {
+    params.FREQUENCY.HARM_FREQ : harm_vib_freqs_reader,
+    params.FREQUENCY.HARM_ZPVE : harm_zpve_reader
+}
+
+
+##### Frequency reader function called by external scripts #####
+
+def frequency(freq, output_string):
+    """ Retrieves the desired frequency information. 
+    """
+
+    assert freq in FREQUENCY_READERS.keys()
+
+    frequency = FREQUENCY_READERS[freq](output_string)
+
+    return frequency

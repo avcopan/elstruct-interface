@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import os
 import argparse
 import subprocess
@@ -66,11 +68,14 @@ SUBMIT_OPTIONS["ncores_total"] = SUBMIT_OPTIONS["nnodes"] * SUBMIT_OPTIONS["ncor
 if SUBMIT_OPTIONS["input"] == None and SUBMIT_OPTIONS["output"] == None:
   SUBMIT_OPTIONS["input"] = 'input.dat'   
   SUBMIT_OPTIONS["output"] = 'output.dat'       
+  print('boo')
 elif SUBMIT_OPTIONS["input"] != None and SUBMIT_OPTIONS["output"] == None:
   SUBMIT_OPTIONS["output"] = os.path.splitext(SUBMIT_OPTIONS["input"])[0] + '.out'       
+  print('yay')
 elif SUBMIT_OPTIONS["input"] == None and SUBMIT_OPTIONS["output"] != None:
   SUBMIT_OPTIONS["input"] = 'input.dat'   
-
+  print('boo')
+  
 # Set working directory
 SUBMIT_OPTIONS["workdir"] = os.getcwd()   
 

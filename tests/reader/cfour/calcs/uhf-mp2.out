@@ -1,0 +1,67 @@
+ --invoking executable--
+/lcrc/project/PACC/brossdh/cfour_blues/bin/xinitenv
+--executable xinitenv finished with status     0 in        0.05 seconds (walltime).
+ --invoking executable--
+/lcrc/project/PACC/brossdh/cfour_blues/bin/xjoda
+
+
+   *************************************************************************
+         <<<     CCCCCC     CCCCCC   |||     CCCCCC     CCCCCC   >>>
+       <<<      CCC        CCC       |||    CCC        CCC         >>>
+      <<<      CCC        CCC        |||   CCC        CCC            >>>
+    <<<        CCC        CCC        |||   CCC        CCC              >>>
+      <<<      CCC        CCC        |||   CCC        CCC            >>>
+       <<<      CCC        CCC       |||    CCC        CCC         >>>
+         <<<     CCCCCC     CCCCCC   |||     CCCCCC     CCCCCC   >>>
+   *************************************************************************
+
+     ****************************************************************
+     * CFOUR Coupled-Cluster techniques for Computational Chemistry *
+     ****************************************************************
+ 
+
+   Department of Chemistry                Institut fuer Physikalische Chemie
+   University of Texas at Austin          Universitaet Mainz
+   Austin, TX  78712, USA                 D-55099 Mainz, Germany
+ 
+                       Version 2.00beta
+ 
+                     b450                                              
+                     Sun Jan 13 18:19:30 CST 2019                      
+                     integer*8 version is running
+ 
+********************************************************************************
+*                          Input from ZMAT file                                *
+********************************************************************************
+CFOUR 2.0 Computation                                                           
+C          0.0000000000        0.0696643962        0.0000000000                 
+H          0.0000000000        0.5136378019       -1.0016934426                 
+H          0.0000000000        0.5136378019        1.0016934426                 
+                                                                                
+*CFOUR(CHARGE=0                                                                 
+MULTIPLICITY=3                                                                  
+CALC=MP2                                                                        
+REFERENCE=UHF                                                                   
+BASIS=PVDZ)                                                                     
+                                                                                
+********************************************************************************
+ 
+     PARALLEL RUN STARTED ON            1  CORES/NODES.
+ 
+  @GTFLGS-F, This level of theory cannot yet be used in the parallel version.
+  @CHECKOUT-I, Total execution time (CPU/WALL):        0.00/       0.02 seconds.
+ 
+  ERROR ERROR ERROR ERROR ERROR ERROR 
+  Job has terminated with error flag 
+  ERROR ERROR ERROR ERROR ERROR ERROR 
+ 
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 145954 RUNNING AT b450
+=   EXIT CODE: 1
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+--executable xjoda finished with status   256 in        0.06 seconds (walltime).
+  This computation required                            0.16 seconds (walltime).

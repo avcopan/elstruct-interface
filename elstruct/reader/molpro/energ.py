@@ -2,20 +2,16 @@
 Library of functions to retrieve electronic energies from a Molpro 2015 output file.
 
 Energies currently supported:
-(1) RHF, ROHF, and UHF;
-(2) RHF, ROHF, and UHF reference MP2, UMP2, RMP2, CCSD, UCCSD, RCCSD, CCSD(T), UCCSD(T), RCCSD(T);
-(3) custom, user-defined energies.
-
-This script has the user call the function 'energy' which accepts the theory method and output
-file lines as input. The theoretical method serves as a key to a dictionary of functions. The
-key corresponds to an energy-reader function which reads the output file for the appropriate
-string pattern to return the user-requested energy.
+(1) RHF, ROHF, and UHF
+(2) RHF, ROHF, and UHF reference MP2, UMP2, RMP2, CCSD, UCCSD, RCCSD, CCSD(T), UCCSD(T), RCCSD(T)
+(3) Custom, User-Defined Energies
 
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-15"
 
+from ..rere import parse as repar
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
@@ -23,19 +19,6 @@ from ... import params
 
 
 ##### Series of functions to read the electronic energy #####
-
-def pattern_reader(pattern, output_string):
-    """ Use pattern to retrieve the LAST electronic energy in the output file.
-        Returns energy as float.
-    """
-
-    # Locate the final energy in the output file
-    energy_str = ref.last_capture(pattern, output_string)
-
-    # Check if energy values is found, if so, convert to float
-    energy_val = (None if energy_str is None else float(energy_str))
-
-    return energy_val
 
 def rhf_reader(output_string):
     """ Retrieves the RHF or ROHF energy.
@@ -54,7 +37,7 @@ def rhf_reader(output_string):
     )
 
     # Obtain the RHF energy
-    rhf_energy = pattern_reader(rhf_pattern, output_string)
+    rhf_energy = repar.sing_float_from_string(rhf_pattern, output_string)
 
     return rhf_energy
 
@@ -75,7 +58,7 @@ def uhf_reader(output_string):
     )
 
     # Obtain the UHF energy
-    uhf_energy = pattern_reader(uhf_pattern, output_string)
+    uhf_energy = repar.sing_float_from_string(uhf_pattern, output_string)
 
     return uhf_energy
 
@@ -84,7 +67,13 @@ def rhf_mp2_reader(output_string):
         Returns as a float. Units of Hartrees.
     """
 
-    mp2_pattern = (
+    mp2_pattern1 = (
+        '!MP2 total energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    )
+
+    mp2_pattern2 = (
         'MP2 total energy:' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
@@ -97,9 +86,11 @@ def rhf_mp2_reader(output_string):
     )
 
     # Obtain the RHF-MP2 or RHF-UMP2 energy
-    mp2_energy = pattern_reader(mp2_pattern, output_string)
+    mp2_energy = repar.sing_float_from_string(mp2_pattern1, output_string)
     if mp2_energy is None:
-        mp2_energy = pattern_reader(ump2_pattern, output_string)
+        mp2_energy = repar.sing_float_from_string(mp2_pattern2, output_string)
+        if mp2_energy is None:
+            mp2_energy = repar.sing_float_from_string(ump2_pattern, output_string)
 
     return mp2_energy
 
@@ -108,55 +99,63 @@ def uhf_ump2_reader(output_string):
         Returns as a float. Units of Hartrees.
     """
 
-    mp2_pattern = (
-        'MP2 total energy:' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT)
-    )
-
     ump2_pattern = (
-        '!UHF-UMP2 energy' +
+        '!UMP2 STATE' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.one_or_more(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) +
+        'Energy' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
     # Obtain the UHF-MP2 energy
-    mp2_energy = pattern_reader(mp2_pattern, output_string)
-    if mp2_energy is None:
-        mp2_energy = pattern_reader(ump2_pattern, output_string)
+    ump2_energy = repar.sing_float_from_string(ump2_pattern, output_string)
 
-    return mp2_energy
+    return ump2_energy
 
 def rohf_rmp2_reader(output_string):
     """ Retrieves the ROHF-RMP2 energy.
         Returns as a float. Units of Hartrees.
     """
 
-    mp2_pattern = (
-        'MP2 total energy:' +
+    # from single points
+    rmp2_pattern1 = (
+        '!RMP2 STATE' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.one_or_more(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) +
+        'Energy' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
-    rmp2_pattern = (
+    # from cc calcs
+    rmp2_pattern2 = (
         '!RHF-RMP2 energy' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
     # Obtain the ROHF-RMP2 energy
-    mp2_energy = pattern_reader(mp2_pattern, output_string)
-    if mp2_energy is None:
-        mp2_energy = pattern_reader(rmp2_pattern, output_string)
+    rmp2_energy = repar.sing_float_from_string(rmp2_pattern1, output_string)
+    if rmp2_energy is None:
+        rmp2_energy = repar.sing_float_from_string(rmp2_pattern2, output_string)
 
-    return mp2_energy
+    return rmp2_energy
 
 def rhf_rohf_ccsd_uccsd_reader(output_string):
     """ Retrieves the RHF-CCSD, RHF-UCCSD, or ROHF-UCCSD energy.
         Returns as a float. Units of Hartrees.
     """
 
-    ccsd_pattern = (
+    ccsd_pattern1 = (
+        '!CCSD total energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    )
+
+    ccsd_pattern2 = (
         'CCSD total energy:' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
@@ -169,9 +168,11 @@ def rhf_rohf_ccsd_uccsd_reader(output_string):
     )
 
     # Obtain the RHF-CCSD, RHF-UCCSD, ROHF-UCCSD energy
-    ccsd_energy = pattern_reader(ccsd_pattern, output_string)
+    ccsd_energy = repar.sing_float_from_string(ccsd_pattern1, output_string)
     if ccsd_energy is None:
-        ccsd_energy = pattern_reader(uccsd_pattern, output_string)
+        ccsd_energy = repar.sing_float_from_string(ccsd_pattern2, output_string)
+        if ccsd_energy is None:
+            ccsd_energy = repar.sing_float_from_string(uccsd_pattern, output_string)
 
     return ccsd_energy
 
@@ -193,9 +194,9 @@ def rohf_rccsd_reader(output_string):
     )
 
     # Obtain the ROHF-RCCSD energy
-    ccsd_energy = pattern_reader(ccsd_pattern, output_string)
+    ccsd_energy = repar.sing_float_from_string(ccsd_pattern, output_string)
     if ccsd_energy is None:
-        ccsd_energy = pattern_reader(rccsd_pattern, output_string)
+        ccsd_energy = repar.sing_float_from_string(rccsd_pattern, output_string)
 
     return ccsd_energy
 
@@ -205,21 +206,21 @@ def rhf_rohf_ccsd_t_uccsd_t_reader(output_string):
     """
 
     ccsd_t_pattern = (
-        'CCSD(T) total energy:' +
+        '!CCSD\(T\) total energy' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
     uccsd_t_pattern = (
-        '!RHF-UCCSD(T) energy' +
+        '!RHF-UCCSD\(T\) energy' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
     # Obtain the RHF-CCSD(T), RHF-UCCSD(T), or ROHF-UCCSD(T) energy
-    ccsd_t_energy = pattern_reader(ccsd_t_pattern, output_string)
+    ccsd_t_energy = repar.sing_float_from_string(ccsd_t_pattern, output_string)
     if ccsd_t_energy is None:
-        ccsd_t_energy = pattern_reader(uccsd_t_pattern, output_string)
+        ccsd_t_energy = repar.sing_float_from_string(uccsd_t_pattern, output_string)
 
     return ccsd_t_energy
 
@@ -229,21 +230,21 @@ def rohf_rccsd_t_reader(output_string):
     """
 
     ccsd_t_pattern = (
-        'CCSD total energy:' +
+        'CCSD(T) total energy:' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
     rccsd_t_pattern = (
-        '!RHF-RCCSD(T) energy' +
+        '!RHF-RCCSD\(T\) energy' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
 
     # Obtain the ROHF-RCCSD(T) energy
-    ccsd_t_energy = pattern_reader(ccsd_t_pattern, output_string)
+    ccsd_t_energy = repar.sing_float_from_string(ccsd_t_pattern, output_string)
     if ccsd_t_energy is None:
-        ccsd_t_energy = pattern_reader(rccsd_t_pattern, output_string)
+        ccsd_t_energy = repar.sing_float_from_string(rccsd_t_pattern, output_string)
 
     return ccsd_t_energy
 
@@ -262,7 +263,7 @@ def custom_e_reader(output_string):
     )
 
     # Obtain the custom energy
-    custom_energy = pattern_reader(custom_e_pattern, output_string)
+    custom_energy = repar.sing_float_from_string(custom_e_pattern, output_string)
 
     return custom_energy
 
@@ -289,18 +290,10 @@ ENERGY_READERS = {
 ##### Energy reader function called by external scripts #####
 
 def energy(method, output_string):
-    """ Calls the appropriate function to read in the energy
+    """ Retrieves the desired electronic energy. 
     """
     assert method in ENERGY_READERS.keys()
 
     energy = ENERGY_READERS[method](output_string)
 
     return energy
-
-
-##### For lazy testing #####
-
-if __name__ == '__main__':
-    with open('open_output.dat', 'r') as outfile:
-        OUTPUT_STR = outfile.read()
-    print(energy('rmp2', OUTPUT_STR))

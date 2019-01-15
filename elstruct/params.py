@@ -15,10 +15,10 @@ class METHOD():
     # Single-reference correlated methods #
     RHF_MP2 = 'rhf-mp2'
     UHF_UMP2 = 'uhf-ump2'
-    ROHF_RMP2 = 'rhf-romp2'
+    ROHF_RMP2 = 'rohf-rmp2'
     RHF_CCSD = 'rhf-ccsd'
-    ROHF_UCCSD = 'rhf-uccsd'
-    ROHF_RCCSD = 'rhf-rccsd'
+    ROHF_UCCSD = 'rohf-uccsd'
+    ROHF_RCCSD = 'rohf-rccsd'
     RHF_CCSD_T = 'rhf-ccsd(t)'
     ROHF_UCCSD_T = 'rohf-uccsd(t)'
     ROHF_RCCSD_T = 'rohf-rccsd(t)'
@@ -60,12 +60,6 @@ class PROPERTY():
     """ Molecular Properties of interest
     """
     DIPOLE_MOMENT = 'dipole_moment'
-
-class JOBSTATUS():
-    """ Checking on the status of a job
-    """
-    ERROR_CHK = 'error_chk'
-    COMPLETE = 'complete'
 
 class JOBTYPE():
     """ Various job types

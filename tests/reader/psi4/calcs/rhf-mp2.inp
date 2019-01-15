@@ -1,0 +1,15 @@
+# Psi4 1.0 Computation 
+
+molecule {
+ 0 1
+ O          0.0000000000       -0.0530229169        0.0000000000
+ H          0.0000000000        0.5556614584       -0.7504910643
+ H          0.0000000000        0.5556614584        0.7504910643
+ units angstrom
+}
+
+set reference rhf
+set scf_type pk
+set basis 6-31G*
+
+energy('mp2')

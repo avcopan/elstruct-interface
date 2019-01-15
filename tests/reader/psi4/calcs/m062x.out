@@ -1,0 +1,289 @@
+
+    -----------------------------------------------------------------------
+          Psi4: An Open-Source Ab Initio Electronic Structure Package
+                               Psi4 1.2.1 release
+
+                         Git: Rev {HEAD} 406f4de 
+
+
+    R. M. Parrish, L. A. Burns, D. G. A. Smith, A. C. Simmonett,
+    A. E. DePrince III, E. G. Hohenstein, U. Bozkaya, A. Yu. Sokolov,
+    R. Di Remigio, R. M. Richard, J. F. Gonthier, A. M. James,
+    H. R. McAlexander, A. Kumar, M. Saitow, X. Wang, B. P. Pritchard,
+    P. Verma, H. F. Schaefer III, K. Patkowski, R. A. King, E. F. Valeev,
+    F. A. Evangelista, J. M. Turney, T. D. Crawford, and C. D. Sherrill,
+    J. Chem. Theory Comput. 13(7) pp 3185--3197 (2017).
+    (doi: 10.1021/acs.jctc.7b00174)
+
+
+                         Additional Contributions by
+    P. Kraus, H. Kruse, M. H. Lechner, M. C. Schieber, and R. A. Shaw
+
+    -----------------------------------------------------------------------
+
+
+    Psi4 started on: Tuesday, 15 January 2019 11:43AM
+
+    Process ID: 89392
+    Host:       blogin3
+    PSIDATADIR: /home/kmoore/miniconda/envs/esenv/share/psi4
+    Memory:     500.0 MiB
+    Threads:    1
+    
+  ==> Input File <==
+
+--------------------------------------------------------------------------
+# Psi4 1.0 Computation 
+
+molecule {
+ 0 1
+ O          0.0000000000       -0.0530229169        0.0000000000
+ H          0.0000000000        0.5556614584       -0.7504910643
+ H          0.0000000000        0.5556614584        0.7504910643
+ units angstrom
+}
+
+set reference rks
+set scf_type pk
+set basis 6-31G*
+
+energy('m06-2x')
+--------------------------------------------------------------------------
+
+*** tstart() called on blogin3
+*** at Tue Jan 15 11:43:44 2019
+
+   => Loading Basis Set <=
+
+    Name: 6-31G*
+    Role: ORBITAL
+    Keyword: BASIS
+    atoms 1   entry O          line   145 file /home/kmoore/miniconda/envs/esenv/share/psi4/basis/6-31gs.gbs 
+    atoms 2-3 entry H          line    44 file /home/kmoore/miniconda/envs/esenv/share/psi4/basis/6-31gs.gbs 
+
+
+         ---------------------------------------------------------
+                                   SCF
+            by Justin Turney, Rob Parrish, Andy Simmonett
+                             and Daniel Smith
+                              RKS Reference
+                        1 Threads,    500 MiB Core
+         ---------------------------------------------------------
+
+  ==> Geometry <==
+
+    Molecular point group: c2v
+    Full point group: C2v
+
+    Geometry (in Angstrom), charge = 0, multiplicity = 1:
+
+       Center              X                  Y                   Z               Mass       
+    ------------   -----------------  -----------------  -----------------  -----------------
+         O            0.000000000000     0.000000000000    -0.068120834725    15.994914619560
+         H           -0.000000000000     0.750491064300     0.540563540575     1.007825032070
+         H            0.000000000000    -0.750491064300     0.540563540575     1.007825032070
+
+  Running in c2v symmetry.
+
+  Rotational constants: A =     25.41806  B =     14.84876  C =      9.37315 [cm^-1]
+  Rotational constants: A = 762014.35919  B = 445154.74598  C = 280999.82600 [MHz]
+  Nuclear repulsion =    9.114682954848963
+
+  Charge       = 0
+  Multiplicity = 1
+  Electrons    = 10
+  Nalpha       = 5
+  Nbeta        = 5
+
+  ==> Algorithm <==
+
+  SCF Algorithm Type is PK.
+  DIIS enabled.
+  MOM disabled.
+  Fractional occupation disabled.
+  Guess Type is SAD.
+  Energy threshold   = 1.00e-06
+  Density threshold  = 1.00e-06
+  Integral threshold = 0.00e+00
+
+  ==> Primary Basis <==
+
+  Basis Set: 6-31G*
+    Blend: 6-31G*
+    Number of shells: 10
+    Number of basis function: 19
+    Number of Cartesian functions: 19
+    Spherical Harmonics?: false
+    Max angular momentum: 2
+
+  ==> DFT Potential <==
+
+   => Composite Functional: M06-2X <= 
+
+    Hybrid M06-2X Meta-GGA XC Functional
+
+    Y. Zhao and D. G. Truhlar,  Theor. Chem. Acc., 120, 215, 2008
+
+
+    Deriv               =              1
+    GGA                 =           TRUE
+    Meta                =           TRUE
+
+    Exchange Hybrid     =           TRUE
+    MP2 Hybrid          =          FALSE
+
+   => Exchange Functionals <=
+
+    1.0000   XC_HYB_MGGA_X_M06_2X
+
+   => Exact (HF) Exchange <=
+
+    0.5400               HF 
+
+   => Correlation Functionals <=
+
+    1.0000   XC_MGGA_C_M06_2X
+
+   => Molecular Quadrature <=
+
+    Radial Scheme       =       TREUTLER
+    Pruning Scheme      =           FLAT
+    Nuclear Scheme      =       TREUTLER
+
+    BS radius alpha     =              1
+    Pruning alpha       =              1
+    Radial Points       =             75
+    Spherical Points    =            302
+    Total Points        =          65565
+    Total Blocks        =            558
+    Max Points          =            256
+    Max Functions       =             19
+
+  ==> Pre-Iterations <==
+
+   -------------------------------------------------------
+    Irrep   Nso     Nmo     Nalpha   Nbeta   Ndocc  Nsocc
+   -------------------------------------------------------
+     A1        10      10       0       0       0       0
+     A2         1       1       0       0       0       0
+     B1         3       3       0       0       0       0
+     B2         5       5       0       0       0       0
+   -------------------------------------------------------
+    Total      19      19       5       5       5       0
+   -------------------------------------------------------
+
+  ==> Integral Setup <==
+
+  Using in-core PK algorithm.
+   Calculation information:
+      Number of atoms:                   3
+      Number of AO shells:              10
+      Number of primitives:             23
+      Number of atomic orbitals:        19
+      Number of basis functions:        19
+
+      Integral cutoff                 1.00e-12
+      Number of threads:                 1
+
+  Performing in-core PK
+  Using 36290 doubles for integral storage.
+  We computed 1540 shell quartets total.
+  Whereas there are 1540 unique shell quartets.
+
+  ==> DiskJK: Disk-Based J/K Matrices <==
+
+    J tasked:                  Yes
+    K tasked:                  Yes
+    wK tasked:                  No
+    Memory (MB):               375
+    Schwarz Cutoff:          1E-12
+
+    OpenMP threads:              1
+
+  Minimum eigenvalue in the overlap matrix is 2.2607421967E-02.
+  Using Symmetric Orthogonalization.
+
+  SCF Guess: Superposition of Atomic Densities via on-the-fly atomic UHF.
+
+  ==> Iterations <==
+
+                        Total Energy        Delta E     RMS |[F,P]|
+
+   @RKS iter   0:   -76.33345064303782   -7.63335e+01   1.35519e-01 
+   @RKS iter   1:   -76.32516334832587    8.28729e-03   3.01461e-02 
+   @RKS iter   2:   -76.32813043938458   -2.96709e-03   3.10393e-02 DIIS
+   @RKS iter   3:   -76.37315160520959   -4.50212e-02   1.25590e-03 DIIS
+   @RKS iter   4:   -76.37323974659361   -8.81414e-05   1.97946e-04 DIIS
+   @RKS iter   5:   -76.37324429752893   -4.55094e-06   2.41391e-05 DIIS
+   @RKS iter   6:   -76.37324441575778   -1.18229e-07   3.77202e-06 DIIS
+   @RKS iter   7:   -76.37324441829810   -2.54032e-09   5.30612e-07 DIIS
+
+  ==> Post-Iterations <==
+
+    Orbital Energies [Eh]
+    ---------------------
+
+    Doubly Occupied:                                                      
+
+       1A1   -19.626723     2A1    -1.117458     1B2    -0.587582  
+       3A1    -0.456890     1B1    -0.376549  
+
+    Virtual:                                                              
+
+       4A1     0.115282     2B2     0.201772     3B2     0.831812  
+       5A1     0.950805     6A1     0.967098     2B1     0.972951  
+       4B2     1.145621     7A1     1.253693     8A1     1.782078  
+       1A2     1.807815     3B1     1.837026     9A1     2.341654  
+       5B2     2.635228    10A1     3.582103  
+
+    Final Occupation by Irrep:
+             A1    A2    B1    B2 
+    DOCC [     3,    0,    1,    1 ]
+
+  Energy converged.
+
+  @RKS Final Energy:   -76.37324441829810
+
+   => Energetics <=
+
+    Nuclear Repulsion Energy =              9.1146829548489627
+    One-Electron Energy =                -122.9348038948163975
+    Two-Electron Energy =                  41.9248354981958045
+    DFT Exchange-Correlation Energy =      -4.4779589765264669
+    Empirical Dispersion Energy =           0.0000000000000000
+    VV10 Nonlocal Energy =                  0.0000000000000000
+    Total Energy =                        -76.3732444182980998
+
+
+
+Properties will be evaluated at   0.000000,   0.000000,   0.000000 [a0]
+
+Properties computed using the SCF density matrix
+
+  Nuclear Dipole Moment: [e a0]
+     X:     0.0000      Y:     0.0000      Z:     1.0132
+
+  Electronic Dipole Moment: [e a0]
+     X:     0.0000      Y:     0.0000      Z:    -0.1520
+
+  Dipole Moment: [e a0]
+     X:     0.0000      Y:     0.0000      Z:     0.8612     Total:     0.8612
+
+  Dipole Moment: [D]
+     X:     0.0000      Y:     0.0000      Z:     2.1890     Total:     2.1890
+
+
+*** tstop() called on blogin3 at Tue Jan 15 11:43:46 2019
+Module time:
+	user time   =       2.05 seconds =       0.03 minutes
+	system time =       0.03 seconds =       0.00 minutes
+	total time  =          2 seconds =       0.03 minutes
+Total time:
+	user time   =       2.05 seconds =       0.03 minutes
+	system time =       0.03 seconds =       0.00 minutes
+	total time  =          2 seconds =       0.03 minutes
+
+    Psi4 stopped on: Tuesday, 15 January 2019 11:43AM
+    Psi4 wall time for execution: 0:00:02.14
+
+*** Psi4 exiting successfully. Buy a developer a beer!

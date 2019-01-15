@@ -22,6 +22,15 @@ def energy(theory, basis, labels, coords, charge=0, mult=1, niter=100,
 
     assert theory in TEMPLATE_FILES.keys()
 
+    # Obtain method and basis
+    if theory == 'rhf' or theory == 'uhf' or theory == 'rohf':
+        method = 'HF'
+        reference = theory
+    else:
+        method = theory.split('-')[0] 
+        reference = theory.split('-')[0] 
+   
+    # Set values not automatically set by the user
     geom_str = xyz_string(labels, coords)
     fill_vals = {
         'charge': charge,

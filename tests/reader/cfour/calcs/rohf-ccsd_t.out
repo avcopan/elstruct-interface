@@ -1,0 +1,6 @@
+ --invoking executable--
+/lcrc/project/PACC/brossdh/cfour_blues/bin/xinitenv
+[mpiexec@b450] set_default_values (ui/mpich/utils.c:1488): no executable specified
+[mpiexec@b450] HYD_uii_mpx_get_parameters (ui/mpich/utils.c:1739): setting default values failed
+[mpiexec@b450] main (ui/mpich/mpiexec.c:153): error parsing parameters
+--executable xinitenv finished with status 65280 in        0.27 seconds (walltime).

@@ -1,32 +1,48 @@
-""" Molecular Properties
+""" 
+Library of functions to retrieve molecular properties from a Molpro 2015 output file.
+
+Properties currently supported:
+(1) Dipole Moment
+
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-15"
 
-#from ..rere import find as ref
-#from ..rere import pattern as rep
-#from ..rere import pattern_lib as relib
-#from ... import params
+from ..rere import parse as repar
+from ..rere import find as ref
+from ..rere import pattern as rep
+from ..rere import pattern_lib as relib
+from ... import params
 
 
-# Patterns for other molecular properties
-DIPOLE_MOM_PATTERN = 'Permanent Dipole Moment [debye]'
-
-def dipole_moment(lines):
+def dipole_moment_reader(output_string):
     """ Reads the Permanent Dipole moment from the output file.
         Returns the constants as a list of strings; in Debye.
     """
 
-    # Locate the last instance of the dipole moment
-    lines = lines.splitlines()
-    dipole_line = DIPOLE_MOM_PATTERN.split()
-
-    # Read the dipole moment
-    if len(dipole_line) > 1:
-        dipole_mom = dipole_line.strip.split()[2:]
-    else:
-        dipole_mom = ''
-        print('No Dipole Moment Found in File')
+    dipole_mom_pattern = (
+        'Permanent Dipole Moment \[debye\]'
+    )
+   
+    dipole_mom = repar.list_float_from_string(pattern, output_string) 
 
     return dipole_mom
+
+
+##### Dictionary of functions to read molecular properties in the files #####
+
+PROPERTY_READERS = {
+    params.PROPERTY.DIPOLE_MOM : dipole_moment_reader
+}
+
+
+##### Molecular property reader function called by external scripts #####
+
+def mol_property(prop, output_string):
+    """ Retrieves the desired molecular property.
+    """
+    
+    mol_property = PROPERTY_READERS[prop](output_string) 
+
+    return mol_property

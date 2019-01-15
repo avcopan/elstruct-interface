@@ -1,5 +1,4 @@
-memory,500,m
-gthresh,energy=1.0d-10,orbital=1.0d-10
+! Molpro 2015 Computation
 
 angstrom
 Geometry = {
@@ -8,7 +7,11 @@ Geometry = {
  H          0.0000000000        0.5556614584        0.7504910643
 }
 
+set,charge=0
+set,spin=0
+
 basis=6-31G*
 
 {rhf}
 {ccsd}
+
