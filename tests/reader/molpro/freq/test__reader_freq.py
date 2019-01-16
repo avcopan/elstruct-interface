@@ -1,16 +1,20 @@
 import numpy
 import elstruct
 import importlib
+from elstruct.params import FREQUENCY
 
 # Program to test
 PROGRAM = 'molpro'
 
-FREQS = ['harm_freq', 'harm_zpve']
+FREQS = [
+    FREQUENCY.HARM_FREQ,
+    FREQUENCY.HARM_ZPVE
+]
 
 def test__freq():
     """ Test the frequency information from several different Molpro jobs.
-    """    
-        
+    """
+
     # Change parentheses in the theory name for file reading
     THEORY_FILE = 'output.dat'
 
@@ -18,11 +22,11 @@ def test__freq():
     with open(THEORY_FILE, 'r') as outfile:
         OUTPUT_STR = outfile.read()
 
-    # Set the reader module to user the reader for the desired program 
-    reader_module = importlib.import_module('elstruct.reader.'+PROGRAM) 
-   
+    # Set the reader module to user the reader for the desired program
+    reader_module = importlib.import_module('elstruct.reader.'+PROGRAM)
+
     for FREQ in FREQS:
- 
+
         print(FREQ)
 
         # Use the reader module to obtain the energy value

@@ -37,7 +37,7 @@ def rhf_reader(output_string):
     )
 
     # Obtain the RHF energy
-    rhf_energy = repar.sing_float_from_string(rhf_pattern, output_string)
+    rhf_energy = repar.sing_float(rhf_pattern, output_string)
 
     return rhf_energy
 
@@ -58,7 +58,7 @@ def uhf_reader(output_string):
     )
 
     # Obtain the UHF energy
-    uhf_energy = repar.sing_float_from_string(uhf_pattern, output_string)
+    uhf_energy = repar.sing_float(uhf_pattern, output_string)
 
     return uhf_energy
 
@@ -86,11 +86,11 @@ def rhf_mp2_reader(output_string):
     )
 
     # Obtain the RHF-MP2 or RHF-UMP2 energy
-    mp2_energy = repar.sing_float_from_string(mp2_pattern1, output_string)
+    mp2_energy = repar.sing_float(mp2_pattern1, output_string)
     if mp2_energy is None:
-        mp2_energy = repar.sing_float_from_string(mp2_pattern2, output_string)
+        mp2_energy = repar.sing_float(mp2_pattern2, output_string)
         if mp2_energy is None:
-            mp2_energy = repar.sing_float_from_string(ump2_pattern, output_string)
+            mp2_energy = repar.sing_float(ump2_pattern, output_string)
 
     return mp2_energy
 
@@ -110,7 +110,7 @@ def uhf_ump2_reader(output_string):
     )
 
     # Obtain the UHF-MP2 energy
-    ump2_energy = repar.sing_float_from_string(ump2_pattern, output_string)
+    ump2_energy = repar.sing_float(ump2_pattern, output_string)
 
     return ump2_energy
 
@@ -138,9 +138,9 @@ def rohf_rmp2_reader(output_string):
     )
 
     # Obtain the ROHF-RMP2 energy
-    rmp2_energy = repar.sing_float_from_string(rmp2_pattern1, output_string)
+    rmp2_energy = repar.sing_float(rmp2_pattern1, output_string)
     if rmp2_energy is None:
-        rmp2_energy = repar.sing_float_from_string(rmp2_pattern2, output_string)
+        rmp2_energy = repar.sing_float(rmp2_pattern2, output_string)
 
     return rmp2_energy
 
@@ -168,11 +168,11 @@ def rhf_rohf_ccsd_uccsd_reader(output_string):
     )
 
     # Obtain the RHF-CCSD, RHF-UCCSD, ROHF-UCCSD energy
-    ccsd_energy = repar.sing_float_from_string(ccsd_pattern1, output_string)
+    ccsd_energy = repar.sing_float(ccsd_pattern1, output_string)
     if ccsd_energy is None:
-        ccsd_energy = repar.sing_float_from_string(ccsd_pattern2, output_string)
+        ccsd_energy = repar.sing_float(ccsd_pattern2, output_string)
         if ccsd_energy is None:
-            ccsd_energy = repar.sing_float_from_string(uccsd_pattern, output_string)
+            ccsd_energy = repar.sing_float(uccsd_pattern, output_string)
 
     return ccsd_energy
 
@@ -194,9 +194,9 @@ def rohf_rccsd_reader(output_string):
     )
 
     # Obtain the ROHF-RCCSD energy
-    ccsd_energy = repar.sing_float_from_string(ccsd_pattern, output_string)
+    ccsd_energy = repar.sing_float(ccsd_pattern, output_string)
     if ccsd_energy is None:
-        ccsd_energy = repar.sing_float_from_string(rccsd_pattern, output_string)
+        ccsd_energy = repar.sing_float(rccsd_pattern, output_string)
 
     return ccsd_energy
 
@@ -218,9 +218,9 @@ def rhf_rohf_ccsd_t_uccsd_t_reader(output_string):
     )
 
     # Obtain the RHF-CCSD(T), RHF-UCCSD(T), or ROHF-UCCSD(T) energy
-    ccsd_t_energy = repar.sing_float_from_string(ccsd_t_pattern, output_string)
+    ccsd_t_energy = repar.sing_float(ccsd_t_pattern, output_string)
     if ccsd_t_energy is None:
-        ccsd_t_energy = repar.sing_float_from_string(uccsd_t_pattern, output_string)
+        ccsd_t_energy = repar.sing_float(uccsd_t_pattern, output_string)
 
     return ccsd_t_energy
 
@@ -242,9 +242,9 @@ def rohf_rccsd_t_reader(output_string):
     )
 
     # Obtain the ROHF-RCCSD(T) energy
-    ccsd_t_energy = repar.sing_float_from_string(ccsd_t_pattern, output_string)
+    ccsd_t_energy = repar.sing_float(ccsd_t_pattern, output_string)
     if ccsd_t_energy is None:
-        ccsd_t_energy = repar.sing_float_from_string(rccsd_t_pattern, output_string)
+        ccsd_t_energy = repar.sing_float(rccsd_t_pattern, output_string)
 
     return ccsd_t_energy
 
@@ -263,7 +263,7 @@ def custom_e_reader(output_string):
     )
 
     # Obtain the custom energy
-    custom_energy = repar.sing_float_from_string(custom_e_pattern, output_string)
+    custom_energy = repar.sing_float(custom_e_pattern, output_string)
 
     return custom_energy
 

@@ -1,5 +1,5 @@
 """
-Library of functions to retrieve potential surface information from a Orca 4.0 output file.
+Library of functions to retrieve potential surface information from a Psi4 1.0 output file.
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
@@ -23,10 +23,10 @@ SURFACE_READERS = {
 
 ##### Frequency reader function called by external scripts #####
 
-def surface(output_string):
+def surface(surf, output_string):
     """ Retrieves the desired information regarding the potential energy surface.
     """
 
-    surface = SURFACE_READERS[](output_string)
+    surf_info = SURFACE_READERS[surf](output_string)
 
-    return surface
+    return surf_info

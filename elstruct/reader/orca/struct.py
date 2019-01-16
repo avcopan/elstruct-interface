@@ -55,7 +55,7 @@ def all_geom_xyz_reader(output_string):
     )
 
     # Obtain block of output string containing the optimized geometry in xyz coordinates
-    all_geom_block = block(all_geom_xyz_begin_pattern, all_geom_xyz_end_pattern, output_string)
+    all_geom_block = repar.block(all_geom_xyz_begin_pattern, all_geom_xyz_end_pattern, output_string)
 
     # Obtain the xyz coordinates from the block
     opt_geom_xyz = ref.capturing(opt_geom_block, opt_geom_xyz_pattern)

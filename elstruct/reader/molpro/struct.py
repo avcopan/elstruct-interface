@@ -33,7 +33,7 @@ def opt_geom_xyz_reader(output_string):
     opt_geom_xyz_end_pattern = 'Geometry written to block'
 
     # Obtain block of output string containing the optimized geometry in xyz coordinates
-    opt_geom_xyz_block = block(opt_geom_xyz_begin_pattern,
+    opt_geom_xyz_block = repar.block(opt_geom_xyz_begin_pattern,
                                opt_geom_xyz_end_pattern,
                                output_string)
 
@@ -51,7 +51,7 @@ def opt_geom_xyz_reader(output_string):
     )
 
     # Obtain the xyz coordinates from the block
-    opt_geom_xyz = pattern_parser_1(opt_geom_xyz_pattern, opt_geom_xyz_block)
+    opt_geom_xyz = repar.pattern_parser_1(opt_geom_xyz_pattern, opt_geom_xyz_block)
 
     return opt_geom_xyz
 
@@ -66,7 +66,7 @@ def opt_geom_internal_reader(output_string):
     opt_geom_internal_end_pattern = '*********************'
 
     # Obtain block of output string containing the optimized geometry in xyz coordinates
-    opt_geom_internal_block = block(opt_geom_internal_begin_pattern,
+    opt_geom_internal_block = repar.block(opt_geom_internal_begin_pattern,
                                     opt_geom_internal_end_pattern,
                                     output_string)
 
@@ -82,7 +82,7 @@ def opt_geom_internal_reader(output_string):
     )
 
     # Obtain the xyz coordinates from the block
-    opt_geom_internal = pattern_parser_1(opt_geom_internal_pattern, opt_geom_internal_block)
+    opt_geom_internal = repar.pattern_parser_1(opt_geom_internal_pattern, opt_geom_internal_block)
 
     return opt_geom_internal
 
@@ -96,7 +96,7 @@ def init_geom_xyz_reader(output_string):
     init_geom_internal_end_pattern = 'Bond lengths in Bohr (Angstrom)'
 
     # Obtain block of output string containing the optimized geometry in xyz coordinates
-    init_geom_internal_block = block(init_geom_internal_begin_pattern,
+    init_geom_internal_block = repar.block(init_geom_internal_begin_pattern,
                                      init_geom_internal_end_pattern,
                                      output_string)
 
@@ -115,7 +115,7 @@ def init_geom_xyz_reader(output_string):
     )
 
     # Obtain the xyz coordinates from the block
-    init_geom_xyz = pattern_parser_2(init_geom_internal_pattern, init_geom_internal_block)
+    init_geom_xyz = repar.pattern_parser_2(init_geom_internal_pattern, init_geom_internal_block)
 
 
     return init_geom_xyz
@@ -143,8 +143,6 @@ def init_geom_internal_reader(output_string):
         )
     )
 
-    zmatrix_pattern = ('dog')
-
     return
 
 def equil_rot_constant_reader(output_string):
@@ -161,13 +159,13 @@ def equil_rot_constant_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        'GHz' +
-        rep.one_or_more(relib.WHITESPACE) +
-        '\(calculated with average atomic masses\)'
+        'GHz' #+
+        #rep.one_or_more(relib.WHITESPACE) +
+        #'\(calculated with average atomic masses\)'
     )
 
     # Obtain equil_const string
-    all_rot_consts = pattern_parser_3(equil_rot_const_pattern, output_string)
+    all_rot_consts = repar.list_float(equil_rot_const_pattern, output_string)
 
     # Remove any instances of 0.0000s as well as duplicates
     rot_const_ghz = list(set([const for const in all_rot_consts if const != 0.0]))

@@ -1,11 +1,12 @@
 """
-Library of functions to retrieve frequency information from a Psi4 output file.
+Library of functions to retrieve frequency information from a Psi4 1.0 output file.
 
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-14"
+__updated__ = "2019-01-15"
 
+from ..rere import parse as repar
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
@@ -13,20 +14,6 @@ from ... import params
 
 
 ##### Series of functions to read the frequency information #####
-
-def pattern_parser_1(pattern, output_string):
-    """ Searches for pattern in output_string to capture a single value.
-        Returns the LAST instance of this value as a float.
-    """
-
-    # Locate the final energy in the output file
-    freq_str = ref.last_capture(pattern, output_string)
-
-    # Check if energy values is found, if so, convert to float
-    freq_val = (None if freq_str is None else float(freq_str))
-
-    return freq_val
-
 
 def harm_vib_freqs_reader(output_string):
     """ Reads the harmonic vibrational frequencies from the output file.
@@ -71,10 +58,9 @@ def harm_zpve_reader(output_string):
     )
 
     # Obtain the ZPVE
-    harm_zpve = pattern_parser_1(zpve_pattern, output_string)
+    harm_zpve = repar.sing_float_string(zpve_pattern, output_string)
 
     return harm_zpve
-
 
 
 ##### Dictionary of functions to read frequency information in the files #####
@@ -88,7 +74,7 @@ FREQUENCY_READERS = {
 ##### Frequency reader function called by external scripts #####
 
 def frequency(freq, output_string):
-    """ Returns a freq thing.
+    """ Retrieves the desired frequency information.
     """
 
     assert freq in FREQUENCY_READERS.keys()

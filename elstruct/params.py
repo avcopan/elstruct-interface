@@ -59,7 +59,7 @@ class SURFACE():
 class PROPERTY():
     """ Molecular Properties of interest
     """
-    DIPOLE_MOMENT = 'dipole_moment'
+    DIPOLE_MOM = 'dipole_moment'
 
 class JOBTYPE():
     """ Various job types
@@ -70,16 +70,6 @@ class JOBTYPE():
     ANHARM_VIB_FREQ = 'anharm_vib_freq'
     OPT_AND_HARM_FREQ = 'opt_and_freq'
     CUSTOM_JOB = 'custom_job'
-
-class STORAGE():
-    """ Various things for storing information
-    """ 
-    ENERGY = 'energy'
-    GEOMETRY = ' geometry'
-    FREQUENCIES = 'frequencies'
-    GRADIENT = 'gradient'
-    HESSIAN = 'hessian'
-
 
 class PROGRAM():
     """ Programs to be called

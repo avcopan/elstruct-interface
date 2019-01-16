@@ -14,7 +14,7 @@ from ... import params
 
 ##### Series of functions to read the frequency information #####
 
-def gradient_xyz(output_string):
+def gradient_xyz_reader(output_string):
 
     begin_pattern = 'Atom          dE/dx               dE/dy               dE/dz                  d2E/dx2             d2E/dy2             d2E/dz2'
     end_pattern = 'wavefunction'
@@ -58,7 +58,7 @@ def gradient_xyz(output_string):
 
     return gradient
 
-def hessian_xyz(output_string):
+def hessian_xyz_reader(output_string):
     """ Reads the unprojected Cartesian Hessian from the output file.
         Returns the Hessian in a string; in UNITS
         TODO: (1) Grabber only works if job is run without symmetry
@@ -131,17 +131,17 @@ def hessian_internal(output_string):
 ##### Dictionary of functions to read frequency information in the files #####
 
 SURFACE_READERS = {
-    params.SURFACE.GRADIENT: gradient_xyz_reader,
-    params.SURFACE.HESSIAN: hessian_xyz_reader,
+    params.SURFACE.GRADIENT_XYZ: gradient_xyz_reader,
+    params.SURFACE.HESSIAN_XYZ: hessian_xyz_reader,
 }
 
 
 ##### Frequency reader function called by external scripts #####
 
-def surface(output_string):
+def surface(surf, output_string):
     """ Retrieves the desired information regarding the potential energy surface.
     """
 
-    surface = SURFACE_READERS[](output_string)
+    surf_info = SURFACE_READERS[surf](output_string)
 
-    return surface
+    return surface_info

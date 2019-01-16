@@ -10,6 +10,7 @@ Frequencies currently supported:
 __authors__ = "Kevin Moore, Andreas Copan"
 __updated__ = "2019-01-15"
 
+from ..rere import parse as repar
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
@@ -33,7 +34,7 @@ def harm_vib_freqs_reader(output_string):
     )
 
     # Obtain the frequencies for all degrees-of-freedom
-    all_freqs = pattern_parser_2(harm_vib_freq_pattern, output_string)
+    all_freqs = repar.list_float(harm_vib_freq_pattern, output_string)
 
     # Remove the zero frequencies
     vib_freqs = [freq for freq in all_freqs if freq != 0.0]

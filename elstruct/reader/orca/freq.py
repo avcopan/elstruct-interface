@@ -1,41 +1,23 @@
-""" Vibrational properties
+"""
+Library of functions to retrieve frequency information from a Orca 4.0 output file.
+
+Frequencies currently supported:
+(1) Harmonic Vibrational Frequencies
+(2) Harmonic Zero-Point Vibrational Energy
+
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-15"
 
+from ..rere import parse as repar
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
 from ... import params
 
-##### HELPER FUNCTION TO RETRIEVE TEXT BLOCK; TODO: Move to rere library #####
 
-def block(head_string, foot_string, string):
-    """ Returns a block of text
-    """
-    head_pattern = rep.escape(head_string)
-    foot_pattern = rep.escape(foot_string)
-    block_pattern = rep.capturing(
-        head_pattern + rep.one_or_more(relib.ANY_CHAR, greedy=False) +
-        foot_pattern)
-    return ref.last_capture(block_pattern, string)
-
-
-##### Patterns #####
-
-def pattern_parser_1(pattern, output_string):
-    """ Searches for pattern in output_string to capture a single value.
-        Returns the LAST instance of this value as a float.
-    """
-
-    # Locate the final energy in the output file
-    freq_str = ref.last_capture(pattern, output_string)
-
-    # Check if energy values is found, if so, convert to float
-    freq_val = (None if freq_str is None else float(freq_str))
-
-    return freq_val
+##### Series of functions to read the frequency information #####
 
 def harm_vib_freqs_reader(output_string):
     """ Reads the harmonic vibrational frequencies from the output file.
@@ -45,7 +27,7 @@ def harm_vib_freqs_reader(output_string):
     freq_begin_pattern = 'VIBRATIONAL FREQUENCIES'
     freq_end_pattern = 'NORMAL MODES'
 
-    freq_block = block(freq_begin_pattern,
+    freq_block = repar.block(freq_begin_pattern,
                        freq_end_pattern,
                        output_string)
 
@@ -82,7 +64,7 @@ def harm_zpve_reader(output_string):
     )
 
     # Obtain the ZPVE
-    harm_zpve = pattern_parser_1(zpve_pattern, output_string)
+    harm_zpve = repar.sing_float_string(zpve_pattern, output_string)
 
     return harm_zpve
 
@@ -98,7 +80,7 @@ FREQUENCY_READERS = {
 ##### Frequency reader function called by external scripts #####
 
 def frequency(freq, output_string):
-    """ Returns a freq thing.
+    """ Retrieves the desired frequency information.
     """
 
     assert freq in FREQUENCY_READERS.keys()

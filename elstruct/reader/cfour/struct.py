@@ -13,6 +13,7 @@ Structural currently supported:
 __authors__ = "Kevin Moore, Andreas Copan"
 __updated__ = "2019-01-15"
 
+from ..rere import parse as repar
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
@@ -44,7 +45,7 @@ def all_geom_xyz_reader(output_string):
     )
 
     # Obtain block of output string containing the optimized geometry in xyz coordinates
-    m1_geom_block = block(m1_geom_xyz_begin_pattern, m1_geom_xyz_end_pattern, output_string)
+    m1_geom_block = repar.block(m1_geom_xyz_begin_pattern, m1_geom_xyz_end_pattern, output_string)
 
     # Obtain the xyz coordinates from the block
     opt_geom_xyz = ref.capturing(m1_geom_block, m1_geom_xyz_pattern)

@@ -27,7 +27,7 @@ def dipole_moment_reader(output_string):
         'Permanent Dipole Moment \[debye\]'
     )
 
-    dipole_mom = repar.list_float_from_string(pattern, output_string)
+    dipole_mom = repar.list_float(pattern, output_string)
 
     return dipole_mom
 

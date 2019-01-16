@@ -23,13 +23,13 @@ SURFACE_READERS = {
 
 ##### Frequency reader function called by external scripts #####
 
-def surface(output_string):
+def surface(surf, output_string):
     """ Retrieves the desired information regarding the potential energy surface.
     """
 
-    surface = SURFACE_READERS[](output_string)
+    surf_info = SURFACE_READERS[surf](output_string)
 
-    return surface
+    return surf_info
 #def gaussian_hessian(lines):
 #    startkey = 'Force constants in Cartesian coordinates:'
 #    endkey   = 'Force constants in internal coordinates:'

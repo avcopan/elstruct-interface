@@ -1,32 +1,35 @@
+""" Test the electronic energy from several different Molpro jobs.
+"""
+
 import numpy
 import elstruct
 import importlib
-import params
+from elstruct.params import METHOD
 
 # Program to test
 PROGRAM = 'molpro'
 
 # Theories to test
 THEORIES = [
-    params.METHOD.RHF, 
-    params.METHOD.UHF, 
-    params.METHOD.ROHF, 
-    params.METHOD.RHF_MP2, 
-    params.METHOD.UHF_UMP2, 
-    params.METHOD.ROHF_RMP2, 
-    params.METHOD.RHF_CCSD,
-    params.METHOD.ROHF_UCCSD, 
-    params.METHOD.ROHF_RCCSD, 
-    params.METHOD.RHF_CCSD_T, 
-    params.METHOD.ROHF_UCCSD_T, 
-    params.METHOD.ROHF_RCCSD_T,
-] 
+    METHOD.RHF,
+    METHOD.UHF,
+    METHOD.ROHF,
+    METHOD.RHF_MP2,
+    METHOD.UHF_UMP2,
+    METHOD.ROHF_RMP2,
+    METHOD.RHF_CCSD,
+    METHOD.ROHF_UCCSD,
+    METHOD.ROHF_RCCSD,
+    METHOD.RHF_CCSD_T,
+    METHOD.ROHF_UCCSD_T,
+    METHOD.ROHF_RCCSD_T
+]
 
 
 def test__energy():
-    """ Test the electronic energy from several different Molpro jobs.
-    """    
-        
+    """ Reads the energy from the output file and compares to a given values.
+    """
+
     # Get a theory method
     for THEORY in THEORIES:
 
@@ -37,39 +40,39 @@ def test__energy():
         with open(THEORY_FILE, 'r') as outfile:
             OUTPUT_STR = outfile.read()
 
-        # Set the reader module to user the reader for the desired program 
-        reader_module = importlib.import_module('elstruct.reader.'+PROGRAM) 
-        
+        # Set the reader module to user the reader for the desired program
+        reader_module = importlib.import_module('elstruct.reader.'+PROGRAM)
+
         # Use the reader module to obtain the energy value
         ENERGY = reader_module.energy(THEORY, OUTPUT_STR)
-        print(THEORY + '\t' +str(ENERGY))        
+        #print(THEORY + '\t' +str(ENERGY))
 
         # Set values of the test energy
-        if THEORY == params.METHOD.RHF: 
+        if THEORY == METHOD.RHF:
             ecomp = -76.008350415635
-        elif THEORY == params.METHOD.UHF: 
+        elif THEORY == METHOD.UHF:
             ecomp = -38.378808076235
-        elif THEORY == params.METHOD.ROHF: 
+        elif THEORY == METHOD.ROHF:
             ecomp = -38.915219602947
-        elif THEORY == params.METHOD.RHF_MP2: 
+        elif THEORY == METHOD.RHF_MP2:
             ecomp = -76.193792345214
-        elif THEORY == params.METHOD.UHF_UMP2: 
+        elif THEORY == METHOD.UHF_UMP2:
             ecomp = -38.491613632745
-        elif THEORY == params.METHOD.ROHF_RMP2: 
+        elif THEORY == METHOD.ROHF_RMP2:
             ecomp = -39.001040622628
-        elif THEORY == params.METHOD.RHF_CCSD: 
+        elif THEORY == METHOD.RHF_CCSD:
             ecomp = -76.203026494077
-        elif THEORY == params.METHOD.ROHF_UCCSD: 
+        elif THEORY == METHOD.ROHF_UCCSD:
             ecomp = -39.019955499482
-        elif THEORY == params.METHOD.ROHF_RCCSD: 
+        elif THEORY == METHOD.ROHF_RCCSD:
             ecomp = -39.019816454488
-        elif THEORY == params.METHOD.RHF_CCSD_T: 
+        elif THEORY == METHOD.RHF_CCSD_T:
             ecomp = -76.204810205863
-        elif THEORY == params.METHOD.ROHF_UCCSD_T: 
+        elif THEORY == METHOD.ROHF_UCCSD_T:
             ecomp = -39.021374161079
-        elif THEORY == params.METHOD.ROHF_RCCSD_T:
+        elif THEORY == METHOD.ROHF_RCCSD_T:
             ecomp = -39.021254228020
-        
+
         # Test the energy
         assert numpy.isclose(ENERGY, ecomp, atol=1e-4)
 
