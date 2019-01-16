@@ -1,5 +1,5 @@
-""" 
-Library of functions to retrieve frequency information from a Molpro 2015 output file.
+"""
+Library of functions to retrieve frequency information from a Gaussian 09e output file.
 
 Frequencies currently supported:
 (1) Harmonic Vibrational Frequencies
@@ -8,7 +8,7 @@ Frequencies currently supported:
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-14"
+__updated__ = "2019-01-15"
 
 from ..rere import find as ref
 from ..rere import pattern as rep
@@ -17,22 +17,6 @@ from ... import params
 
 
 ##### Series of functions to read the frequency information #####
-
-def pattern_parser_2(pattern, output_string):
-    """ Searches for pattern in out_string to capture series of values.
-        Return each instance of these values in a single list of floats.  
-    """
-
-    # Locate the final energy in the output file
-    freq_str = ref.all_captures(pattern, output_string)
-
-    # Check if energy values is found, if so, convert to float
-    if freq_str is not None:
-        freq_val = [float(val.strip()) for string in freq_str for val in string.split()]
-    else:
-        freq_val = None
-
-    return freq_val
 
 def harm_vib_freqs_reader(output_string):
     """ Reads the harmonic vibrational frequencies from the output file.
@@ -43,16 +27,28 @@ def harm_vib_freqs_reader(output_string):
         'Frequencies --' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(
-            rep.one_or_more(relib.FLOAT + 
+            rep.one_or_more(relib.FLOAT +
             rep.one_or_more(relib.WHITESPACE))
         )
     )
 
     # Obtain the frequencies for all degrees-of-freedom
     all_freqs = pattern_parser_2(harm_vib_freq_pattern, output_string)
-    
+
     # Remove the zero frequencies
     vib_freqs = [freq for freq in all_freqs if freq != 0.0]
+
+    freqs = []
+    lines = lines.splitlines()
+    key = 'Fundamental Bands (DE w.r.t. Ground State)'
+    iline = io.get_line_number(key,lines=lines)
+    if iline > 0:
+        for i in range(nfreq):
+            iline += 1
+            line = lines[iline]
+            cols = line.split()
+            freqs.append(cols[-5])
+
 
     return vib_freqs
 
@@ -61,11 +57,11 @@ def harm_zpve_reader(output_string):
         Returns the ZPVE as a float; in Hartrees.
     """
 
-    harm_zpve_pattern_1 = ( 
+    harm_zpve_pattern_1 = (
         'Zero-point correction=' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) 
-        '(Hartree/Particle)' 
+        rep.one_or_more(relib.FLOAT)
+        '(Hartree/Particle)'
     )
 
     return harm_zpve
@@ -74,8 +70,8 @@ def anharm_zpve_reader(output_string):
     """ Reads the anharmonic zero-point vibrational energy (ZPVE) from the output file.
         Returns the ZPVE as a float; in Hartrees.
     """
- 
-    anharm_zpve_pattern = ( 
+
+    anharm_zpve_pattern = (
         'ZPE(harm) =' +
         FLOAT +
         D-02 +
@@ -83,10 +79,62 @@ def anharm_zpve_reader(output_string):
         'ZPE(anh) =' +
         FLOAT +
         D-02 +
-        'KJ/mol' 
+        'KJ/mol'
     )
 
     return anharm_zpve
 
 
+##### Dictionary of functions to read frequency information in the files #####
 
+FREQUENCY_READERS = {
+    params.FREQUENCY.HARM_FREQ : harm_vib_freqs_reader,
+    params.FREQUENCY.HARM_ZPVE : harm_zpve_reader
+    params.FREQUENCY.ANHARM_ZPVE : anharm_zpve_reader
+}
+
+
+##### Frequency reader function called by external scripts #####
+
+def frequency(freq, output_string):
+    """ Retrieves the desired frequency information.
+    """
+
+    assert freq in FREQUENCY_READERS.keys()
+
+    frequency = FREQUENCY_READERS[freq](output_string)
+
+    return frequency
+#def gaussian_rotdists (lines):
+#    startkey = 'Quartic Centrifugal Distortion Constants Tau Prime'
+#    endkey   = 'Asymmetric Top Reduction'
+#    lines = lines.splitlines()
+#    sline = io.get_line_number(startkey,lines=lines)
+#    if sline < 0:
+#        return ''
+#    lines  = lines[sline+3:sline+9]
+#    distlines = []
+#    for line in lines:
+#        splitline = line.split()
+#        if splitline[0] == 'TauP': 
+#           distlines.append('\t'.join(splitline[1:3]))
+#        else:
+#           break
+#    constants   = '\n'.join(distlines).replace('D','e')
+#    return constants
+#
+#def gaussian_vibrot(lines):
+#    startkey = 'Vibro-Rot alpha Matrix (in cm^-1)'
+#    ndof  = gaussian_nfreq(lines)
+#    lines = lines.splitlines()
+#    sline = io.get_line_number(startkey,lines=lines)
+#    if sline < 0:
+#        return ''
+#    lines =  lines[sline+3:sline+3+ndof]
+#    for i in range(len(lines)):
+#       if ')' in lines[i]:
+#           lines[i] = lines[i].split(')')[1]
+#       if ndof < 2:
+#          lines[i] = '\t'.join(lines[i].split()[:-1])
+#    mat   = '\n'.join(lines).split('---------------')[0]
+#    return mat

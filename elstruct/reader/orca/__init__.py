@@ -1,5 +1,5 @@
 """
-Imports the reader libraries for Psi4 1.0
+Imports the reader libraries for Orca 4.0
 """
 
 from .energ import energy

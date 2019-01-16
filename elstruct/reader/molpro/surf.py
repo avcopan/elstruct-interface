@@ -25,20 +25,20 @@ def gradient_xyz(output_string):
             relib.INTEGER +
             rep.one_or_more(relib.WHITESPACE) +
             rep.one_or_more(relib.WHITESPACE) +
-            rep.one_or_more(relib.WHITESPACE) 
+            rep.one_or_more(relib.WHITESPACE)
         ) +
         rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +
         rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +
         rep.one_or_more(relib.WHITESPACE) +
-        relib.FLOAT 
+        relib.FLOAT
     )
 
     # PATTERN: 'GXN / STRING'   FLOAT   FLOAT   FLOAT    FLOAT   FLOAT
     grad_pattern_2 = (
         relib.UPPERCASE_LETTER +
-        relib.UPPERCASE_LETTER + 
+        relib.UPPERCASE_LETTER +
         relib.INTEGER +
         relib.WHITESPACE +
         '/' +
@@ -51,9 +51,9 @@ def gradient_xyz(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.captuing(relib.FLOAT) + 
+        rep.captuing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        relib.FLOAT 
+        relib.FLOAT
     )
 
     return gradient
@@ -68,10 +68,10 @@ def hessian_xyz(output_string):
     hess_start_line = 'Force Constants (Second Derivatives of the Energy)'
     hess_end_line = 'Atomic Masses'
 
-    # Isolate block of lines from output file containing the Hessian    
+    # Isolate block of lines from output file containing the Hessian
     start_line_num = io.get_line_number( HESS_START_LINE, lines=lines ) + 1
     end_line_num   = io.get_line_number( HESS_END_LINE, lines=lines ) - 2
-    hess_lines = lines.split()[ start_line_num, end_line_num ] 
+    hess_lines = lines.split()[ start_line_num, end_line_num ]
     if start_line < 0:
         return ''
     hess = ''
@@ -95,18 +95,18 @@ def hessian_xyz(output_string):
                 val = str((int(val) - 1) * 3 + add)
             hessline += '\t' +  val
         hess +=  hessline + '\n'
-    
+
     else:
 
-        Code     
+        Code
 
     return hess
 
 def hessian_internal(output_string):
-    
+
     hess_pattern = (
         relib.UPPERCASE_LETTER +
-        relib.UPPERCASE_LETTER + 
+        relib.UPPERCASE_LETTER +
         relib.INTEGER +
         relib.WHITESPACE +
         '/' +
@@ -121,7 +121,7 @@ def hessian_internal(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.captuing(relib.FLOAT) 
+        rep.captuing(relib.FLOAT)
     )
 
 

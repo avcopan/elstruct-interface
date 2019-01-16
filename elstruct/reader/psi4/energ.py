@@ -43,37 +43,37 @@ def scf_reader(output_string):
     rhf_pattern = (
         '@RHF Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
-    
+
     uhf_pattern = (
         '@UHF Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
-    )    
+        rep.capturing(relib.FLOAT)
+    )
 
     rohf_pattern = (
         '@ROHF Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
 
     rks_pattern = (
         '@RKS Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
-    
+
     uks_pattern = (
         '@UKS Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
-    )    
+        rep.capturing(relib.FLOAT)
+    )
 
     roks_pattern = (
         '@ROKS Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
 
     alt_pattern = (
@@ -81,9 +81,9 @@ def scf_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         '(wfn)' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
-    
+
     alt_pattern_2 = (
         'Reference energy' +
         rep.one_or_more(relib.WHITESPACE) +
@@ -91,14 +91,14 @@ def scf_reader(output_string):
         relib.INTEGER +
         ')' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
 
     # check if for scf only or any energy (same for df-mp2)
     alt_pattern_3 = (
         'Total Energy =' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
 
     return scf_energy
@@ -112,7 +112,7 @@ def mp2_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         '=' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
 
     return mp2_energy
@@ -126,15 +126,15 @@ def ccsd_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         '=' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
-    
+
     ccsd_pattern = (
         'Total CCSD energy' +
         rep.one_or_more(relib.WHITESPACE) +
         '=' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
 
     return ccsd_energy
@@ -148,9 +148,9 @@ def ccsd_t_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         '=' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
+        rep.capturing(relib.FLOAT)
     )
-    
+
     return ccsd_t_energy
 
 ##### Dictionary of functions to read the energies in the files #####
@@ -169,11 +169,3 @@ def energy(method, output_string):
     energy = ENERGY_READERS[method](output_string)
 
     return energy
-
-
-##### For lazy testing #####
-
-if __name__ == '__main__':
-    with open('open_output.dat', 'r') as outfile:
-        OUTPUT_STR = outfile.read()
-    print(energy('rmp2', OUTPUT_STR))

@@ -1,5 +1,20 @@
+
+Reader:
 - get the symmetry for the vibrational frequencies
 - all files, specify units of values (either comment in line in geom xyz, or top of file)
 - store Hessian in as full Hessian or triangle (upper or lower)
 - see what code in unittools, obtools, and iotools are needed to be redone
 - Energy level of theory and basis set and units at top
+
+Runner:
+- CFour serial cannot be called
+
+Writer:
+
+
+Pylint:
+Ignore messages:
+- Similar lines in 2 files
+- Anomalous backslash in string:
+
+

@@ -1,4 +1,4 @@
-""" 
+"""
 Library of functions to retrieve frequency information from a Psi4 output file.
 
 """
@@ -15,7 +15,7 @@ from ... import params
 ##### Series of functions to read the frequency information #####
 
 def pattern_parser_1(pattern, output_string):
-    """ Searches for pattern in output_string to capture a single value. 
+    """ Searches for pattern in output_string to capture a single value.
         Returns the LAST instance of this value as a float.
     """
 
@@ -38,7 +38,7 @@ def harm_vib_freqs_reader(output_string):
         'Freq \[cm^-1\]' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(
-            rep.one_or_more(relib.FLOAT + 
+            rep.one_or_more(relib.FLOAT +
             rep.one_or_more(relib.WHITESPACE))
         )
     )
@@ -52,13 +52,13 @@ def harm_zpve_reader(output_string):
     # String pattern to retrieve the ZPVE
     zpve_pattern = (
         'Vibrational ZPE' +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         '\[kcal/mol\]' +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         '\[kJ/mol\]' +
         rep.one_or_more(relib.WHITESPACE) +
         relib.FLOAT +

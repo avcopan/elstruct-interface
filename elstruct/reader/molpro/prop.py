@@ -1,4 +1,4 @@
-""" 
+"""
 Library of functions to retrieve molecular properties from a Molpro 2015 output file.
 
 Properties currently supported:
@@ -16,6 +16,8 @@ from ..rere import pattern_lib as relib
 from ... import params
 
 
+##### Series of functions to read molecular properties #####
+
 def dipole_moment_reader(output_string):
     """ Reads the Permanent Dipole moment from the output file.
         Returns the constants as a list of strings; in Debye.
@@ -24,8 +26,8 @@ def dipole_moment_reader(output_string):
     dipole_mom_pattern = (
         'Permanent Dipole Moment \[debye\]'
     )
-   
-    dipole_mom = repar.list_float_from_string(pattern, output_string) 
+
+    dipole_mom = repar.list_float_from_string(pattern, output_string)
 
     return dipole_mom
 
@@ -42,7 +44,7 @@ PROPERTY_READERS = {
 def mol_property(prop, output_string):
     """ Retrieves the desired molecular property.
     """
-    
-    mol_property = PROPERTY_READERS[prop](output_string) 
+
+    mol_property = PROPERTY_READERS[prop](output_string)
 
     return mol_property

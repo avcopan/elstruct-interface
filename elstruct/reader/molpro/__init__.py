@@ -1,13 +1,12 @@
-""" Imports the reader libraries for Molpro 2015
+"""
+Imports the reader libraries for Molpro 2015
 """
 
-#from .geom import
-from .freq import frequency
 from .energ import energy
+from .freq import frequency
+from .prop import mol_property
 from .struct import structure
-#from .surf import
-#from .prop import
-#from .stat import
+from .surf import surface
+from .stat import status
 
-
-__all__ = ['energy', 'frequency', 'structure']
+__all__ = ['energy', 'frequency', 'mol_property', 'structure', 'surface', 'status']

@@ -68,10 +68,10 @@ def all_geom_internal_reader(output_string):
     """
 
     # internal coords of optimized geom
-    all_geom_internal_begin_pattern = 'INTERNAL COORDINATES (ANGSTROEM)' 
-    all_geom_internal_end_pattern = 'INTERNAL COORDINATES (A.U.)' 
+    all_geom_internal_begin_pattern = 'INTERNAL COORDINATES (ANGSTROEM)'
+    all_geom_internal_end_pattern = 'INTERNAL COORDINATES (A.U.)'
 
-    all_geom_internal = ( 
+    all_geom_internal = (
         rep.one_or_more(relib.ANY_CHAR) +
         rep.one_or_more(relib.WHITESPACE) +
         rep.one_or_more(relib.INTEGER) +
@@ -84,7 +84,7 @@ def all_geom_internal_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         rep.one_or_more(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) 
+        rep.one_or_more(relib.FLOAT)
     )
 
     return all_geom_internal

@@ -290,7 +290,7 @@ ENERGY_READERS = {
 ##### Energy reader function called by external scripts #####
 
 def energy(method, output_string):
-    """ Retrieves the desired electronic energy. 
+    """ Retrieves the desired electronic energy.
     """
     assert method in ENERGY_READERS.keys()
 

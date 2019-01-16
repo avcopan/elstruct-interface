@@ -1,5 +1,5 @@
 """
-Library of functions to assess the job status of a Psi4 1.0 job using the output file.
+Library of functions to assess the job status of a Orca 4.0 job using the output file.
 
 """
 
@@ -39,7 +39,7 @@ def complete_msg_reader(output_string):
     """
 
     # Line printed if Molpro exits normally
-    complete_msg_pattern = '*** Psi4 exiting successfully. Buy a developer a beer!'
+    complete_msg_pattern = '****ORCA TERMINATED NORMALLY****'
 
     # Check if the job went to completion
     complete_status = ref.has_match(complete_msg_pattern, output_string)

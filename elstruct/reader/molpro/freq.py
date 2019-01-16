@@ -1,4 +1,4 @@
-""" 
+"""
 Library of functions to retrieve frequency information from a Molpro 2015 output file.
 
 Frequencies currently supported:
@@ -29,14 +29,14 @@ def harm_vib_freqs_reader(output_string):
         'Wavenumbers \[cm-1\]' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(
-            rep.one_or_more(relib.FLOAT + 
+            rep.one_or_more(relib.FLOAT +
             rep.one_or_more(relib.WHITESPACE))
         )
     )
 
     # Obtain the frequencies for all degrees-of-freedom
     all_freqs = repar.list_float_from_string(harm_vib_freq_pattern, output_string)
-    
+
     # Remove the zero frequencies
     vib_freqs = [freq for freq in all_freqs if freq != 0.0]
 
@@ -50,13 +50,13 @@ def harm_zpve_reader(output_string):
     # String pattern to retrieve the ZPVE
     zpve_pattern = (
         'Zero point energy:' +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         '\[H\]' +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         rep.one_or_more(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) + 
+        rep.one_or_more(relib.WHITESPACE) +
         '\[1/CM\]' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.one_or_more(relib.FLOAT) +
@@ -81,7 +81,7 @@ FREQUENCY_READERS = {
 ##### Frequency reader function called by external scripts #####
 
 def frequency(freq, output_string):
-    """ Retrieves the desired frequency information. 
+    """ Retrieves the desired frequency information.
     """
 
     assert freq in FREQUENCY_READERS.keys()

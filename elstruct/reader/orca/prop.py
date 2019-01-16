@@ -1,10 +1,10 @@
 """
-Library of functions to retrieve molecular properties from an Orca4 output file.
+Library of functions to retrieve molecular properties from an Orca 4.0 output file.
 
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-14"
+__updated__ = "2019-01-15"
 
 from ..rere import find as ref
 from ..rere import pattern as rep
@@ -12,11 +12,7 @@ from ..rere import pattern_lib as relib
 from ... import params
 
 
-def pattern_reader():
-    """ Returns pattern.
-    """
-
-    return val
+##### Series of functions to read molecular properties #####
 
 def dipole_moment_reader(output_string):
     """ Reads the Permanent Dipole moment from the output file.
@@ -24,19 +20,19 @@ def dipole_moment_reader(output_string):
     """
 
     dipole_mom_pattern = (
-        'Total Dipole Moment' + 
+        'Total Dipole Moment' +
         rep.one_or_more(relib.WHITESPACE) +
         ':' +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) + 
+        rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) 
-    
+        rep.capturing(relib.FLOAT)
+
     )
-   
-    dipole_mom = pattern_reader(pattern, output_string) 
+
+    dipole_mom = pattern_reader(pattern, output_string)
 
     return dipole_mom
 
@@ -53,7 +49,7 @@ PROPERTY_READERS = {
 def mol_property(output_string):
     """ Returns some propert.
     """
-    
-    mol_property = PROPERTY_READERS[](output_string) 
+
+    mol_property = PROPERTY_READERS[](output_string)
 
     return mol_property

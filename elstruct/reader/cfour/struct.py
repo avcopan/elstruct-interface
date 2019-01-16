@@ -1,5 +1,5 @@
 """
-Library of functions to retrieve structural information from a Molpro 2015 output file
+Library of functions to retrieve structural information from a CFour 2.0 output file
 
 Structural currently supported:
 (1) final optimized geometry in Cartesian (xyz) coordinates;
@@ -11,7 +11,7 @@ Structural currently supported:
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-15"
 
 from ..rere import find as ref
 from ..rere import pattern as rep
@@ -19,20 +19,7 @@ from ..rere import pattern_lib as relib
 from ... import params
 
 
-##### HELPER FUNCTION TO RETRIEVE TEXT BLOCK; TODO: Move to rere library #####
-
-def block(head_string, foot_string, string):
-    """ Returns a block of text
-    """
-    head_pattern = rep.escape(head_string)
-    foot_pattern = rep.escape(foot_string)
-    block_pattern = rep.capturing(
-        head_pattern + rep.one_or_more(relib.ANY_CHAR, greedy=False) +
-        foot_pattern)
-    return ref.last_capture(block_pattern, string)
-
-##### Patterns #####
-
+##### Series of functions to read structural information #####
 
 def all_geom_xyz_reader(output_string):
     """ Retrieves all geometries but last in Cartesian xyz coordinates.
@@ -40,7 +27,7 @@ def all_geom_xyz_reader(output_string):
     """
 
     # Pattern to idetify block of output string where optimized geometry is located
-    m1_geom_xyz_begin_pattern = 'Z-matrix   Atomic' + rep.one_or_more(relib.WHITESPACE) + 'Coordinates (in bohr)' 
+    m1_geom_xyz_begin_pattern = 'Z-matrix   Atomic' + rep.one_or_more(relib.WHITESPACE) + 'Coordinates (in bohr)'
     m1_geom_xyz_end_pattern = 'Interatomic distance matrix (Angstroms)'
 
     # Pattern for the xyz coordinate of each atom
@@ -70,15 +57,15 @@ def opt_geom_internal_reader(output_string):
     """
 
     # internal coords of optimized geom
-    opt_geom_internal_begin_pattern = 'Final ZMATnew file' 
-    opt_geom_internal_end_pattern = 'Property integrals will be calculated' 
+    opt_geom_internal_begin_pattern = 'Final ZMATnew file'
+    opt_geom_internal_end_pattern = 'Property integrals will be calculated'
 
     opt_geom_internal_pattern = (
         rep.one_or_more(relib.ANY_CHAR) +
         rep.one_or_more(relib.WHITESPACE) +
         '='
         rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) 
+        rep.one_or_more(relib.FLOAT)
     )
 
     return opt_geom_internal
@@ -97,7 +84,7 @@ def equil_rot_constant_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        'GHz  (calculated with average atomic masses)'
+        'GHz  \(calculated with average atomic masses\)'
     )
 
     return equil_rot_const
@@ -124,9 +111,3 @@ def structure(struct, output_string):
     struct = STRUCTURE_READERS[struct](output_string)
 
     return struct
-
-##### For lazy testing #####
-
-if __name__ == '__main__':
-    STRING = open('output.dat').read()
-    print(block('Current geometry', '***********', STRING))

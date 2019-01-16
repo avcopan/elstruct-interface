@@ -5,25 +5,31 @@ Consists of three modules for interfacing to electronic structure codes
 
 (1) Reader Module:
 
-    FUNCTION: Parses output files of electronic structure codes to retrieve information
+    Parses output files of electronic structure codes to retrieve information
 
 (2) Runner Module:
 
-    FUNCTION: Submits electronic structure jobs to the queue
+    Submits electronic structure jobs to the queue
 
 (3) Writer Module:
 
-    FUNCTION: Writes input files for electronic structure files as well as files for storing info from reader module
+    Writes input files for electronic structure files as well as files for storing info from reader module
 
 
 Codes supported within this interface:
 
 CFour 2.0 
+
 Gaussian 09e
+
 Molpro 2015
+
 MRCC 2018
+
 NWChem 6.0
+
 Orca 4.0  
+
 Psi4 1.0
 
 

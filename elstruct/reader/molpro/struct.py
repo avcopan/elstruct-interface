@@ -21,49 +21,7 @@ from ... import params
 from ... import phys_constants
 
 
-##### Patterns #####
-
-def pattern_parser_1(pattern, output_string):
-    """ xxxx.
-    """
-
-    # Obtain the xyz coordinates from the block
-    struct_str = ref.all_captures(pattern, output_string)
-
-    struct_val = (None if struct_str is None else '\n'.join(struct_str))
-
-    return struct_val
-
-def pattern_parser_2(pattern, output_string):
-    """ xxxx.
-    """
-
-    # Obtain the xyz coordinates from the block
-    struct_str = ref.all_captures(pattern, output_string)
-
-    if struct_str is not None:
-        struct_val_init = ['    '.join(elem) for elem in struct_str]
-        struct_val = '\n'.join(struct_val_init)
-    else:
-        struct_val = None
-
-    return struct_val
-
-def pattern_parser_3(pattern, output_string):
-    """ Searches for pattern in out_string to capture series of values.
-        Return each instance of these values in a single list of floats.
-    """
-
-    # Locate the final energy in the output file
-    struct_str = ref.last_capture(pattern, output_string)
-
-    # Check if energy values is found, if so, convert to float
-    if struct_str is not None:
-        struct_val = [float(val.strip()) for string in struct_str for val in string.split()]
-    else:
-        struct_val = None
-
-    return struct_val
+##### Series of functions to read structural information #####
 
 def opt_geom_xyz_reader(output_string):
     """ Retrieves the optimized geometry in Cartesian xyz coordinates.
@@ -143,7 +101,7 @@ def init_geom_xyz_reader(output_string):
                                      output_string)
 
     init_geom_internal_pattern = (
-        relib.INTEGER + 
+        relib.INTEGER +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.UPPERCASE_LETTER) +
         rep.one_or_more(relib.WHITESPACE) +
@@ -155,7 +113,7 @@ def init_geom_xyz_reader(output_string):
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
-    
+
     # Obtain the xyz coordinates from the block
     init_geom_xyz = pattern_parser_2(init_geom_internal_pattern, init_geom_internal_block)
 
@@ -182,7 +140,7 @@ def init_geom_internal_reader(output_string):
             rep.one_or_more(relib.ANY_CHAR) +
             rep.one_or_more(relib.WHITESPACE) +
             relib.FLOAT
-        ) 
+        )
     )
 
     zmatrix_pattern = ('dog')
@@ -234,7 +192,7 @@ STRUCTURE_READERS = {
 ##### Structure function called by external scripts #####
 
 def structure(struct, output_string):
-    """ Retrieves the desired structural infromation. 
+    """ Retrieves the desired structural infromation.
     """
 
     assert struct in STRUCTURE_READERS.keys()

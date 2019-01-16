@@ -91,7 +91,7 @@ def opt_geom_internal_reader(output_string):
         Units of Angstrom and degrees.
         TODO Grab stuff for the initial coords
     """
-    
+
     # internal coords of optimized geom
     opt_geom_internal_begin_pattern = 'OPTKING Finished Execution'
     opt_geom_internal_end_pattern = 'Removing binary optimization data file.'
@@ -139,19 +139,19 @@ def equil_rot_constant_reader(output_string):
     equil_rot_const_pattern = (
         'Rotational constants:' +
         rep.one_or_more(relib.WHITESPACE) +
-        'A =' + 
+        'A =' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        'B =' + 
+        'B =' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        'C =' + 
+        'C =' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT) +
         rep.one_or_more(relib.WHITESPACE) +
-        '\[cm^-1\]' 
+        '\[cm^-1\]'
     )
 
     # Obtain equil_const string
@@ -182,4 +182,3 @@ def structure(struct, output_string):
     struct = STRUCTURE_READERS[struct](output_string)
 
     return struct
-

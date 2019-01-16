@@ -1,5 +1,5 @@
-""" 
-Library of functions to retrieve frequency information from a Molpro 2015 output file.
+"""
+Library of functions to assess the job status of a Molpro 2015 job using the output file.
 
 """
 
@@ -20,20 +20,20 @@ def error_msg_reader(output_string):
 
     # List of possible strings denoting error messages in the output file
     error_msg_patterns = [
-        # Printed when SCF, CC, iterations fail to converge 
-         '',           
-        # Printed when geom. opt fails to converge 
-        'No convergence in max. number of iterations'    
+        # Printed when SCF, CC, iterations fail to converge
+         '',
+        # Printed when geom. opt fails to converge
+        'No convergence in max. number of iterations'
     ]
 
-    # Initialize error_msg to empty string; replaced if error is found 
+    # Initialize error_msg to empty string; replaced if error is found
     error_msg = ''
 
     # Check for all of the error pattern strings
     for pattern in error_msg_patterns:
-        check_error = ref.has_match(pattern, output_string)    
+        check_error = ref.has_match(pattern, output_string)
         if check_error:
-            error_msg = pattern 
+            error_msg = pattern
 
     return error_msg
 
@@ -42,12 +42,12 @@ def complete_msg_reader(output_string):
         Returns job status and any error messages located
     """
 
-    # Line printed if Molpro exits normally 
-    complete_msg_pattern = 'Variable memory released'          
+    # Line printed if Molpro exits normally
+    complete_msg_pattern = 'Variable memory released'
 
     # Check if the job went to completion
     complete_status = ref.has_match(complete_msg_pattern, output_string)
-   
+
     return complete_status
 
 
@@ -56,11 +56,11 @@ def complete_msg_reader(output_string):
 def status(output_string):
     """ Returns the status of a job.
     """
-    
-    # Check if the job completed or if any error messages were printed 
+
+    # Check if the job completed or if any error messages were printed
     job_complete = complete_msg_reader(output_string)
-    job_error_str = error_msg_reader(output_string) 
+    job_error_str = error_msg_reader(output_string)
 
-    job_status = [complete_status, job_error_str] 
+    job_status = [complete_status, job_error_str]
 
-    return job_status 
+    return job_status

@@ -1,4 +1,5 @@
-""" Modules to read information from electronic structure codes
+"""
+Modules to read information from electronic structure codes
 """
 
 #from . import cfour
@@ -11,4 +12,3 @@ from . import molpro
 #from . import qchem
 
 __all__ = ['molpro']
-#__all__ = ['cfour','gaussian','molpro','mrcc','nwchem','orca','psi4','qchem']
