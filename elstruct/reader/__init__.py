@@ -10,8 +10,6 @@ PROGRAM_MODULE_NAMES = {
     PROGRAM.MOLPRO_MPPX: 'molpro',
 }
 
-ENERGY_PROGRAMS = (PROGRAM.MOLPRO, PROGRAM.MOLPRO_MPPX)
-
 
 def _import_module(prog):
     """ import the module for a specific program
@@ -52,6 +50,27 @@ def energy(prog, method, output_string):
     return energy
 
 
+def harmonic_frequencies_programs():
+    """ get the list of programs implementing hamonic frequency readers
+    """
+    freq_progs = []
+    for prog in PROGRAM_MODULE_NAMES.keys():
+        module = _import_module(prog)
+        if hasattr(module, 'harmonic_frequencies_reader'):
+            freq_progs.append(prog)
+    return freq_progs
+
+
+def harmonic_frequencies(prog, output_string):
+    """ Reads the harmonic vibrational frequencies from the output file.
+        Returns the frequencies as a list of floats in cm-1.
+    """
+    assert prog in harmonic_frequencies_programs()
+    module = _import_module(prog)
+    freqs = module.harmonic_frequencies_reader(output_string)
+    return freqs
+
+
 #def frequency(freq, output_string):
 #    """ Retrieves the desired frequency information.
 #    """
@@ -61,6 +80,7 @@ def energy(prog, method, output_string):
 #    frequency = FREQUENCY_READERS[freq](output_string)
 #
 #    return frequency
+
 #def structure(struct, output_string):
 #    """ Retrieves the desired structural infromation.
 #    """

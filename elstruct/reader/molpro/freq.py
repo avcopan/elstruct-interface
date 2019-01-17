@@ -19,7 +19,7 @@ from ... import params
 
 ##### Series of functions to read the frequency information #####
 
-def harm_vib_freqs_reader(output_string):
+def harmonic_frequencies_reader(output_string):
     """ Reads the harmonic vibrational frequencies from the output file.
         Returns the frequencies as a list of floats in cm-1.
     """
@@ -41,6 +41,7 @@ def harm_vib_freqs_reader(output_string):
     vib_freqs = [freq for freq in all_freqs if freq != 0.0]
 
     return vib_freqs
+
 
 def harm_zpve_reader(output_string):
     """ Reads the harmonic zero-point vibrational energy (ZPVE) from the output file.
@@ -68,11 +69,3 @@ def harm_zpve_reader(output_string):
     harm_zpve = repar.sing_float(zpve_pattern, output_string)
 
     return harm_zpve
-
-
-##### Dictionary of functions to read frequency information in the files #####
-
-FREQUENCY_READERS = {
-    params.FREQUENCY.HARM_FREQ : harm_vib_freqs_reader,
-    params.FREQUENCY.HARM_ZPVE : harm_zpve_reader
-}
