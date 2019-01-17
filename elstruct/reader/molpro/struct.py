@@ -23,7 +23,7 @@ from ... import phys_constants
 
 ##### Series of functions to read structural information #####
 
-def opt_geom_xyz_reader(output_string):
+def optimized_cartesian_geometry_reader(output_string):
     """ Retrieves the optimized geometry in Cartesian xyz coordinates.
         Units of Angstrom.
     """
@@ -179,7 +179,7 @@ def equil_rot_constant_reader(output_string):
 ##### Dictionary for strings to find the geometries in the files #####
 
 STRUCTURE_READERS = {
-    params.STRUCTURE.OPT_GEOM_XYZ: opt_geom_xyz_reader,
+    params.STRUCTURE.OPT_GEOM_XYZ: optimized_cartesian_geometry_reader,
     params.STRUCTURE.OPT_GEOM_INT: opt_geom_internal_reader,
     params.STRUCTURE.INIT_GEOM_XYZ: init_geom_xyz_reader,
     params.STRUCTURE.INIT_GEOM_INT: init_geom_internal_reader,

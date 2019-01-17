@@ -43,29 +43,29 @@ def harmonic_frequencies_reader(output_string):
     return vib_freqs
 
 
-def harm_zpve_reader(output_string):
-    """ Reads the harmonic zero-point vibrational energy (ZPVE) from the output file.
-        Returns the ZPVE as a float; in Hartrees.
-    """
-
-    # String pattern to retrieve the ZPVE
-    zpve_pattern = (
-        'Zero point energy:' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) +
-        '\[H\]' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) +
-        '\[1/CM\]' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.one_or_more(relib.FLOAT) +
-        rep.one_or_more(relib.WHITESPACE) +
-        '\[KJ/MOL\]'
-    )
-
-    # Obtain the ZPVE
-    harm_zpve = repar.sing_float(zpve_pattern, output_string)
-
-    return harm_zpve
+# def harm_zpve_reader(output_string):
+#     """ Reads the harmonic zero-point vibrational energy (ZPVE) from the output file.
+#         Returns the ZPVE as a float; in Hartrees.
+#     """
+# 
+#     # String pattern to retrieve the ZPVE
+#     zpve_pattern = (
+#         'Zero point energy:' +
+#         rep.one_or_more(relib.WHITESPACE) +
+#         rep.capturing(relib.FLOAT) +
+#         rep.one_or_more(relib.WHITESPACE) +
+#         '\[H\]' +
+#         rep.one_or_more(relib.WHITESPACE) +
+#         rep.one_or_more(relib.FLOAT) +
+#         rep.one_or_more(relib.WHITESPACE) +
+#         '\[1/CM\]' +
+#         rep.one_or_more(relib.WHITESPACE) +
+#         rep.one_or_more(relib.FLOAT) +
+#         rep.one_or_more(relib.WHITESPACE) +
+#         '\[KJ/MOL\]'
+#     )
+# 
+#     # Obtain the ZPVE
+#     harm_zpve = repar.sing_float(zpve_pattern, output_string)
+# 
+#     return harm_zpve

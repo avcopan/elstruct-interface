@@ -3,6 +3,7 @@ Modules to read information from electronic structure codes
 """
 import importlib
 from ..params import PROGRAM
+from ..phys_constants import CM_TO_HART
 
 PACKAGE = 'elstruct.reader'
 PROGRAM_MODULE_NAMES = {
@@ -20,14 +21,21 @@ def _import_module(prog):
     return module
 
 
+def _programs_with_attribute(attr):
+    """ get a list of modules with a given attribute
+    """
+    progs = []
+    for prog in PROGRAM_MODULE_NAMES.keys():
+        module = _import_module(prog)
+        if hasattr(module, attr):
+            progs.append(prog)
+    return progs
+
+
 def energy_programs():
     """ get the list of programs implementing energy readers
     """
-    energy_progs = []
-    for prog in PROGRAM_MODULE_NAMES.keys():
-        module = _import_module(prog)
-        if hasattr(module, 'ENERGY_READERS'):
-            energy_progs.append(prog)
+    energy_progs = _programs_with_attribute('ENERGY_READERS')
     return energy_progs
 
 
@@ -53,11 +61,7 @@ def energy(prog, method, output_string):
 def harmonic_frequencies_programs():
     """ get the list of programs implementing hamonic frequency readers
     """
-    freq_progs = []
-    for prog in PROGRAM_MODULE_NAMES.keys():
-        module = _import_module(prog)
-        if hasattr(module, 'harmonic_frequencies_reader'):
-            freq_progs.append(prog)
+    freq_progs = _programs_with_attribute('harmonic_frequencies_reader')
     return freq_progs
 
 
@@ -69,6 +73,38 @@ def harmonic_frequencies(prog, output_string):
     module = _import_module(prog)
     freqs = module.harmonic_frequencies_reader(output_string)
     return freqs
+
+
+def harmonic_zero_point_vibrational_energy_programs():
+    """ get the list of programs implementing hamonic zero point vibrational energies
+    """
+    return harmonic_frequencies_programs()
+
+
+def harmonic_zero_point_vibrational_energy(prog, output_string):
+    """ Reads the harmonic zero-point vibrational energy (ZPVE) from the output file.
+        Returns the ZPVE as a float; in Hartrees.'
+    """
+    freqs = harmonic_frequencies(prog=prog, output_string=output_string)
+    zpve = sum(freqs) / 2. * CM_TO_HART
+    return zpve
+
+
+def harmonic_frequencies_programs():
+    """ get the list of programs implementing hamonic frequency readers
+    """
+    freq_progs = []
+    for prog in PROGRAM_MODULE_NAMES.keys():
+        module = _import_module(prog)
+        if hasattr(module, 'harmonic_frequencies_reader'):
+            freq_progs.append(prog)
+    return freq_progs
+
+
+def optimized_cartesian_geometry(prog, output_string):
+    """ Retrieves the optimized geometry in Cartesian xyz coordinates.
+        Units of Angstrom.
+    """
 
 
 #def frequency(freq, output_string):
