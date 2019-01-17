@@ -83,3 +83,11 @@ class PROGRAM():
     ORCA = 'orca4'
     PSI4 = 'psi4'
     QCHEM = 'qchem'
+
+class FILE_EXTENSION():
+    """ Data file extensions
+    """
+    ENERGY = '.energ'
+    HARMONIC_FREQUENCIES = '.harmfreq'
+    HARMONIC_ZERO_POINT_VIBRATIONAL_ENERGY = '.harmzpve'
+    CARTESIAN_GEOMETRY = '.xyz'

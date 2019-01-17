@@ -21,6 +21,7 @@ NONNEWLINE_WHITESPACE = r'[ \t]'
 
 UPPERCASE_LETTER = '[A-Z]'
 LOWERCASE_LETTER = '[a-z]'
+LETTER = '[A-Za-z]'
 
 DIGIT = r'[0-9]'
 

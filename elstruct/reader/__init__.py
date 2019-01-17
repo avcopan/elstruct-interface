@@ -90,21 +90,22 @@ def harmonic_zero_point_vibrational_energy(prog, output_string):
     return zpve
 
 
-def harmonic_frequencies_programs():
-    """ get the list of programs implementing hamonic frequency readers
+
+def optimized_cartesian_geometry_programs():
+    """ get the list of programs implementing optimized cartesian geometry readers
     """
-    freq_progs = []
-    for prog in PROGRAM_MODULE_NAMES.keys():
-        module = _import_module(prog)
-        if hasattr(module, 'harmonic_frequencies_reader'):
-            freq_progs.append(prog)
-    return freq_progs
+    geom_progs = _programs_with_attribute('optimized_cartesian_geometry_reader')
+    return geom_progs
 
 
 def optimized_cartesian_geometry(prog, output_string):
     """ Retrieves the optimized geometry in Cartesian xyz coordinates.
         Units of Angstrom.
     """
+    assert prog in optimized_cartesian_geometry_programs()
+    module = _import_module(prog)
+    cart_geom = module.optimized_cartesian_geometry_reader(output_string)
+    return cart_geom
 
 
 #def frequency(freq, output_string):

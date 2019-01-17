@@ -39,21 +39,18 @@ def optimized_cartesian_geometry_reader(output_string):
 
     # Pattern for the xyz coordinate of each atom
     opt_geom_xyz_pattern = (
-        rep.capturing(
-            relib.ANY_CHAR +
-            rep.one_or_more(relib.WHITESPACE) +
-            relib.FLOAT +
-            rep.one_or_more(relib.WHITESPACE) +
-            relib.FLOAT +
-            rep.one_or_more(relib.WHITESPACE) +
-            relib.FLOAT
-        )
+        rep.capturing(relib.ANY_CHAR) +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT) +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
     )
 
-    # Obtain the xyz coordinates from the block
-    opt_geom_xyz = repar.pattern_parser_1(opt_geom_xyz_pattern, opt_geom_xyz_block)
+    cart_geom = repar.pattern_parser_cartesian_geometry(opt_geom_xyz_pattern, opt_geom_xyz_block)
 
-    return opt_geom_xyz
+    return cart_geom
 
 def opt_geom_internal_reader(output_string):
     """ Retrieves the optimized geometry in internal coordinates.

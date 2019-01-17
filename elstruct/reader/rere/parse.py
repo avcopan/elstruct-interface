@@ -78,3 +78,14 @@ def pattern_parser_2(pattern, output_string):
         pattern_val = None
 
     return pattern_val
+
+def pattern_parser_cartesian_geometry(pattern, output_string):
+    """ Return the geometry, consisting of lines of atomic symbols and coordinates
+    """
+    cart_geom_elements = all_captures(pattern, output_string)
+
+    cart_geom = tuple((sym, (float(x), float(y), float(z)))
+                      for sym, x, y, z in cart_geom_elements)
+
+    return cart_geom
+
