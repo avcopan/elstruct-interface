@@ -49,14 +49,3 @@ def dipole_moment_reader(output_string):
 PROPERTY_READERS = {
     params.PROPERTY.DIPOLE_MOM : dipole_moment_reader
 }
-
-
-##### Molecular property reader function called by external scripts #####
-
-def mol_property(prop, output_string):
-    """ Retrieves the desired molecular property.
-    """
-
-    mol_property = PROPERTY_READERS[prop](output_string)
-
-    return mol_property

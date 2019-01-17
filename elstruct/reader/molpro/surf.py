@@ -134,14 +134,3 @@ SURFACE_READERS = {
     params.SURFACE.GRADIENT_XYZ: gradient_xyz_reader,
     params.SURFACE.HESSIAN_XYZ: hessian_xyz_reader,
 }
-
-
-##### Frequency reader function called by external scripts #####
-
-def surface(surf, output_string):
-    """ Retrieves the desired information regarding the potential energy surface.
-    """
-
-    surf_info = SURFACE_READERS[surf](output_string)
-
-    return surface_info

@@ -104,15 +104,3 @@ STRUCTURE_READERS = {
     params.STRUCTURE.ALL_GEOM_INT: all_geom_internal_reader,
     params.STRUCTURE.EQUIL_ROT_CONST: equil_rot_const_reader,
 }
-
-##### Structure function called by external scripts #####
-
-def structure(struct, output_string):
-    """ Calls the appropriate function to read in the energy
-    """
-
-    assert struct in STRUCTURE_READERS.keys()
-
-    struct = STRUCTURE_READERS[struct](output_string)
-
-    return struct

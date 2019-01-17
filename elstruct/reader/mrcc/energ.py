@@ -122,15 +122,3 @@ ENERGY_READERS = {
     params.METHOD.ROHF: hf_reader,
     params.METHOD.UHF: hf_reader,
 }
-
-
-##### Energy reader function called by external scripts #####
-
-def energy(method, output_string):
-    """ Calls the appropriate function to read in the energy
-    """
-    assert method in ENERGY_READERS.keys()
-
-    energy = ENERGY_READERS[method](output_string)
-
-    return energy

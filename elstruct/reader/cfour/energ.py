@@ -110,15 +110,3 @@ ENERGY_READERS = {
     params.METHOD.UHF_CCSD_T: ccsd_t_reader,
     params.METHOD.ROHF_CCSD_T: ccsd_t_reader
 }
-
-
-##### Energy reader function called by external scripts #####
-
-def energy(method, output_string):
-    """ Calls the appropriate function to read in the energy
-    """
-    assert method in ENERGY_READERS.keys()
-
-    energy = ENERGY_READERS[method](output_string)
-
-    return energy

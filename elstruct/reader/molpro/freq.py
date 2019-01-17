@@ -76,16 +76,3 @@ FREQUENCY_READERS = {
     params.FREQUENCY.HARM_FREQ : harm_vib_freqs_reader,
     params.FREQUENCY.HARM_ZPVE : harm_zpve_reader
 }
-
-
-##### Frequency reader function called by external scripts #####
-
-def frequency(freq, output_string):
-    """ Retrieves the desired frequency information.
-    """
-
-    assert freq in FREQUENCY_READERS.keys()
-
-    frequency = FREQUENCY_READERS[freq](output_string)
-
-    return frequency

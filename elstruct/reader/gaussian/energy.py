@@ -25,18 +25,6 @@ from ... import params
 
 ENERGY_READERS = {
 }
-
-
-##### Energy reader function called by external scripts #####
-
-def energy(method, output_string):
-    """ Retrieves the desired electronic energy.
-    """
-    assert method in ENERGY_READERS.keys()
-
-    energy = ENERGY_READERS[method](output_string)
-
-    return energy
 #def gaussian_energy(lines,method=''):
 #
 #    if method == '':

@@ -46,18 +46,3 @@ def complete_msg_reader(output_string):
     complete_status = ref.has_match(complete_msg_pattern, output_string)
 
     return complete_status
-
-
-##### Status reader function called by external scripts #####
-
-def status(output_string):
-    """ Returns the status of a job.
-    """
-
-    # Check if the job completed or if any error messages were printed
-    job_complete = complete_msg_reader(output_string)
-    job_error_str = error_msg_reader(output_string)
-
-    job_status = [complete_status, job_error_str]
-
-    return job_status

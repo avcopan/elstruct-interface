@@ -185,16 +185,3 @@ STRUCTURE_READERS = {
     params.STRUCTURE.INIT_GEOM_INT: init_geom_internal_reader,
     params.STRUCTURE.EQUIL_ROT_CONST: equil_rot_constant_reader,
 }
-
-
-##### Structure function called by external scripts #####
-
-def structure(struct, output_string):
-    """ Retrieves the desired structural infromation.
-    """
-
-    assert struct in STRUCTURE_READERS.keys()
-
-    struct = STRUCTURE_READERS[struct](output_string)
-
-    return struct

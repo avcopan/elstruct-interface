@@ -25,14 +25,3 @@ GRAD_INT_END = '*********************'
 
 SURFACE_READERS = {
 }
-
-
-##### Frequency reader function called by external scripts #####
-
-def surface(surf, output_string):
-    """ Retrieves the desired information regarding the potential energy surface.
-    """
-
-    surf_info = SURFACE_READERS[surf](output_string)
-
-    return surf_info

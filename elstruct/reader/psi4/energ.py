@@ -3,16 +3,12 @@ Library of functions to retrieve electronic energies from a Molpro 2015 output f
 
 Energies currently supported:
 
-This script has the user call the function 'energy' which accepts the theory method and output
-file lines as input. The theoretical method serves as a key to a dictionary of functions. The
-key corresponds to an energy-reader function which reads the output file for the appropriate
-string pattern to return the user-requested energy.
-
 """
 
 __authors__ = "Kevin Moore, Andreas Copan"
-__updated__ = "2019-01-11"
+__updated__ = "2019-01-16"
 
+from ..rere import parse as repar
 from ..rere import find as ref
 from ..rere import pattern as rep
 from ..rere import pattern_lib as relib
@@ -21,42 +17,98 @@ from ... import params
 
 ##### Series of functions to read the electronic energy #####
 
-def pattern_reader(pattern, output_string):
-    """ Use pattern to retrieve the LAST electronic energy in the output file.
-        Returns energy as float.
-    """
-
-    # Locate the final energy in the output file
-    energy_str = ref.last_capture(pattern, output_string)
-
-    # Check if energy values is found, if so, convert to float
-    energy_val = (None if energy_str is None else float(energy_str))
-
-    return energy_val
-
-def scf_reader(output_string):
-    """ Retrieves the RHF or UHF energy.
+def rhf_reader(output_string):
+    """ Retrieves the RHF energy.
         Returns as a float. Units of Hartrees.
     """
-
     # Set the string pattern to find the RHF energy
     rhf_pattern = (
         '@RHF Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
+    scf_pattern = (
+        'SCF energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        '(wfn)' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
     )
 
+    scf_pattern_2 = (
+        'Reference energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        '(file' +
+        relib.INTEGER +
+        ')' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    )
+
+    return rhf_energy
+
+def uhf_reader(output_string):
+    """ Retrieves the UHF energy.
+        Returns as a float. Units of Hartrees.
+    """
+    # Set the string pattern to find the RHF energy
     uhf_pattern = (
         '@UHF Final Energy:' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
-    )
-
-    rohf_pattern = (
-        '@ROHF Final Energy:' +
+    scf_pattern = (
+        'SCF energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        '(wfn)' +
         rep.one_or_more(relib.WHITESPACE) +
         rep.capturing(relib.FLOAT)
     )
+
+    scf_pattern_2 = (
+        'Reference energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        '(file' +
+        relib.INTEGER +
+        ')' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    )
+
+    return uhf_energy
+
+def rohf_reader(output_string):
+    """ Retrieves the ROHF energy.
+        Returns as a float. Units of Hartrees.
+    """
+    # Set the string pattern to find the RHF energy
+    rohf_pattern = (
+        '@ORHF Final Energy:' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    scf_pattern = (
+        'SCF energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        '(wfn)' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    )
+
+    scf_pattern_2 = (
+        'Reference energy' +
+        rep.one_or_more(relib.WHITESPACE) +
+        '(file' +
+        relib.INTEGER +
+        ')' +
+        rep.one_or_more(relib.WHITESPACE) +
+        rep.capturing(relib.FLOAT)
+    )
+
+    return rohf_energy
+
+
+def dft_reader(output_string):
+    """ Retrieves a DFT energy, regardless of the Kohn-Sham reference.
+        Returns as a float. Units of Hartrees.
+    """
 
     rks_pattern = (
         '@RKS Final Energy:' +
@@ -76,7 +128,7 @@ def scf_reader(output_string):
         rep.capturing(relib.FLOAT)
     )
 
-    alt_pattern = (
+    scf_pattern = (
         'SCF energy' +
         rep.one_or_more(relib.WHITESPACE) +
         '(wfn)' +
@@ -84,7 +136,7 @@ def scf_reader(output_string):
         rep.capturing(relib.FLOAT)
     )
 
-    alt_pattern_2 = (
+    scf_pattern_2 = (
         'Reference energy' +
         rep.one_or_more(relib.WHITESPACE) +
         '(file' +
@@ -94,17 +146,12 @@ def scf_reader(output_string):
         rep.capturing(relib.FLOAT)
     )
 
-    # check if for scf only or any energy (same for df-mp2)
-    alt_pattern_3 = (
-        'Total Energy =' +
-        rep.one_or_more(relib.WHITESPACE) +
-        rep.capturing(relib.FLOAT)
-    )
-
-    return scf_energy
+    return dft_energy
 
 def mp2_reader(output_string):
-    """ Grabs MP2 wiht any reference """
+    """ Retrieves the MP2 energy with any HF reference. 
+        Returns as a float. Units of Hartrees.
+    """
 
     # Check if same in higer correlation
     mp2_pattern = (
@@ -118,7 +165,9 @@ def mp2_reader(output_string):
     return mp2_energy
 
 def ccsd_reader(output_string):
-    """ Grabs MP2 wiht any reference """
+    """ Retrieves the CCSD energy with any HF reference. 
+        Returns as a float. Units of Hartrees.
+    """
 
     # Check if same in higer correlation
     ccsd_pattern = (
@@ -140,7 +189,9 @@ def ccsd_reader(output_string):
     return ccsd_energy
 
 def ccsd_t_reader(output_string):
-    """ Grabs MP2 wiht any reference """
+    """ Retrieves the CCSD(T) energy with any HF reference. 
+        Returns as a float. Units of Hartrees.
+    """
 
     # Check if same in higer correlation
     ccsd_t_pattern = (
@@ -157,15 +208,3 @@ def ccsd_t_reader(output_string):
 
 ENERGY_READERS = {
 }
-
-
-##### Energy reader function called by external scripts #####
-
-def energy(method, output_string):
-    """ Calls the appropriate function to read in the energy
-    """
-    assert method in ENERGY_READERS.keys()
-
-    energy = ENERGY_READERS[method](output_string)
-
-    return energy

@@ -93,19 +93,6 @@ FREQUENCY_READERS = {
     params.FREQUENCY.HARM_ZPVE : harm_zpve_reader
     params.FREQUENCY.ANHARM_ZPVE : anharm_zpve_reader
 }
-
-
-##### Frequency reader function called by external scripts #####
-
-def frequency(freq, output_string):
-    """ Retrieves the desired frequency information.
-    """
-
-    assert freq in FREQUENCY_READERS.keys()
-
-    frequency = FREQUENCY_READERS[freq](output_string)
-
-    return frequency
 #def gaussian_rotdists (lines):
 #    startkey = 'Quartic Centrifugal Distortion Constants Tau Prime'
 #    endkey   = 'Asymmetric Top Reduction'

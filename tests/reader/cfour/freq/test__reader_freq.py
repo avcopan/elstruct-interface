@@ -1,14 +1,18 @@
 import numpy
 import elstruct
 import importlib
+from elstruct.params import FREQUENCY
 
 # Program to test
-PROGRAM = 'molpro'
+PROGRAM = 'cfour'
 
-PROPS = ['dipole_moment']
+FREQS = [
+    FREQUENCY.HARM_FREQ,
+    FREQUENCY.HARM_ZPVE
+]
 
-def test__prop():
-    """ Test the molecular properties from several different Molpro jobs.
+def test__freq():
+    """ Test the frequency information from several different CFour jobs.
     """
 
     # Change parentheses in the theory name for file reading
@@ -21,13 +25,14 @@ def test__prop():
     # Set the reader module to user the reader for the desired program
     reader_module = importlib.import_module('elstruct.reader.'+PROGRAM)
 
-    for PROP in PROPS:
+    for FREQ in FREQS:
 
-        print(PROP)
+        print(FREQ)
 
         # Use the reader module to obtain the energy value
-        VAL = reader_module.mol_property(PROP, OUTPUT_STR)
+        VAL = reader_module.frequency(FREQ, OUTPUT_STR)
+
         print(VAL)
 
 if __name__ == '__main__':
-    test__struct()
+    test__freq()

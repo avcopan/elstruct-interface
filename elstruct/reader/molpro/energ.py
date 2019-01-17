@@ -285,15 +285,3 @@ ENERGY_READERS = {
     params.METHOD.ROHF_RCCSD_T: rohf_rccsd_t_reader,
     params.METHOD.CUSTOM: custom_e_reader,
 }
-
-
-##### Energy reader function called by external scripts #####
-
-def energy(method, output_string):
-    """ Retrieves the desired electronic energy.
-    """
-    assert method in ENERGY_READERS.keys()
-
-    energy = ENERGY_READERS[method](output_string)
-
-    return energy

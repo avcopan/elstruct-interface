@@ -18,18 +18,6 @@ from ... import params
 
 STRUCTURE_READERS = {
 }
-
-##### Structure function called by external scripts #####
-
-def structure(struct, output_string):
-    """ Calls the appropriate function to read in the energy
-    """
-
-    assert struct in STRUCTURE_READERS.keys()
-
-    struct = STRUCTURE_READERS[struct](output_string)
-
-    return struct
 #def gaussian_opt_zmat_params(lines):
 #    
 #    params = ''
