@@ -283,5 +283,5 @@ ENERGY_READERS = {
     params.METHOD.RHF_CCSD_T: rhf_rohf_ccsd_t_uccsd_t_reader,
     params.METHOD.ROHF_UCCSD_T: rhf_rohf_ccsd_t_uccsd_t_reader,
     params.METHOD.ROHF_RCCSD_T: rohf_rccsd_t_reader,
-    params.METHOD.CUSTOM: custom_e_reader,
+    # params.METHOD.CUSTOM: custom_e_reader,
 }

@@ -13,3 +13,4 @@ dependencies:
     - psi4
     - flake8
     - pylint
+    - pyyaml
